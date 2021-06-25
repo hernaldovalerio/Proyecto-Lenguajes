@@ -30,17 +30,52 @@
             <br />
 
             <!-- Nombre Platillo -->
-            <div class="form-group d-flex h-100 align-items-center justify-content-center" style="height: 100px;">
-                <label for="plato_txt" class="col-form-label">Plato&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <input type="text" class="col-10 form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" /><br />
+            <div class="form-group d-flex h-100 align-items-center justify-content-around">
+                <div class="col-2"></div>
+                <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
+                    <label for="plato_txt" class="col-form-label">Plato</label>
+                </div>
+                <input type="text" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 40%"/>
+                
+                <div class="col-3"></div>
+
+            
             </div>
 
             <br />
 
             <!-- Descripcion -->
-            <div class="form-group d-flex h-100 align-items-center justify-content-center" style="height: 100px;">
-                <label for="descripcion_txt" class="col-form-label">Descripción&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                <textarea class="col-10 form-control" id="descripcion_txt" rows="3"></textarea>
+            <div class="form-group d-flex h-100 align-items-center justify-content-around">
+                <div class="col-2"></div>
+                <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
+                    <label for="descripcion_txt" class="col-form-label">Descripción</label>
+                </div>
+                <textarea class="col-10 form-control" id="descripcion_txt" rows="4" style="width: 57%"></textarea>
+                <div class="col-1"></div>
+            </div>
+
+            <br />
+
+            <!-- Precio-->
+            <div class="form-group d-flex h-100 align-items-center justify-content-around">
+                <div class="col-2"></div>
+                <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
+                    <label for="precio_txt" class="col-form-label">Precio</label>
+                </div>
+                <input type="number" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" required="required" style="width: 32%"/>
+                <div class="col-4"></div>
+            </div>
+
+            <br />
+
+            <!-- Foto-->
+            <div class="form-group d-flex h-100 align-items-center justify-content-around">
+                <div class="col-2"></div>
+                <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
+                    <label for="foto_fld" class="col-form-label">Imagen</label>
+                </div>
+                <input type="file" class="col-7 col-auto form-control-file" id="foto_fld" required="required" style="width: 54%"/><br />
+                <div class="col-1"></div>
             </div>
 
         </div>
