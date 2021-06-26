@@ -13,7 +13,7 @@
 
 <body>
     <form id="form1" runat="server">
-        
+
         <div>
             <!-- BOTONES-->
             <div class="d-flex h-100 align-items-center justify-content-center">
@@ -35,10 +35,10 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="plato_txt" class="col-form-label">Plato</label>
                 </div>
-                <input type="text" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 40%"/>
+                <input type="text" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 40%" />
                 <button type="button" class="btn btn-info" style="width: 14%">Buscar</button>
                 <div class="col-1 text-rigth" style="width: 9%"></div>
-            
+
             </div>
 
             <br />
@@ -49,6 +49,7 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="descripcion_txt" class="col-form-label">Descripción</label>
                 </div>
+
                 <textarea class="col-10 form-control" id="descripcion_txt" rows="4" style="width: 57%"></textarea>
                 <div class="col-1"></div>
             </div>
@@ -61,7 +62,7 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="precio_txt" class="col-form-label">Precio</label>
                 </div>
-                <input type="number" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" required="required" style="width: 32%"/>
+                <input type="number" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" required="required" style="width: 32%" />
                 <div class="col-4"></div>
             </div>
 
@@ -73,10 +74,32 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="foto_fld" class="col-form-label">Imagen</label>
                 </div>
-                <input type="file" class="col-7 col-auto form-control" id="foto_fld" required="required" style="width: 54%"/><br />
+                <input type="file" class="col-7 col-auto form-control" id="foto_fld" required="required" style="width: 54%" /><br />
                 <div class="col-1"></div>
             </div>
 
+
+            
+                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="80%">
+                    <%= DataGridCreation()%>
+              <!--  <thead>
+                    <tr>
+                        <th class="th-sm">Nombre
+                        </th>
+                        <th class="th-sm">Descripcion
+                        </th>
+                        <th class="th-sm">Precio
+                        </th>
+                        <th class="th-sm">Inhabilitado
+                        </th>
+                        <th class="th-sm">Imagen
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>                
+                -->
+            </table>
         </div>
 
     </form>
