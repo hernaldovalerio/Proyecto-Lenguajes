@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
     <title></title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,11 +19,11 @@
             <!-- BOTONES-->
             <div class="d-flex h-100 align-items-center justify-content-center">
                 <br />
-                <button type="button" class="btn btn-success">Ingresar</button>
+                <asp:Button ID="ingresar_btn" runat="server" type="button" class="btn btn-success" Text="Ingresar" />
                 &nbsp;
-            <button type="button" class="btn btn-warning">Modificar</button>
+            <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar" />
                 &nbsp;
-            <button type="button" class="btn btn-danger">Eliminar</button>
+            <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" />
                 <br />
                 <br />
             </div>
@@ -35,9 +36,10 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="plato_txt" class="col-form-label">Plato</label>
                 </div>
-                <input type="text" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 40%" />
-                <button type="button" class="btn btn-info" style="width: 14%">Buscar</button>
-                <div class="col-1 text-rigth" style="width: 9%"></div>
+                <input type="text" runat="server" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 41%" />
+                <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Style="width: 18%" Text="Buscar" OnClick="Unnamed1_Click" />
+                <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Style="width: 18%" Text="Cancelar" OnClick="Unnamed2_Click" />
+                <div class="col-1 text-rigthtext-start" style="width: 4%"></div>
 
             </div>
 
@@ -50,7 +52,7 @@
                     <label for="descripcion_txt" class="col-form-label">Descripción</label>
                 </div>
 
-                <textarea class="col-10 form-control" id="descripcion_txt" rows="4" style="width: 57%"></textarea>
+                <textarea class="col-10 form-control" runat="server" id="descripcion_txt" rows="4" style="width: 57%"></textarea>
                 <div class="col-1"></div>
             </div>
 
@@ -62,7 +64,7 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="precio_txt" class="col-form-label">Precio</label>
                 </div>
-                <input type="number" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" required="required" style="width: 32%" />
+                <input type="number" runat="server" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" required="required" style="width: 32%" />
                 <div class="col-4"></div>
             </div>
 
@@ -74,32 +76,25 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="foto_fld" class="col-form-label">Imagen</label>
                 </div>
-                <input type="file" class="col-7 col-auto form-control" id="foto_fld" required="required" style="width: 54%" /><br />
+                <input type="file" runat="server" class="col-7 col-auto form-control" id="foto_fld" required="required" style="width: 54%" /><br />
                 <div class="col-1"></div>
             </div>
 
+            <br />
 
-            
-                <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="80%">
+            <!-- Tabla -->
+            <div class="form-group d-flex h-100 align-items-center justify-content-around">
+                <table id="dtBasicExample" class="table table-striped table-bordered" style="width: 50%">
                     <%= DataGridCreation()%>
-              <!--  <thead>
-                    <tr>
-                        <th class="th-sm">Nombre
-                        </th>
-                        <th class="th-sm">Descripcion
-                        </th>
-                        <th class="th-sm">Precio
-                        </th>
-                        <th class="th-sm">Inhabilitado
-                        </th>
-                        <th class="th-sm">Imagen
-                        </th>
-                    </tr>
-                </thead>
+                </table>
+            </div>
 
-                <tbody>                
-                -->
-            </table>
+            <br />
+
+            <div class="d-flex h-100 align-items-center justify-content-center">
+                <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
+            </div>
+
         </div>
 
     </form>

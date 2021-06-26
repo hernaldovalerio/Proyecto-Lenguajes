@@ -11,7 +11,7 @@ namespace ModuloAdministracion
 {
 
 
-    public partial class MantenimientoPlatillos
+    public partial class AdministradorUsuarios
     {
 
         /// <summary>
@@ -51,13 +51,13 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.WebControls.Button eliminar_btn;
 
         /// <summary>
-        /// Control plato_txt.
+        /// Control email_txt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText plato_txt;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email_txt;
 
         /// <summary>
         /// Control buscar_btn.
@@ -78,31 +78,31 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.WebControls.Button cancelar_btn;
 
         /// <summary>
-        /// Control descripcion_txt.
+        /// Control nombre_txt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion_txt;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText nombre_txt;
 
         /// <summary>
-        /// Control precio_txt.
+        /// Control apellido_txt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl precio_txt;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText apellido_txt;
 
         /// <summary>
-        /// Control foto_fld.
+        /// Control direccion_txt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile foto_fld;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea direccion_txt;
 
         /// <summary>
         /// Control volver_btn.

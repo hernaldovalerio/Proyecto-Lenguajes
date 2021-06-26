@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaLogicaAdministracion;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,25 +7,23 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaLogicaAdministracion;
 
 namespace ModuloAdministracion
 {
-    public partial class MantenimientoPlatillos : System.Web.UI.Page
+    public partial class AdministrarClientes : System.Web.UI.Page
     {
-
         private LogicaAdministracion logica;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             logica = new LogicaAdministracion();
             Session["logica"] = logica;
-            eliminar_btn.Enabled = false;
-            modificar_btn.Enabled = false;
-            plato_txt.Disabled = false;
-            buscar_btn.Visible = true;
+            bloquear_btn.Enabled = false;
             cancelar_btn.Visible = false;
+            buscar_btn.Visible = true;
+            email_txt.Disabled = false;
         }
+
 
         public string DataGridCreation()
         {
@@ -32,10 +31,12 @@ namespace ModuloAdministracion
 
             DataTable table = new DataTable();
             table.Columns.Add("Nombre", typeof(string));
-            table.Columns.Add("Descripcion", typeof(string));
-            table.Columns.Add("Precio", typeof(string));
-            table.Columns.Add("Inhabilitado", typeof(string));
-            table.Columns.Add("Imagen", typeof(string));
+            table.Columns.Add("Apellido", typeof(string));
+            table.Columns.Add("Rol", typeof(string));
+            table.Columns.Add("Email", typeof(string));
+            table.Columns.Add("Direccion", typeof(string));
+            table.Columns.Add("Bloqueado", typeof(string));
+            table.Columns.Add("Borrado", typeof(string));
 
             List<string[]> list = new List<string[]>();
 
@@ -90,9 +91,8 @@ namespace ModuloAdministracion
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
-            eliminar_btn.Enabled = true;
-            modificar_btn.Enabled = true;
-            plato_txt.Disabled = true;
+            bloquear_btn.Enabled = true;
+            email_txt.Disabled = true;
             buscar_btn.Visible = false;
             cancelar_btn.Visible = true;
         }
@@ -100,11 +100,11 @@ namespace ModuloAdministracion
         protected void Unnamed2_Click(object sender, EventArgs e)
         {
             //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
-            eliminar_btn.Enabled = false;
-            modificar_btn.Enabled = false;
-            plato_txt.Disabled = false;
+            bloquear_btn.Enabled = false;
+            email_txt.Disabled = false;
             buscar_btn.Visible = true;
             cancelar_btn.Visible = false;
         }
+
     }
 }

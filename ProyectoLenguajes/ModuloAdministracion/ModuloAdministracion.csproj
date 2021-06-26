@@ -74,6 +74,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdministradorUsuarios.aspx" />
+    <Content Include="AdministrarClientes.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -100,6 +102,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministradorUsuarios.aspx.cs">
+      <DependentUpon>AdministradorUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministradorUsuarios.aspx.designer.cs">
+      <DependentUpon>AdministradorUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdministrarClientes.aspx.cs">
+      <DependentUpon>AdministrarClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarClientes.aspx.designer.cs">
+      <DependentUpon>AdministrarClientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MantenimientoPlatillos.aspx.cs">
       <DependentUpon>MantenimientoPlatillos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

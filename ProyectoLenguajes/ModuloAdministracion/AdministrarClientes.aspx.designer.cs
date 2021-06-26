@@ -11,7 +11,7 @@ namespace ModuloAdministracion
 {
 
 
-    public partial class MantenimientoPlatillos
+    public partial class AdministrarClientes
     {
 
         /// <summary>
@@ -24,40 +24,22 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control ingresar_btn.
+        /// Control bloquear_btn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ingresar_btn;
+        protected global::System.Web.UI.WebControls.Button bloquear_btn;
 
         /// <summary>
-        /// Control modificar_btn.
+        /// Control email_txt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button modificar_btn;
-
-        /// <summary>
-        /// Control eliminar_btn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button eliminar_btn;
-
-        /// <summary>
-        /// Control plato_txt.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText plato_txt;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl email_txt;
 
         /// <summary>
         /// Control buscar_btn.
@@ -78,31 +60,13 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.WebControls.Button cancelar_btn;
 
         /// <summary>
-        /// Control descripcion_txt.
+        /// Control estado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion_txt;
-
-        /// <summary>
-        /// Control precio_txt.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl precio_txt;
-
-        /// <summary>
-        /// Control foto_fld.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile foto_fld;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl estado;
 
         /// <summary>
         /// Control volver_btn.
