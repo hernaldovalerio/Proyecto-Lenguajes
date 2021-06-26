@@ -36,9 +36,8 @@
                     <label for="plato_txt" class="col-form-label">Plato</label>
                 </div>
                 <input type="text" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 40%"/>
-                
-                <div class="col-3"></div>
-
+                <button type="button" class="btn btn-info" style="width: 14%">Buscar</button>
+                <div class="col-1 text-rigth" style="width: 9%"></div>
             
             </div>
 
@@ -74,7 +73,7 @@
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                     <label for="foto_fld" class="col-form-label">Imagen</label>
                 </div>
-                <input type="file" class="col-7 col-auto form-control-file" id="foto_fld" required="required" style="width: 54%"/><br />
+                <input type="file" class="col-7 col-auto form-control" id="foto_fld" required="required" style="width: 54%"/><br />
                 <div class="col-1"></div>
             </div>
 
