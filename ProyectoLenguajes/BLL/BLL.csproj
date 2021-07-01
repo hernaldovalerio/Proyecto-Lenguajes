@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaDatosAdministracion\CapaDatosAdministracion.csproj">
+    <ProjectReference Include="..\CapaDatosAdministracion\DAL.csproj">
       <Project>{cd54e970-29f3-4294-970c-5d8f28d8c0b4}</Project>
-      <Name>CapaDatosAdministracion</Name>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

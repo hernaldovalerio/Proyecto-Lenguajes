@@ -157,9 +157,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaLogicaAdministracion\CapaLogicaAdministracion.csproj">
+    <ProjectReference Include="..\CapaLogicaAdministracion\BLL.csproj">
       <Project>{8ceceaab-9a0d-4a92-b0ed-91e815d87dc3}</Project>
-      <Name>CapaLogicaAdministracion</Name>
+      <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
