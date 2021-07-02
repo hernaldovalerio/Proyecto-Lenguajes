@@ -41,16 +41,37 @@
 
         <!-- Contraseña -->
         <div class="form-group d-flex h-100 align-items-center justify-content-around">
+
+
+
             <div class="col-2"></div>
             <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
                 <label for="password_txt" class="col-form-label">Contraseña</label>
             </div>
-            <input class="form-control" runat="server" type="password" id="password_txt" required="required" style="width: 38%" data-toggle="password"/>
-            <div class="form-group-append">
-                <i class="fa fa-eye-slash"></i>
-            </div>
-            <div class="col-3"></div>
+            <input class="form-control" runat="server" id="password_txt" type="password" required="required" style="width: 32%" data-toggle="password"/>
+
+            
+            <div class="col-4"></div>
         </div>
+
+        <div class="form-group d-flex h-100 align-items-center justify-content-around">
+            <div class="col-3"></div>
+            <input id="check" for="password_txt" class="col-1" runat="server" type="checkbox" />Mostrar Contraseña
+            <div class="col-6"></div>
+        </div>
+
+        <script>
+            $(function () {
+                $("#check").on("change", function () {
+                    if ($(this).prop('checked')) {
+                        $("#password_txt").attr("type", "text");
+                    } else {
+                        $("#password_txt").attr("type", "password");
+                    }
+                })
+            })
+        </script>
+
 
         <br />
 
