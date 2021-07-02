@@ -45,7 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaDatosAdministracion\DAL.csproj">
+    <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{cd54e970-29f3-4294-970c-5d8f28d8c0b4}</Project>
       <Name>DAL</Name>
     </ProjectReference>
