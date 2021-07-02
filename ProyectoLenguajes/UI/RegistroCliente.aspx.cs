@@ -13,6 +13,7 @@ namespace ModuloAdministracion
     {
 
         private LogicaAdministracion logica;
+        bool modify = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,6 +21,20 @@ namespace ModuloAdministracion
             Session["logica"] = logica;
             modificar_btn.Enabled = false;
             email_txt.Disabled = false;
+
+            if (modify)
+            {
+                modificar_btn.Visible = true;
+                ingresar_btn.Visible = false;
+            }
+            else
+            {
+                modificar_btn.Visible = false;
+                ingresar_btn.Visible = true;
+            }
+
         }
+
+        
     }
 }

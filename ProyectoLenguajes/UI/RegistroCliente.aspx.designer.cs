@@ -60,6 +60,15 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.HtmlControls.HtmlInputPassword password_txt;
 
         /// <summary>
+        /// Control check.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check;
+
+        /// <summary>
         /// Control nombre_txt.
         /// </summary>
         /// <remarks>
