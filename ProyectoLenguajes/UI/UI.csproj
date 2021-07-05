@@ -101,6 +101,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
+    <Content Include="MantenimientoCliente.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorUsuarios.aspx.cs">
@@ -131,6 +132,13 @@
     </Compile>
     <Compile Include="RegistroCliente.aspx.designer.cs">
       <DependentUpon>RegistroCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MantenimientoCliente.aspx.cs">
+      <DependentUpon>MantenimientoCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MantenimientoCliente.aspx.designer.cs">
+      <DependentUpon>MantenimientoCliente.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

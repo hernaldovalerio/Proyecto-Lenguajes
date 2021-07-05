@@ -1,39 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MantenimientoPlatillos.aspx.cs" Inherits="ModuloAdministracion.MantenimientoPlatillos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MantenimientoCliente.aspx.cs" Inherits="ModuloAdministracion.WebForm1" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Mantinimiento Clientes</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </head>
-
 <body>
     <form id="form1" runat="server">
-
+        <h1>MANTENIMIENTO CLIENTE</h1>
         <div>
-            <!-- BOTONES-->            
-            <div class="d-flex h-100 align-items-center justify-content-center">
-                <br />
-                <asp:Button ID="ingresar_btn" runat="server" type="button" class="btn btn-success" Text="Ingresar" />
-                &nbsp;
-            <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar" />
-                &nbsp;
-            <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" />
-                <br />
-                <br />
-            </div>
+                                      
             <br />
 
             <!-- Nombre Platillo -->
             <div class="form-group d-flex h-100 align-items-center justify-content-around">
                 <div class="col-2"></div>
                 <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
-                    <label for="plato_txt" class="col-form-label">Plato</label>
+                    <label for="plato_txt" class="col-form-label">Nombre</label>
                 </div>
                 <input type="text" runat="server" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" style="width: 41%" />
                 <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Style="width: 18%" Text="Buscar" OnClick="Unnamed1_Click" />
@@ -95,7 +83,6 @@
             </div>
 
         </div>
-
     </form>
 </body>
 </html>

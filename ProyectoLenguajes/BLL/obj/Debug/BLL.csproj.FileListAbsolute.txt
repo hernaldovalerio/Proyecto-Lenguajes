@@ -10,3 +10,15 @@ D:\Users\Usuario\Documents\GitHub\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\D
 D:\Users\Usuario\Documents\GitHub\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\BLL.csproj.CopyComplete
 D:\Users\Usuario\Documents\GitHub\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\CapaLogicaAdministracion.dll
 D:\Users\Usuario\Documents\GitHub\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\CapaLogicaAdministracion.pdb
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\CapaLogicaAdministracion.dll
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\CapaLogicaAdministracion.pdb
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\CapaDatosAdministracion.dll
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\EntityFramework.dll
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\CapaDatosAdministracion.pdb
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\CapaDatosAdministracion.dll.config
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\bin\Debug\EntityFramework.xml
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\CapaLogicaAdministracion.dll
+C:\Users\T7\Source\Repos\hernaldovalerio\Proyecto-Lenguajes\ProyectoLenguajes\BLL\obj\Debug\CapaLogicaAdministracion.pdb
