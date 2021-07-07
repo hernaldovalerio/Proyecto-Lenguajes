@@ -16,14 +16,24 @@
     <div class="col-xs-12">        
             <h2>Datos Personales</h2>        
     </div>
+    <br />
+    <br />
         <div class="container well" id="contenedor">
             <form id="form1" runat="server" class="form-horizontal"> 
+                <div class="form-group">
+                    <asp:Label ID="Label1" runat="server" Text="Correo electrónico" class="control-label col-sm-2"></asp:Label>
+                        <div class="col-sm-10">
+                            <asp:TextBox ID="TxtCorreoElectronico" runat="server" class="form-control" placeholder="Introduzca su correo electronico" required="required" style="width: 91%"></asp:TextBox>
+                        </div>
+                </div>
+                <br />
                 <div class="form-group">
                     <asp:Label ID="lblNombre" runat="server" Text="Nombre" class="control-label col-sm-2"></asp:Label>
                         <div class="col-sm-10">
                             <asp:TextBox ID="txtNombre" runat="server" class="form-control"></asp:TextBox>
                         </div>
                 </div>
+                <br />
                 <div class="form-group">
                     <asp:Label ID="lblContrasenna" runat="server" Text="Contraseña" Class="control-label col-sm-2"></asp:Label>
                         <div class="col-sm-10">
