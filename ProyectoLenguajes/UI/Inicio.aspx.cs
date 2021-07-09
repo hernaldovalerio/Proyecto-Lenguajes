@@ -16,7 +16,7 @@ namespace ModuloAdministracion
         protected void BL_ListaPlatillos_Click(object sender, BulletedListEventArgs e)
         {
             ListItem li = BL_ListaPlatillos.Items[e.Index];
-            Session["Platillo"] = li.Text;
+            Session["Platillo"] = li.Value;
             Response.Redirect("Platillo.aspx");
 
             //Label1.Text = "Index: " + e.Index.ToString();
