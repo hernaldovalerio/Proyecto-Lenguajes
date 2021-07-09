@@ -10,8 +10,16 @@ namespace ModuloAdministracion
     public partial class Inicio : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
+        }
 
+        protected void BL_ListaPlatillos_Click(object sender, BulletedListEventArgs e)
+        {
+            ListItem li = BL_ListaPlatillos.Items[e.Index];
+            Session["Platillo"] = li.Text;
+            Response.Redirect("Platillo.aspx");
+
+            //Label1.Text = "Index: " + e.Index.ToString();
         }
     }
 }

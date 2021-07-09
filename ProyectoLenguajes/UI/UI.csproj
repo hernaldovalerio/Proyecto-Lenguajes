@@ -95,6 +95,7 @@
     <Content Include="CSS\Estilos1.css" />
     <Content Include="Inicio.aspx" />
     <Content Include="MantenimientoPlatillos.aspx" />
+    <Content Include="Platillo.aspx" />
     <Content Include="RegistroCliente.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -134,6 +135,13 @@
     </Compile>
     <Compile Include="MantenimientoPlatillos.aspx.designer.cs">
       <DependentUpon>MantenimientoPlatillos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Platillo.aspx.cs">
+      <DependentUpon>Platillo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Platillo.aspx.designer.cs">
+      <DependentUpon>Platillo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistroCliente.aspx.cs">

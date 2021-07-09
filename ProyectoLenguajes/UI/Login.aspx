@@ -29,14 +29,14 @@
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-1 col-sm-10">
         <div class="checkbox">
           <label><input type="checkbox" name="remember"> Remember me</label>
         </div>
       </div>
     </div>
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
+    <div class="form-group body bg-gray">        
+      <div class="col-sm-offset-3 col-sm-6">
         <button type="submit" class="btn btn-default">Submit</button>
       </div>
     </div>
