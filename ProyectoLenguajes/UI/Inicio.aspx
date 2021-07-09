@@ -9,14 +9,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link href="CSS/Estilos1.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body background="~/img/El Crustaceo Cascarudo.jpg">
     <center>
-    <form id="form1" runat="server">        
-        
+    <form id="form1" runat="server">                
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Datos Personales</a>
@@ -35,10 +34,12 @@
   </div>
 </nav>
             <p class="font-blond"> Menú</p>
-            <asp:Image ID="Image1" wi ImageUrl="C:\\Users\\T7\Documents\\GitHub\\Proyecto-Lenguajes\\ProyectoLenguajes\\UI\\img\\My_Two_Krabses_001.webp" Width="200" runat="server" />
+            
             <asp:BulletedList ID="BL_ListaPlatillos" runat="server" BulletStyle="Circle" DisplayMode="LinkButton" OnClick="BL_ListaPlatillos_Click">
-                <asp:ListItem ID="I_Cangreburger" Value="Cangreburger">Cangreburger    .............  10 $</asp:ListItem>
-                <asp:ListItem ID="I_Pizza" Value="Pizza">Pizza .......................  40 $</asp:ListItem>
+                <asp:ListItem ID="I_Cangreburger" Value="Cangreburger">Cangreburger    ........................................................................................  10 $</asp:ListItem>
+                <asp:ListItem ID="I_Color_Burger" Value="Color Burger">Color Burger    ..........................................................................................  20 $</asp:ListItem>
+                <asp:ListItem ID="I_Cangreburger_con_mermelada_de_medusa" Value="Cangreburger con mermelada de medusa"> Cangreburger con mermelada de medusa ...............................  30 $</asp:ListItem>
+                <asp:ListItem ID="I_Pizza" Value="Pizza de Don Cangrejo">Pizza de Don Cangrejo .....................................................................  40 $</asp:ListItem>
             </asp:BulletedList>
         </div>        
     </form>
