@@ -68,6 +68,21 @@
 
         <br />
 
+        <!-- Rol -->
+        <div class="form-group d-flex h-100 align-items-center justify-content-around">
+            <div class="col-2"></div>
+            <div class="col-1 form-group d-flex h-100 align-items-center justify-content-end">
+                <label for="rol_opt" class="col-form-label">Rol</label>
+            </div>
+            <select class="form-control" runat="server" id="rol_opt" style="width: 32%">
+                <option>Administrador</option>
+                <option>Cocina</option>
+            </select>
+            <div class="col-4"></div>
+        </div>
+
+        <br />
+
         <!-- Direccion -->
         <div class="form-group d-flex h-100 align-items-center justify-content-around">
             <div class="col-2"></div>

@@ -1,3 +1,8 @@
 
 ProyectoLenguajes/UI/obj/Debug/UI.csprojAssemblyReference.cache
 ProyectoLenguajes/.vs/ProyectoLenguajes/v16/.suo
+*.config
+*.dll
+ProyectoLenguajes/.vs/ProyectoLenguajes/v16/.suo
+*.pdb
+*.cache
