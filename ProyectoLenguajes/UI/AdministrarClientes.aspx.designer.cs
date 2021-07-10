@@ -24,15 +24,6 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control bloquear_btn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bloquear_btn;
-
-        /// <summary>
         /// Control email_txt.
         /// </summary>
         /// <remarks>
@@ -66,7 +57,16 @@ namespace ModuloAdministracion
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl estado;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText estado;
+
+        /// <summary>
+        /// Control bloquear_btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bloquear_btn;
 
         /// <summary>
         /// Control volver_btn.
