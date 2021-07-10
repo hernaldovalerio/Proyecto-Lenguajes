@@ -12,18 +12,21 @@
     <link href="CSS/Estilos1.css" rel="stylesheet" />
 </head>
 <body>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Datos Personales</a>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="PaginaPrincipal1.aspx">Inicio</a> 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Confirmar pedidos</a>
+        <a class="nav-link" href="DatosPersonales.aspx">Datos Personales</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Modificar pedidos</a>
+        <a class="nav-link" href="Pedidos.aspx">Pedidos</a>
+      </li>      
+        <li class="nav-item">
+        <a class="nav-link" href="#">Acerca de nosotros</a>
       </li>      
     </ul>       
   </div>
@@ -31,7 +34,7 @@
     <center>
     <form id="form1" runat="server">
         <br />
-        <p>Platillo</p>
+        <p>PLATILLO</p>
         <br />
         <asp:Image ID="Image1" runat="server" ImageUrl="~/img/cangreburger.jpg" Height="200" Width="300" />
         <br />
@@ -39,6 +42,10 @@
         <asp:Label ID="Lbl_Platillo" runat="server" Text="Platillo"></asp:Label>
         <br />
         <asp:Label ID="Lbl_precio" runat="server" Text="Precio"></asp:Label>
+        <br />
+        <br />
+        <asp:Button ID="Bttn_Regresar" runat="server" Text="Regresar" onclick="Regresar_Click" />
+        <asp:Button ID="Bttn_AgregarPedido" runat="server" Text="Agregar orden" onclick="AgregarPedido_Click" />
     </form>
     </center>
 </body> 

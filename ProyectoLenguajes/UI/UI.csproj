@@ -76,6 +76,12 @@
   <ItemGroup>
     <Content Include="AdministradorUsuarios.aspx" />
     <Content Include="AdministrarClientes.aspx" />
+    <Content Include="img\Cangreburger con mermelada de medusa.jpg" />
+    <Content Include="img\Cangreburger.jpg" />
+    <Content Include="img\Color Burger.jpg" />
+    <Content Include="img\El Crustaceo Cascarudo.jpg" />
+    <Content Include="img\Pizza de Don Cangrejo.jpg" />
+    <Content Include="Pedidos.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -93,7 +99,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\Estilos1.css" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="PaginaPrincipal1.aspx" />
     <Content Include="MantenimientoPlatillos.aspx" />
     <Content Include="Platillo.aspx" />
     <Content Include="RegistroCliente.aspx" />
@@ -104,7 +110,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
-    <Content Include="MantenimientoCliente.aspx" />
+    <Content Include="DatosPersonales.aspx" />
     <Content Include="Login.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -122,12 +128,19 @@
     <Compile Include="AdministrarClientes.aspx.designer.cs">
       <DependentUpon>AdministrarClientes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaPrincipal1.aspx.cs">
+      <DependentUpon>PaginaPrincipal1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaPrincipal1.aspx.designer.cs">
+      <DependentUpon>PaginaPrincipal1.aspx</DependentUpon>
     </Compile>
     <Compile Include="MantenimientoPlatillos.aspx.cs">
       <DependentUpon>MantenimientoPlatillos.aspx</DependentUpon>
@@ -151,12 +164,12 @@
     <Compile Include="RegistroCliente.aspx.designer.cs">
       <DependentUpon>RegistroCliente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MantenimientoCliente.aspx.cs">
-      <DependentUpon>MantenimientoCliente.aspx</DependentUpon>
+    <Compile Include="DatosPersonales.aspx.cs">
+      <DependentUpon>DatosPersonales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MantenimientoCliente.aspx.designer.cs">
-      <DependentUpon>MantenimientoCliente.aspx</DependentUpon>
+    <Compile Include="DatosPersonales.aspx.designer.cs">
+      <DependentUpon>DatosPersonales.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -203,9 +216,7 @@
       <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

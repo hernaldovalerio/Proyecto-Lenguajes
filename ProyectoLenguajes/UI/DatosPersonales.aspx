@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MantenimientoCliente.aspx.cs" Inherits="ModuloAdministracion.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DatosPersonales.aspx.cs" Inherits="ModuloAdministracion.WebForm1" %>
 
 <!DOCTYPE html>
 
@@ -13,6 +13,25 @@
     <link href="CSS/Estilos1.css" rel="stylesheet" />
 </head>
 <body>    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="PaginaPrincipal1.aspx">Inicio</a> 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="DatosPersonales.aspx">Datos Personales</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Pedidos.aspx">Pedidos</a>
+      </li>      
+        <li class="nav-item">
+        <a class="nav-link" href="#">Acerca de nosotros</a>
+      </li>      
+    </ul>       
+  </div>
+</nav>
     <div class="col-xs-12">        
             <h2>Datos Personales</h2>        
     </div>
