@@ -39,6 +39,7 @@
         <div>
             <br />
             <p class="font-blond"> Menú</p>
+            <& >
             
             <asp:BulletedList ID="BL_ListaPlatillos" runat="server" BulletStyle="Circle" DisplayMode="LinkButton" OnClick="BL_ListaPlatillos_Click">
                 <asp:ListItem ID="I_Cangreburger" Value="Cangreburger">Cangreburger    ........................................................................................  10 $</asp:ListItem>
