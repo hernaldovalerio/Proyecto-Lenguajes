@@ -12,25 +12,19 @@
     <link href="CSS/Estilos1.css" rel="stylesheet" />
 </head>
 <body>
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="PaginaPrincipal1.aspx">Inicio</a> 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="DatosPersonales.aspx">Datos Personales</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Pedidos.aspx">Pedidos</a>
-      </li>      
-        <li class="nav-item">
-        <a class="nav-link" href="#">Acerca de nosotros</a>
-      </li>      
-    </ul>       
-  </div>
-</nav>
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a class="navbar-brand" href="#" style="text-align: center">Egoavil's</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Datos Personales</a>
+                    <a class="nav-item nav-link" href="AdministrarClientes.aspx">Pedidos</a>
+                    <a class="nav-item nav-link" href="AdministradorPedido.aspx">Acerca de nosotros</a>                    
+                </div>
+            </div>
+        </nav>
     <center>
     <form id="form1" runat="server">
         <br />
