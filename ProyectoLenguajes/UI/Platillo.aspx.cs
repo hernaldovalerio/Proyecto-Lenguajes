@@ -62,12 +62,12 @@ namespace ModuloAdministracion
 
         protected void Regresar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PaginaPrincipal1.aspx");
+            Response.Redirect("PaginaPrincipal.aspx");
         }
 
         protected void AgregarPedido_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PaginaPrincipal1.aspx");
+            Response.Redirect("PaginaPrincipal.aspx");
 
         }
     }

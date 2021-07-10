@@ -16,7 +16,7 @@
 <body>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="#" style="text-align: center">Egoavil's</a>
+            <a class="navbar-brand" href="PaginaPrincipal.aspx" style="text-align: center">Egoavil's</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

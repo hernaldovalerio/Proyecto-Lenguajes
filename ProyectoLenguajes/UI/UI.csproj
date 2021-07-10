@@ -98,8 +98,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CSS\Estilos1.css" />
-    <Content Include="Inicio.aspx" />
     <Content Include="MantenimientoPlatillos.aspx" />
+    <Content Include="PaginaPrincipal.aspx" />
     <Content Include="Platillo.aspx" />
     <Content Include="RegistroCliente.aspx" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -196,7 +196,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
     <Content Include="DatosPersonales.aspx" />
-    <Content Include="Login.aspx" />
+    <Content Include="InicioSession.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministradorEstados.aspx.cs">
@@ -234,19 +234,19 @@
     <Compile Include="CambioEstado.aspx.designer.cs">
       <DependentUpon>CambioEstado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PaginaPrincipal1.aspx.designer.cs">
-      <DependentUpon>PaginaPrincipal1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MantenimientoPlatillos.aspx.cs">
       <DependentUpon>MantenimientoPlatillos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MantenimientoPlatillos.aspx.designer.cs">
       <DependentUpon>MantenimientoPlatillos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaginaPrincipal.aspx.cs">
+      <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaginaPrincipal.aspx.designer.cs">
+      <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Platillo.aspx.cs">
       <DependentUpon>Platillo.aspx</DependentUpon>
@@ -270,12 +270,12 @@
     <Compile Include="DatosPersonales.aspx.designer.cs">
       <DependentUpon>DatosPersonales.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="InicioSession.aspx.cs">
+      <DependentUpon>InicioSession.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="InicioSession.aspx.designer.cs">
+      <DependentUpon>InicioSession.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
