@@ -229,16 +229,18 @@ namespace CapaLogicaAdministracion
             if (list != null && list.Count() > 0)
             {
 
-                string[] temp = new string[6];
+                string[] temp = new string[7];
 
                 for (int i = 0; i < list.Count(); i++)
                 {
+
                     temp[1] = list[i].Email;
                     temp[2] = list[i].Nombre;
                     temp[3] = list[i].Apellidos;
                     //temp[4] = list[i].Inhabilitado;
                     temp[4] = list[i].Rol + "";
                     temp[5] = list[i].Direccion;
+                    
                 }
 
                 temp[0] = "Consulta Existosa";
@@ -246,15 +248,15 @@ namespace CapaLogicaAdministracion
             }
             else
             {
-                string[] plato = new string[1];
-                plato[0] = "Datos No Encontrados";
-                return plato;
+                string[] temp = new string[1];
+                temp[0] = "Datos No Encontrados";
+                return temp;
             }
         }
 
         public string InsertarCuenta(string email, string password, string nombre, string apellido, string direccion, int rol)
         {
-            if (!BuscarP(nombre))//VerificarPlatillo(precio, img))
+            if (!BuscarC(email))//VerificarPlatillo(precio, img))
             {
 
                 if (datos.InsertarCuenta(email, password, nombre, apellido, direccion, rol))
@@ -274,10 +276,10 @@ namespace CapaLogicaAdministracion
 
         public string EliminarCuenta(string email)
         {
-            if (BuscarP(email))//VerificarPlatillo(precio, img))
+            if (BuscarC(email))//VerificarPlatillo(precio, img))
             {
 
-                if (datos.EliminarPlatillo(email))
+                if (datos.EliminarCuenta(email))
                 {
 
 
@@ -297,7 +299,7 @@ namespace CapaLogicaAdministracion
 
         public string ModificarCuenta(string email, string password, string nombre, string apellido, string direccion, int rol)
         {
-            if (BuscarP(nombre))//VerificarPlatillo(precio, img))
+            if (BuscarC(email))//VerificarPlatillo(precio, img))
             {
 
                 if (datos.ModificarCuenta(email, password, nombre, apellido, direccion, rol))
@@ -316,6 +318,16 @@ namespace CapaLogicaAdministracion
             }
         }
 
+        public bool BuscarC(string email)
+        {
+            List<SearchCount_Result> l = datos.BuscarEmail(email);
+            if (l != null && l.Count() > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
     }
 }

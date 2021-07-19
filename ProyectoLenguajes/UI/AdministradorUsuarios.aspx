@@ -38,6 +38,18 @@
                     <h3 class="mb-4" style="text-align: center; color: white">Administrador de usuarios</h3>
                     <form id="form1" runat="server" class="card">
 
+                        <script>
+                            function Contraseña(){
+                                $("#check").on("change", function () {
+                                    if ($(this).prop('checked')) {
+                                        $("#password_txt").attr("type", "text");
+                                    } else {
+                                        $("#password_txt").attr("type", "password");
+                                    }
+                                })
+                            }
+                        </script>
+
                         <asp:ScriptManager ID="ScriptManager1" runat="server" />
                     <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
                         <Triggers>
@@ -51,7 +63,9 @@
 
                         <ContentTemplate>
 
-
+                            <script type="text/javascript">
+                                Sys.Application.add_load(Contraseña);
+                            </script>
         
                         <div class="row g-2">
 
@@ -78,17 +92,7 @@
 
                             <br />
 
-                            <script>
-                                $(function () {
-                                    $("#check").on("change", function () {
-                                        if ($(this).prop('checked')) {
-                                            $("#password_txt").attr("type", "text");
-                                        } else {
-                                            $("#password_txt").attr("type", "password");
-                                        }
-                                    })
-                                })
-                            </script>
+                            
 
                             <br />
                             <br />
@@ -110,7 +114,7 @@
                             <br />
 
                             <!-- Rol -->
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <label for="rol_opt" class="col-form-label">Rol</label>
                                 <select class="form-control" runat="server" id="rol_opt" >
                                     <option>Administrador</option>
@@ -121,7 +125,7 @@
                             <br />
 
                             <!-- Direccion -->
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <label for="direccion_txt" class="col-form-label">Direccion</label>
                                 <textarea id="direccion_txt" class="col-10 form-control" runat="server" rows="4"></textarea>
                             </div>
@@ -145,7 +149,7 @@
 
                             <!-- Tabla -->
                             <div class="col-sm-12">
-                                <table id="dtBasicExample" class="table table-striped table-bordered" background-color: white">
+                                <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
                                     <%= DataGridCreation()%>
                                 </table>
                             </div>

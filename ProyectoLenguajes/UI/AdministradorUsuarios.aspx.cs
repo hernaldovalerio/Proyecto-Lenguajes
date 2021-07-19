@@ -18,8 +18,10 @@ namespace ModuloAdministracion
         {
             logica = new LogicaAdministracion();
             Session["logica"] = logica;
-            eliminar_btn.Enabled = false;
-            modificar_btn.Enabled = false;
+            eliminar_btn.Enabled = true;
+            modificar_btn.Enabled = true;
+            eliminar_btn.Visible = false;
+            modificar_btn.Visible = false;
             cancelar_btn.Visible = false;
             buscar_btn.Visible = true;
             email_txt.Disabled = false;
@@ -30,13 +32,11 @@ namespace ModuloAdministracion
             StringBuilder strHTMLBuilder = new StringBuilder();
 
             DataTable table = new DataTable();
+            table.Columns.Add("Email", typeof(string));
             table.Columns.Add("Nombre", typeof(string));
             table.Columns.Add("Apellido", typeof(string));
             table.Columns.Add("Rol", typeof(string));
-            table.Columns.Add("Email", typeof(string));
             table.Columns.Add("Direccion", typeof(string));
-            table.Columns.Add("Bloqueado", typeof(string));
-            table.Columns.Add("Borrado", typeof(string));
 
             List<Object[]> list = logica.ListarCuentas();
 
@@ -96,6 +96,7 @@ namespace ModuloAdministracion
             buscar_btn.Visible = false;
             cancelar_btn.Visible = true;
             ingresar_btn.Visible = false;
+            check.Checked = false;
 
             //email_txt.Value = "";
             password_txt.Value = "";
@@ -112,6 +113,7 @@ namespace ModuloAdministracion
             email_txt.Disabled = false;
             buscar_btn.Visible = true;
             cancelar_btn.Visible = false;
+            check.Checked = false;
 
             email_txt.Value = "";
             password_txt.Value = "";
@@ -139,11 +141,12 @@ namespace ModuloAdministracion
                 mensaje_lbl.Attributes.CssStyle.Add("color", "green");
 
                 email_txt.Value = cuenta[1];
-                password_txt.Value = cuenta[2];
-                nombre_txt.Value = cuenta[3];
-                apellido_txt.Value = cuenta[4];
+                //password_txt.Value = cuenta[2];
+                nombre_txt.Value = cuenta[2];
+                apellido_txt.Value = cuenta[3];
                 //foto_fld.Value = plato[4];
                 direccion_txt.Value = cuenta[5];
+                rol_opt.SelectedIndex = Int32.Parse(cuenta[4]);
 
             }
 
@@ -201,7 +204,7 @@ namespace ModuloAdministracion
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
-            string s = logica.ModificarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, rol_opt.SelectedIndex);
+            string s = logica.ModificarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, rol_opt.SelectedIndex+1);
 
             if (s.Equals("Platillo modificado de forma Existosa!"))
             {

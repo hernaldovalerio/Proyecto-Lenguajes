@@ -287,7 +287,7 @@ namespace CapaDatosAdministracion
             using (entity = new DBA_IF4101_HHSMEntities())
             {
 
-                List<SearchFood_Result> result = entity.SearchFood(nombre).ToList();
+                List<SearchCount_Result> result = entity.SearchCount(email).ToList();
 
                 if (result != null && result.Count() > 0)
                 {
