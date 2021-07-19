@@ -24,6 +24,33 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control ScriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
+        /// Control UpdatePanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel;
+
+        /// <summary>
+        /// Control mensaje_lbl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensaje_lbl;
+
+        /// <summary>
         /// Control plato_txt.
         /// </summary>
         /// <remarks>
@@ -60,6 +87,15 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion_txt;
 
         /// <summary>
+        /// Control inhabilitado_txt.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText inhabilitado_txt;
+
+        /// <summary>
         /// Control precio_txt.
         /// </summary>
         /// <remarks>
@@ -75,7 +111,16 @@ namespace ModuloAdministracion
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile foto_fld;
+        protected global::System.Web.UI.WebControls.FileUpload foto_fld;
+
+        /// <summary>
+        /// Control subir_btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button subir_btn;
 
         /// <summary>
         /// Control ingresar_btn.
@@ -103,6 +148,15 @@ namespace ModuloAdministracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button eliminar_btn;
+
+        /// <summary>
+        /// Control deshabilitar_btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button deshabilitar_btn;
 
         /// <summary>
         /// Control volver_btn.

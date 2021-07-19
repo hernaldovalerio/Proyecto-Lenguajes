@@ -38,15 +38,15 @@ namespace ModuloAdministracion
             table.Columns.Add("Bloqueado", typeof(string));
             table.Columns.Add("Borrado", typeof(string));
 
-            List<string[]> list = new List<string[]>();
+            List<Object[]> list = logica.ListarCuentas();
 
             //eliminar ya que solo es consulta de 1
-            string[] tempL = logica.BuscarPlatillo("Brownie");
+            //string[] tempL = logica.BuscarPlatillo("Brownie");
 
-            list.Add(tempL);
+            //list.Add(tempL);
             //
 
-            foreach (string[] temp in list)
+            foreach (Object[] temp in list)
             {
                 table.Rows.Add(temp[1], temp[2], temp[3], temp[4], temp[5]);
             }
@@ -88,24 +88,133 @@ namespace ModuloAdministracion
 
         }
 
-        protected void Unnamed1_Click(object sender, EventArgs e)
+        public void ModeSearch()
         {
-            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
-            eliminar_btn.Enabled = true;
-            modificar_btn.Enabled = true;
+            eliminar_btn.Visible = true;
+            modificar_btn.Visible = true;
             email_txt.Disabled = true;
             buscar_btn.Visible = false;
             cancelar_btn.Visible = true;
+            ingresar_btn.Visible = false;
+
+            //email_txt.Value = "";
+            password_txt.Value = "";
+            nombre_txt.Value = "";
+            apellido_txt.Value = "";
+            direccion_txt.Value = "";
         }
 
-        protected void Unnamed2_Click(object sender, EventArgs e)
+        public void ModeInsert()
         {
-            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
-            eliminar_btn.Enabled = false;
-            modificar_btn.Enabled = false;
+            ingresar_btn.Visible = true;
+            eliminar_btn.Visible = false;
+            modificar_btn.Visible = false;
             email_txt.Disabled = false;
             buscar_btn.Visible = true;
             cancelar_btn.Visible = false;
+
+            email_txt.Value = "";
+            password_txt.Value = "";
+            nombre_txt.Value = "";
+            apellido_txt.Value = "";
+            direccion_txt.Value = "";
         }
+
+        protected void Buscar_Click(object sender, EventArgs e)
+        {
+            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
+
+            string[] cuenta = logica.BuscarEmail(email_txt.Value);
+
+            if (cuenta[0].Equals("Datos No Encontrados"))
+            {
+                mensaje_lbl.Text = cuenta[0];
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+            else
+            {
+                ModeSearch();
+
+                mensaje_lbl.Text = cuenta[0];
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+
+                email_txt.Value = cuenta[1];
+                password_txt.Value = cuenta[2];
+                nombre_txt.Value = cuenta[3];
+                apellido_txt.Value = cuenta[4];
+                //foto_fld.Value = plato[4];
+                direccion_txt.Value = cuenta[5];
+
+            }
+
+        }
+
+
+        protected void Cancelar_Click(object sender, EventArgs e)
+        {
+            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
+            ModeInsert();
+
+        }
+
+
+        protected void Ingresar_Click(object sender, EventArgs e)
+        {
+
+            string s = logica.InsertarCuenta(email_txt.Value,password_txt.Value,nombre_txt.Value,apellido_txt.Value,direccion_txt.Value, (rol_opt.SelectedIndex+1));
+
+            if (s.Equals("Introducción de nuevo Plato Existosa!"))//logica.ValidarExtension(FileUpload_fld.))
+            {
+                email_txt.Value = "";
+                password_txt.Value = "";
+                nombre_txt.Value = "";
+                apellido_txt.Value = "";
+                direccion_txt.Value = "";
+
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+            }
+            else
+            {
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+
+        }
+
+        protected void Eliminar_Click(object sender, EventArgs e)
+        {
+            string s = logica.EliminarCuenta(email_txt.Value);
+
+            if (s.Equals("Platillo borrado de forma Existosa!"))
+            {
+                ModeInsert();
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+            }
+            else
+            {
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+        }
+
+        protected void Modificar_Click(object sender, EventArgs e)
+        {
+            string s = logica.ModificarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, rol_opt.SelectedIndex);
+
+            if (s.Equals("Platillo modificado de forma Existosa!"))
+            {
+                ModeInsert();
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+            }
+            else
+            {
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+        }
+
     }
 }

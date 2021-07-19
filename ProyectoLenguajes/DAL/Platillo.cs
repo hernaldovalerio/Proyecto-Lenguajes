@@ -21,8 +21,9 @@ namespace CapaDatosAdministracion
         }
     
         public int PlatilloID { get; set; }
-        public string DescPlatillo { get; set; }
+        public System.Guid ID { get; set; }
         public string Nombre { get; set; }
+        public string DescPlatillo { get; set; }
         public decimal Precio { get; set; }
         public bool Inhabilitado { get; set; }
         public byte[] Foto { get; set; }

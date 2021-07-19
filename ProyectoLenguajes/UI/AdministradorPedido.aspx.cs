@@ -36,9 +36,9 @@ namespace ModuloAdministracion
             List<string[]> list = new List<string[]>();
 
             //eliminar ya que solo es consulta de 1
-            string[] tempL = logica.BuscarPlatillo("Brownie");
+            //string[] tempL = logica.BuscarPlatillo("Brownie");
 
-            list.Add(tempL);
+            //list.Add(tempL);
             //
 
             foreach (string[] temp in list)

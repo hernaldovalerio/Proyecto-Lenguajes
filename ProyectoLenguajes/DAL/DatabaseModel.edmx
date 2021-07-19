@@ -14,21 +14,24 @@
         </EntityType>
         <EntityType Name="LineaPedido">
           <Key>
+            <PropertyRef Name="PedidoID" />
             <PropertyRef Name="LineaPedidoID" />
           </Key>
-          <Property Name="LineaPedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PedidoID" Type="int" Nullable="false" />
+          <Property Name="LineaPedidoID" Type="int" Nullable="false" />
           <Property Name="PlatilloID" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
-          <Property Name="PedidoID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pedido">
           <Key>
             <PropertyRef Name="PedidoID" />
           </Key>
           <Property Name="PedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DescPedido" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DescPedido" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EstadoID" Type="int" Nullable="false" />
           <Property Name="PersonaID" Type="int" Nullable="false" />
+          <Property Name="FechaPedido" Type="smalldatetime" Nullable="false" />
+          <Property Name="FechaEntrega" Type="smalldatetime" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -48,8 +51,9 @@
             <PropertyRef Name="PlatilloID" />
           </Key>
           <Property Name="PlatilloID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DescPlatillo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DescPlatillo" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Precio" Type="money" Nullable="false" />
           <Property Name="Inhabilitado" Type="bit" Nullable="false" />
           <Property Name="Foto" Type="varbinary(max)" />
@@ -131,7 +135,64 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AbleCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AbleFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ActiveOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CreateCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="RollID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DescPlatillo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Precio" Type="money" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="Foto" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="DeleteCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DisableCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DisableFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="ModifyCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="RollID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DescPlatillo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Precio" Type="money" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="Foto" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="SearchCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SearchFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -206,12 +267,13 @@
         </EntityType>
         <EntityType Name="LineaPedido">
           <Key>
+            <PropertyRef Name="PedidoID" />
             <PropertyRef Name="LineaPedidoID" />
           </Key>
-          <Property Name="LineaPedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PedidoID" Type="Int32" Nullable="false" />
+          <Property Name="LineaPedidoID" Type="Int32" Nullable="false" />
           <Property Name="PlatilloID" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
-          <Property Name="PedidoID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido" FromRole="LineaPedido" ToRole="Pedido" />
           <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo" FromRole="LineaPedido" ToRole="Platillo" />
         </EntityType>
@@ -220,9 +282,11 @@
             <PropertyRef Name="PedidoID" />
           </Key>
           <Property Name="PedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DescPedido" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescPedido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EstadoID" Type="Int32" Nullable="false" />
           <Property Name="PersonaID" Type="Int32" Nullable="false" />
+          <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_Estado" FromRole="Pedido" ToRole="Estado" />
           <NavigationProperty Name="LineaPedido" Relationship="Self.FK_Pedido" FromRole="Pedido" ToRole="LineaPedido" />
           <NavigationProperty Name="Persona" Relationship="Self.FK_Persona" FromRole="Pedido" ToRole="Persona" />
@@ -247,8 +311,9 @@
             <PropertyRef Name="PlatilloID" />
           </Key>
           <Property Name="PlatilloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DescPlatillo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescPlatillo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
           <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -360,6 +425,63 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Persona" EntitySet="Persona" />
           </AssociationSet>
+          <FunctionImport Name="AbleCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AbleFood">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ActiveOrders" ReturnType="Collection(DBA_IF4101_HHSMModel.ActiveOrders_Result)" />
+          <FunctionImport Name="CreateCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="RollID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateFood">
+            <Parameter Name="DescPlatillo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="Foto" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteFood">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DisableCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DisableFood">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="RollID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyFood">
+            <Parameter Name="DescPlatillo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="Foto" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SearchCount" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchCount_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -376,11 +498,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBA_IF4101_HHSMModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBA_IF4101_HHSMModel.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -391,6 +513,38 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="ActiveOrders_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="Estado" Nullable="false" />
+          <Property Type="Int32" Name="Persona" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchCount_Result">
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Rol" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SearchFood_Result">
+          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Binary" Name="Foto" Nullable="true" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -408,10 +562,10 @@
           <EntitySetMapping Name="LineaPedido">
             <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.LineaPedido">
               <MappingFragment StoreEntitySet="LineaPedido">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
                 <ScalarProperty Name="LineaPedidoID" ColumnName="LineaPedidoID" />
                 <ScalarProperty Name="PlatilloID" ColumnName="PlatilloID" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -422,6 +576,8 @@
                 <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
                 <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
                 <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -443,8 +599,9 @@
             <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Platillo">
               <MappingFragment StoreEntitySet="Platillo">
                 <ScalarProperty Name="PlatilloID" ColumnName="PlatilloID" />
-                <ScalarProperty Name="DescPlatillo" ColumnName="DescPlatillo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="DescPlatillo" ColumnName="DescPlatillo" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
                 <ScalarProperty Name="Foto" ColumnName="Foto" />
@@ -470,11 +627,71 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AbleCount" FunctionName="DBA_IF4101_HHSMModel.Store.AbleCount" />
+          <FunctionImportMapping FunctionImportName="AbleFood" FunctionName="DBA_IF4101_HHSMModel.Store.AbleFood" />
+          <FunctionImportMapping FunctionImportName="ActiveOrders" FunctionName="DBA_IF4101_HHSMModel.Store.ActiveOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.ActiveOrders_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateCount" FunctionName="DBA_IF4101_HHSMModel.Store.CreateCount" />
+          <FunctionImportMapping FunctionImportName="CreateFood" FunctionName="DBA_IF4101_HHSMModel.Store.CreateFood" />
+          <FunctionImportMapping FunctionImportName="DeleteCount" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteCount" />
+          <FunctionImportMapping FunctionImportName="DeleteFood" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteFood" />
+          <FunctionImportMapping FunctionImportName="DisableCount" FunctionName="DBA_IF4101_HHSMModel.Store.DisableCount" />
+          <FunctionImportMapping FunctionImportName="DisableFood" FunctionName="DBA_IF4101_HHSMModel.Store.DisableFood" />
+          <FunctionImportMapping FunctionImportName="ModifyCount" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyCount" />
+          <FunctionImportMapping FunctionImportName="ModifyFood" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyFood" />
+          <FunctionImportMapping FunctionImportName="SearchCount" FunctionName="DBA_IF4101_HHSMModel.Store.SearchCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.SearchCount_Result">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchFood" FunctionName="DBA_IF4101_HHSMModel.Store.SearchFood">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.SearchFood_Result">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DBA_IF4101_HHSMModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>

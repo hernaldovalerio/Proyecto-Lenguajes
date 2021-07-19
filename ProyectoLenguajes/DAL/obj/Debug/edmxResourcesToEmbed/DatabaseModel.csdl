@@ -10,12 +10,13 @@
   </EntityType>
   <EntityType Name="LineaPedido">
     <Key>
+      <PropertyRef Name="PedidoID" />
       <PropertyRef Name="LineaPedidoID" />
     </Key>
-    <Property Name="LineaPedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PedidoID" Type="Int32" Nullable="false" />
+    <Property Name="LineaPedidoID" Type="Int32" Nullable="false" />
     <Property Name="PlatilloID" Type="Int32" Nullable="false" />
     <Property Name="Cantidad" Type="Int32" Nullable="false" />
-    <Property Name="PedidoID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido" FromRole="LineaPedido" ToRole="Pedido" />
     <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo" FromRole="LineaPedido" ToRole="Platillo" />
   </EntityType>
@@ -24,9 +25,11 @@
       <PropertyRef Name="PedidoID" />
     </Key>
     <Property Name="PedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DescPedido" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DescPedido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="EstadoID" Type="Int32" Nullable="false" />
     <Property Name="PersonaID" Type="Int32" Nullable="false" />
+    <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FechaEntrega" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_Estado" FromRole="Pedido" ToRole="Estado" />
     <NavigationProperty Name="LineaPedido" Relationship="Self.FK_Pedido" FromRole="Pedido" ToRole="LineaPedido" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Persona" FromRole="Pedido" ToRole="Persona" />
@@ -51,8 +54,9 @@
       <PropertyRef Name="PlatilloID" />
     </Key>
     <Property Name="PlatilloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DescPlatillo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID" Type="Guid" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DescPlatillo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
     <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -164,6 +168,63 @@
       <End Role="Rol" EntitySet="Rol" />
       <End Role="Persona" EntitySet="Persona" />
     </AssociationSet>
+    <FunctionImport Name="AbleCount">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AbleFood">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActiveOrders" ReturnType="Collection(DBA_IF4101_HHSMModel.ActiveOrders_Result)" />
+    <FunctionImport Name="CreateCount">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+      <Parameter Name="RollID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="CreateFood">
+      <Parameter Name="DescPlatillo" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+      <Parameter Name="Foto" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteCount">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteFood">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DisableCount">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DisableFood">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ModifyCount">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellidos" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+      <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+      <Parameter Name="RollID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModifyFood">
+      <Parameter Name="DescPlatillo" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+      <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+      <Parameter Name="Foto" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="SearchCount" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchCount_Result)">
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -180,11 +241,11 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition">
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBA_IF4101_HHSMModel.sp_helpdiagramdefinition_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams">
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBA_IF4101_HHSMModel.sp_helpdiagrams_Result)">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -195,4 +256,36 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
+  <ComplexType Name="ActiveOrders_Result">
+    <Property Type="Int32" Name="PedidoID" Nullable="false" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="16" />
+    <Property Type="Int32" Name="Estado" Nullable="false" />
+    <Property Type="Int32" Name="Persona" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SearchCount_Result">
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Rol" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SearchFood_Result">
+    <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

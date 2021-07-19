@@ -16,20 +16,20 @@
 <body>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="#" style="text-align: center">Egoavil's</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Usuarios</a>
-                    <a class="nav-item nav-link" href="AdministrarClientes.aspx">Clientes</a>
-                    <a class="nav-item nav-link" href="AdministradorPedido.aspx">Pedidos</a>
-                    <a class="nav-item nav-link" href="AdministradorEstados.aspx">Estados</a>
-                    <a class="nav-item nav-link active" href="MantenimientoPlatillos.aspx">Platos</a>
-                </div>
+        <a class="navbar-brand" href="#" style="text-align: center">Egoavil's</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Usuarios</a>
+                <a class="nav-item nav-link" href="AdministrarClientes.aspx">Clientes</a>
+                <a class="nav-item nav-link" href="AdministradorPedido.aspx">Pedidos</a>
+                <a class="nav-item nav-link" href="AdministradorEstados.aspx">Estados</a>
+                <a class="nav-item nav-link active" href="MantenimientoPlatillos.aspx">Platos</a>
             </div>
-        </nav>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="row g-4">
@@ -37,71 +37,101 @@
                 <h3 class="mb-4" style="text-align: center; color: white">Mantenimiento de Platillos</h3>
                 <form id="form1" runat="server" class="card">
 
-                    <div class="row g-2">
 
-                        <!-- Nombre Platillo -->
-                        <div class="col-12">
-                            <label for="plato_txt" class="col-form-label">Plato</label>
-                            <input type="text" runat="server" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" />
-                            <br />
-                            <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Unnamed1_Click" />
-                            <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Unnamed2_Click" />
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="buscar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="cancelar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="ingresar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="modificar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="eliminar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="deshabilitar_btn" EventName="Click" />
+                            <asp:PostBackTrigger ControlID="subir_btn" />
+                        </Triggers>
 
-                        </div>
 
-                        <br />
+                        <ContentTemplate>
 
-                        <!-- Descripcion -->
-                        <div class="col-12">
-                            <label for="descripcion_txt" class="col-form-label">Descripción</label>
-                            <textarea class="col-10 form-control" runat="server" id="descripcion_txt" rows="4"></textarea>
-                        </div>
+                            <div class="row g-2">
 
-                        <br />
+                                <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
 
-                        <!-- Precio-->
-                        <div class="col-sm-6">
-                            <label for="precio_txt" class="col-form-label">Precio</label>
-                            <input type="number" runat="server" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" required="required"/>
-                        </div>
+                                <!-- Nombre Platillo -->
+                                <div class="col-12">
 
-                        <br />
+                                    <label for="plato_txt" class="col-form-label">Plato</label>
+                                    <input type="text" runat="server" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" />
+                                    <br />
+                                    <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Buscar_Click" />
+                                    <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Cancelar_Click" />
 
-                        <!-- Foto-->
-                        <div class="col-sm-6">
-                            <label for="foto_fld" class="col-form-label">Imagen</label>
-                            <input type="file" runat="server" class="col-7 col-auto form-control" id="foto_fld" required="required"/><br />
-                        </div>
+                                </div>
 
-                        <br />
+                                <br />
 
-                        <!-- BOTONES-->
-                        <div class="d-flex h-100 align-items-center justify-content-center">
-                            <br />
-                            <asp:Button ID="ingresar_btn" runat="server" type="button" class="btn btn-success" Text="Ingresar" />
-                            &nbsp;
-                                <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar" />
-                            &nbsp;
-                                <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" />
-                            <br />
-                            <br />
-                        </div>
-                        <br />
+                                <!-- Descripcion -->
+                                <div class="col-sm-9">
+                                    <label for="descripcion_txt" class="col-form-label">Descripción</label>
+                                    <textarea class="col-10 form-control" runat="server" id="descripcion_txt" rows="4"></textarea>
+                                </div>
 
-                        <!-- Tabla -->
-                        <div class="col-12" >
-                            <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
-                                <%= DataGridCreation()%>
-                            </table>
-                        </div>
+                                <!-- Inhabilitado -->
+                                <div class="col-sm-3">
+                                    <label for="inhabilitado_txt" class="col-form-label">Inhabilitado</label>
+                                    <input type="text" runat="server" class="col-2 form-control disabled" id="inhabilitado_txt"/>
+                                </div>
 
-                        <br />
+                                <br />
 
-                        <div class="d-flex h-100 align-items-center justify-content-center">
-                            <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
-                        </div>
+                                <!-- Precio-->
+                                <div class="col-sm-5">
+                                    <label for="precio_txt" class="col-form-label">Precio</label>
+                                    <input type="number" runat="server" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" />
+                                </div>
 
-                    </div>
+                                <br />
+
+                                <!-- Foto-->
+                                <div class="col-sm-7">
+                                    <label for="foto_fld " class="col-form-label">Imagen</label>
+                                    <asp:FileUpload type="file" runat="server" class="col-7 col-auto form-control" id="foto_fld" required="required" accept="image/*"/><br />
+                                    <asp:Button ID="subir_btn" runat="server" Text="Subir Imagen"/>
+                                </div>
+
+                                <br />
+
+                                <!-- BOTONES-->
+                                <div class="d-flex h-100 align-items-center justify-content-center">
+                                    <br />
+                                    <asp:Button ID="ingresar_btn" runat="server" type="button" class="btn btn-success" Text="Ingresar"  OnClick="Ingresar_Click"/>
+                                    &nbsp;
+                                <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar"  OnClick="Modificar_Click"/>
+                                    &nbsp;
+                                <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar"  OnClick="Eliminar_Click"/>
+                                    &nbsp;
+                                <asp:Button ID="deshabilitar_btn" runat="server" type="button" class="btn btn-secondary" Text="Deshabilitar" OnClick="Deshabilitar_Click"/>
+                                    <br />
+                                    <br />
+                                </div>
+                                <br />
+
+                                <!-- Tabla -->
+                                <div class="col-12">
+                                    <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
+                                        <%= DataGridCreation()%>
+                                    </table>
+                                </div>
+
+                                <br />
+
+                                <div class="d-flex h-100 align-items-center justify-content-center">
+                                    <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
+                                </div>
+
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
 
                 </form>
             </div>

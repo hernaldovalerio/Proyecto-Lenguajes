@@ -12,10 +12,10 @@
     <EntitySetMapping Name="LineaPedido">
       <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.LineaPedido">
         <MappingFragment StoreEntitySet="LineaPedido">
+          <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
           <ScalarProperty Name="LineaPedidoID" ColumnName="LineaPedidoID" />
           <ScalarProperty Name="PlatilloID" ColumnName="PlatilloID" />
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-          <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -26,6 +26,8 @@
           <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
           <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
           <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+          <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+          <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -47,8 +49,9 @@
       <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Platillo">
         <MappingFragment StoreEntitySet="Platillo">
           <ScalarProperty Name="PlatilloID" ColumnName="PlatilloID" />
-          <ScalarProperty Name="DescPlatillo" ColumnName="DescPlatillo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="DescPlatillo" ColumnName="DescPlatillo" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
           <ScalarProperty Name="Foto" ColumnName="Foto" />
@@ -74,11 +77,71 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AbleCount" FunctionName="DBA_IF4101_HHSMModel.Store.AbleCount" />
+    <FunctionImportMapping FunctionImportName="AbleFood" FunctionName="DBA_IF4101_HHSMModel.Store.AbleFood" />
+    <FunctionImportMapping FunctionImportName="ActiveOrders" FunctionName="DBA_IF4101_HHSMModel.Store.ActiveOrders">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.ActiveOrders_Result">
+          <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Persona" ColumnName="Persona" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="CreateCount" FunctionName="DBA_IF4101_HHSMModel.Store.CreateCount" />
+    <FunctionImportMapping FunctionImportName="CreateFood" FunctionName="DBA_IF4101_HHSMModel.Store.CreateFood" />
+    <FunctionImportMapping FunctionImportName="DeleteCount" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteCount" />
+    <FunctionImportMapping FunctionImportName="DeleteFood" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteFood" />
+    <FunctionImportMapping FunctionImportName="DisableCount" FunctionName="DBA_IF4101_HHSMModel.Store.DisableCount" />
+    <FunctionImportMapping FunctionImportName="DisableFood" FunctionName="DBA_IF4101_HHSMModel.Store.DisableFood" />
+    <FunctionImportMapping FunctionImportName="ModifyCount" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyCount" />
+    <FunctionImportMapping FunctionImportName="ModifyFood" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyFood" />
+    <FunctionImportMapping FunctionImportName="SearchCount" FunctionName="DBA_IF4101_HHSMModel.Store.SearchCount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.SearchCount_Result">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchFood" FunctionName="DBA_IF4101_HHSMModel.Store.SearchFood">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.SearchFood_Result">
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagramdefinition" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DBA_IF4101_HHSMModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DBA_IF4101_HHSMModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DBA_IF4101_HHSMModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>

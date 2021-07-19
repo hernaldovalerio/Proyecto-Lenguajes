@@ -37,16 +37,33 @@
             <div class="col-md-12 col-lg-12">
                     <h3 class="mb-4" style="text-align: center; color: white">Administrador de usuarios</h3>
                     <form id="form1" runat="server" class="card">
+
+                        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="buscar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="cancelar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="ingresar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="modificar_btn" EventName="Click" />
+                            <asp:AsyncPostBackTrigger ControlID="eliminar_btn" EventName="Click" />
+                        </Triggers>
+
+
+                        <ContentTemplate>
+
+
         
                         <div class="row g-2">
+
+                            <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
 
                             <!-- Email -->
                             <div class="col-sm-6" >
                                 <label for="email_txt" class="form-label">Email</label>
                                 <input type="email" runat="server" class="form-control" id="email_txt" placeholder="Introduzca Email" required="required"/>
                                 <br />
-                                <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Unnamed1_Click" />
-                                <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Unnamed2_Click" />
+                                <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Buscar_Click" />
+                                <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Cancelar_Click" />
                             </div>
 
                             <br />
@@ -114,11 +131,11 @@
                             <!-- BOTONES-->
                             <div class="d-flex h-100 align-items-center justify-content-center">
                                 <br />
-                                <asp:Button ID="ingresar_btn" runat="server" type="button" class="btn btn-success" Text="Ingresar" />
+                                <asp:Button ID="ingresar_btn" runat="server" type="button" class="btn btn-success" Text="Ingresar" OnClick="Ingresar_Click" />
                                 &nbsp;
-                                <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar" />
+                                <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar" OnClick="Modificar_Click"/>
                                 &nbsp;
-                                <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" />
+                                <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" Onclick="Eliminar_Click"/>
                                 <br />
                                 <br />
                                 &nbsp;
@@ -138,8 +155,10 @@
                             <div class="d-flex h-100 align-items-center justify-content-center">
                                 <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
                             </div>
-
+                            
                         </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </form>
                 </div>
              </div>

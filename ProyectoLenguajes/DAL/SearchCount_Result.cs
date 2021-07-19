@@ -10,16 +10,13 @@
 namespace CapaDatosAdministracion
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class LineaPedido
+    public partial class SearchCount_Result
     {
-        public int PedidoID { get; set; }
-        public int LineaPedidoID { get; set; }
-        public int PlatilloID { get; set; }
-        public int Cantidad { get; set; }
-    
-        public virtual Pedido Pedido { get; set; }
-        public virtual Platillo Platillo { get; set; }
+        public string Email { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public string Direccion { get; set; }
+        public Nullable<int> Rol { get; set; }
     }
 }

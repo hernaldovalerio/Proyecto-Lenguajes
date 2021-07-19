@@ -35,6 +35,199 @@ namespace CapaDatosAdministracion
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
+        public virtual int AbleCount(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AbleCount", emailParameter);
+        }
+    
+        public virtual int AbleFood(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AbleFood", nombreParameter);
+        }
+    
+        public virtual ObjectResult<ActiveOrders_Result> ActiveOrders()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ActiveOrders_Result>("ActiveOrders");
+        }
+    
+        public virtual int CreateCount(string email, string nombre, string apellidos, string direccion, string contraseña, Nullable<bool> inhabilitado, Nullable<int> rollID)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("Apellidos", apellidos) :
+                new ObjectParameter("Apellidos", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            var inhabilitadoParameter = inhabilitado.HasValue ?
+                new ObjectParameter("Inhabilitado", inhabilitado) :
+                new ObjectParameter("Inhabilitado", typeof(bool));
+    
+            var rollIDParameter = rollID.HasValue ?
+                new ObjectParameter("RollID", rollID) :
+                new ObjectParameter("RollID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateCount", emailParameter, nombreParameter, apellidosParameter, direccionParameter, contraseñaParameter, inhabilitadoParameter, rollIDParameter);
+        }
+    
+        public virtual int CreateFood(string descPlatillo, string nombre, Nullable<decimal> precio, Nullable<bool> inhabilitado, byte[] foto)
+        {
+            var descPlatilloParameter = descPlatillo != null ?
+                new ObjectParameter("DescPlatillo", descPlatillo) :
+                new ObjectParameter("DescPlatillo", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var inhabilitadoParameter = inhabilitado.HasValue ?
+                new ObjectParameter("Inhabilitado", inhabilitado) :
+                new ObjectParameter("Inhabilitado", typeof(bool));
+    
+            var fotoParameter = foto != null ?
+                new ObjectParameter("Foto", foto) :
+                new ObjectParameter("Foto", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreateFood", descPlatilloParameter, nombreParameter, precioParameter, inhabilitadoParameter, fotoParameter);
+        }
+    
+        public virtual int DeleteCount(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteCount", emailParameter);
+        }
+    
+        public virtual int DeleteFood(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteFood", nombreParameter);
+        }
+    
+        public virtual int DisableCount(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DisableCount", emailParameter);
+        }
+    
+        public virtual int DisableFood(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DisableFood", nombreParameter);
+        }
+    
+        public virtual int ModifyCount(string email, string nombre, string apellidos, string direccion, string contraseña, Nullable<bool> inhabilitado, Nullable<int> rollID)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidosParameter = apellidos != null ?
+                new ObjectParameter("Apellidos", apellidos) :
+                new ObjectParameter("Apellidos", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            var inhabilitadoParameter = inhabilitado.HasValue ?
+                new ObjectParameter("Inhabilitado", inhabilitado) :
+                new ObjectParameter("Inhabilitado", typeof(bool));
+    
+            var rollIDParameter = rollID.HasValue ?
+                new ObjectParameter("RollID", rollID) :
+                new ObjectParameter("RollID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyCount", emailParameter, nombreParameter, apellidosParameter, direccionParameter, contraseñaParameter, inhabilitadoParameter, rollIDParameter);
+        }
+    
+        public virtual int ModifyFood(string descPlatillo, string nombre, Nullable<decimal> precio, Nullable<bool> inhabilitado, byte[] foto)
+        {
+            var descPlatilloParameter = descPlatillo != null ?
+                new ObjectParameter("DescPlatillo", descPlatillo) :
+                new ObjectParameter("DescPlatillo", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var inhabilitadoParameter = inhabilitado.HasValue ?
+                new ObjectParameter("Inhabilitado", inhabilitado) :
+                new ObjectParameter("Inhabilitado", typeof(bool));
+    
+            var fotoParameter = foto != null ?
+                new ObjectParameter("Foto", foto) :
+                new ObjectParameter("Foto", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyFood", descPlatilloParameter, nombreParameter, precioParameter, inhabilitadoParameter, fotoParameter);
+        }
+    
+        public virtual ObjectResult<SearchCount_Result> SearchCount(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchCount_Result>("SearchCount", emailParameter);
+        }
+    
+        public virtual ObjectResult<SearchFood_Result> SearchFood(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchFood_Result>("SearchFood", nombreParameter);
+        }
+    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
@@ -90,7 +283,7 @@ namespace CapaDatosAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual int sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
@@ -100,10 +293,10 @@ namespace CapaDatosAdministracion
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual int sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
@@ -113,7 +306,7 @@ namespace CapaDatosAdministracion
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)

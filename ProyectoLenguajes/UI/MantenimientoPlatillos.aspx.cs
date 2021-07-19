@@ -14,16 +14,22 @@ namespace ModuloAdministracion
     {
 
         private LogicaAdministracion logica;
+        public static string[] platoR = { "", "", "", "", "" };
+        public FileUpload imgB;
+        public int mode = 0;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             logica = new LogicaAdministracion();
             Session["logica"] = logica;
-            eliminar_btn.Enabled = false;
-            modificar_btn.Enabled = false;
+            eliminar_btn.Visible = false;
+            modificar_btn.Visible = false;
             plato_txt.Disabled = false;
             buscar_btn.Visible = true;
             cancelar_btn.Visible = false;
+            deshabilitar_btn.Visible = false;
+            inhabilitado_txt.Disabled = true;
         }
 
         public string DataGridCreation()
@@ -33,20 +39,27 @@ namespace ModuloAdministracion
             DataTable table = new DataTable();
             table.Columns.Add("Nombre", typeof(string));
             table.Columns.Add("Descripcion", typeof(string));
-            table.Columns.Add("Precio", typeof(string));
-            table.Columns.Add("Inhabilitado", typeof(string));
-            table.Columns.Add("Imagen", typeof(string));
+            table.Columns.Add("Precio", typeof(decimal));
+            table.Columns.Add("Inhabilitado", typeof(bool));
+            table.Columns.Add("Imagen", typeof(Object));
 
-            List<string[]> list = new List<string[]>();
+            List<Object[]> list = logica.ListarPlatillo();
 
             //eliminar ya que solo es consulta de 1
-            string[] tempL = logica.BuscarPlatillo("Brownie");
+            //string[] tempL = logica.BuscarPlatillo("Brownie");
 
-            list.Add(tempL);
+            //list.Add(tempL);
             //
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            System.Drawing.Image img;
 
-            foreach (string[] temp in list)
+            foreach (Object[] temp in list)
             {
+                if (temp[5] != null)
+                {
+
+                }
+
                 table.Rows.Add(temp[1], temp[2], temp[3], temp[4], temp[5]);
             }
 
@@ -70,9 +83,25 @@ namespace ModuloAdministracion
                 strHTMLBuilder.Append("<tr >");
                 foreach (DataColumn myColumn in table.Columns)
                 {
-                    strHTMLBuilder.Append("<td >");
-                    strHTMLBuilder.Append(myRow[myColumn.ColumnName].ToString());
-                    strHTMLBuilder.Append("</td>");
+                    /**if (myColumn.ColumnName.Equals("Imagen") && myRow[myColumn.ColumnName]!=null)
+                    {
+                        ms = new System.IO.MemoryStream((byte[])myRow[myColumn.ColumnName]);
+                        img = System.Drawing.Image.FromStream(ms);
+
+                        strHTMLBuilder.Append("<td ><img src=\"");
+                        strHTMLBuilder.Append(img);
+                        strHTMLBuilder.Append("\"></td>");
+                    }
+                    else
+                    {*/
+                        strHTMLBuilder.Append("<td >");
+                        strHTMLBuilder.Append(myRow[myColumn.ColumnName].ToString());
+                        strHTMLBuilder.Append("</td>");
+                    
+                        
+                    //}
+
+                    
 
                 }
                 strHTMLBuilder.Append("</tr>");
@@ -87,24 +116,158 @@ namespace ModuloAdministracion
 
         }
 
-        protected void Unnamed1_Click(object sender, EventArgs e)
+        public void ModeSearch()
         {
-            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
-            eliminar_btn.Enabled = true;
-            modificar_btn.Enabled = true;
+            eliminar_btn.Visible = true;
+            modificar_btn.Visible = true;
             plato_txt.Disabled = true;
             buscar_btn.Visible = false;
             cancelar_btn.Visible = true;
+            deshabilitar_btn.Visible = true;
+            ingresar_btn.Visible = false;
+            inhabilitado_txt.Disabled = true;
+
+            //plato_txt.Value = "";
+            descripcion_txt.Value = "";
+            precio_txt.Value = "";
+            inhabilitado_txt.Value = "";
+            mode = 1;
         }
 
-        protected void Unnamed2_Click(object sender, EventArgs e)
+        public void ModeInsert()
         {
-            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
-            eliminar_btn.Enabled = false;
-            modificar_btn.Enabled = false;
+            ingresar_btn.Visible = true;
+            eliminar_btn.Visible = false;
+            modificar_btn.Visible = false;
             plato_txt.Disabled = false;
             buscar_btn.Visible = true;
             cancelar_btn.Visible = false;
+            deshabilitar_btn.Visible = false;
+            inhabilitado_txt.Disabled = true;
+            inhabilitado_txt.Disabled = true;
+
+            plato_txt.Value = "";
+            descripcion_txt.Value = "";
+            precio_txt.Value = "";
+            inhabilitado_txt.Value = "";
+            mode = 0;
         }
+
+        protected void Buscar_Click(object sender, EventArgs e)
+        {
+            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
+
+            string[] plato = logica.BuscarPlatilloNombre(plato_txt.Value);
+
+            if (plato[0].Equals("Datos No Encontrados"))
+            {
+                mensaje_lbl.Text = plato[0];
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+            else
+            {
+                ModeSearch();
+
+                mensaje_lbl.Text = plato[0];
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+
+                plato_txt.Value = plato[1];
+                descripcion_txt.Value = plato[2];
+                precio_txt.Value = plato[3];
+                //foto_fld.Value = plato[4];
+                inhabilitado_txt.Value = plato[5];
+
+            }
+
+        }
+
+
+        protected void Cancelar_Click(object sender, EventArgs e)
+        {
+            //Implementar logica de cuando se encuentre un usuario y cuando no se encuentre
+            ModeInsert();
+
+        }
+
+
+        protected void Ingresar_Click(object sender, EventArgs e)
+        {
+            byte[] img = new byte[100];
+
+
+
+            string s = logica.InsertarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, img);
+
+            if (s.Equals("Introducción de nuevo Plato Existosa!"))//logica.ValidarExtension(FileUpload_fld.))
+            {
+                plato_txt.Value = "";
+                descripcion_txt.Value = "";
+                precio_txt.Value = "";
+
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+            }
+            else
+            {
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+
+        }
+
+        protected void Eliminar_Click(object sender, EventArgs e)
+        {
+            string s = logica.EliminarPlatillo(plato_txt.Value);
+
+            if (s.Equals("Platillo borrado de forma Existosa!"))
+            {
+                ModeInsert();
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+            }
+            else
+            {
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+        }
+
+        protected void Modificar_Click(object sender, EventArgs e)
+        {
+            string s = logica.ModificarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, new byte[1000]);
+
+            if (s.Equals("Platillo modificado de forma Existosa!"))
+            {
+                ModeInsert();
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+            }
+            else
+            {
+                mensaje_lbl.Text = s;
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+        }
+
+        protected void Deshabilitar_Click(object sender, EventArgs e)
+        {
+            eliminar_btn.Visible = true;
+            modificar_btn.Visible = true;
+            plato_txt.Disabled = true;
+            buscar_btn.Visible = false;
+            cancelar_btn.Visible = true;
+            deshabilitar_btn.Visible = true;
+            ingresar_btn.Visible = false;
+            inhabilitado_txt.Disabled = true;
+
+            inhabilitado_txt.Value = logica.Deshabilitar(plato_txt.Value, inhabilitado_txt.Value);
+            mensaje_lbl.Text = "";
+        }
+
+        public void setImg(FileUpload f)
+        {
+            imgB = f;
+        }
+
     }
 }

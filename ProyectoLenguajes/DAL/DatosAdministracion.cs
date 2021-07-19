@@ -46,23 +46,270 @@ namespace CapaDatosAdministracion
 
         }
 
-        public List<Platillo> BuscarPlatillo(string nombre)
+        public List<Platillo> ListarPlatillo()
         {
             //logica para buscar en la base de datos
             using (entity = new DBA_IF4101_HHSMEntities())
             {
-                List<Platillo> busqueda = entity.Platillo.Where(s => s.Nombre == nombre).ToList();
-                if (busqueda.Count() != 0)
+                List<Platillo> busqueda = entity.Platillo.ToList();
+
+                /**if (busqueda.Count() != 0)
                 {
                     System.Diagnostics.Trace.Write("correcto");
                 }
                 else
                 {
                     System.Diagnostics.Trace.Write("INcorrecto");
-                }
-                    return busqueda;
+                }*/
+                return busqueda;
             }
 
+        }
+
+
+        public List<SearchFood_Result> BuscarPlatilloNombre(string nombre)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchFood_Result> result = entity.SearchFood(nombre).ToList();
+
+                if (result != null && result.Count() > 0)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+
+
+        public bool InsertarPlatillo(string nombre, string descripcion, decimal precio, byte[] img)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                int n = entity.CreateFood(descripcion, nombre, precio, false, img);
+
+                if (n > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
+        public bool EliminarPlatillo(string nombre)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchFood_Result> result = entity.SearchFood(nombre).ToList();
+
+                if (result != null && result.Count() > 0)
+                {
+                    int n = entity.DeleteFood(nombre);
+
+                    if (n > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
+        public bool ModificarPlatillo(string nombre, string descripcion, decimal precio, byte[] img)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchFood_Result> result = entity.SearchFood(nombre).ToList();
+
+                if (result != null && result.Count() > 0)
+                {
+
+                    int n = entity.ModifyFood(descripcion, nombre, precio, result[0].Inhabilitado, img);
+
+                    if (n > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
+        public bool DeshabilitarPlatillo(string nombre)
+        {
+
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchFood_Result> result = entity.SearchFood(nombre).ToList();
+
+                int i;
+
+                if (result[0].Inhabilitado)
+                {
+                    i = entity.AbleFood(nombre);
+                    return true;
+                }
+                else
+                {
+                    i = entity.DisableFood(nombre);
+                    return true;
+                }
+                return false;
+            }
+
+        }
+
+
+        //-----------------------------------------------------------------------------------------------------------------
+
+        public List<Persona> ListarCuentas()
+        {
+            //logica para buscar en la base de datos
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+                List<Persona> busqueda = entity.Persona.ToList();
+
+                /**if (busqueda.Count() != 0)
+                {
+                    System.Diagnostics.Trace.Write("correcto");
+                }
+                else
+                {
+                    System.Diagnostics.Trace.Write("INcorrecto");
+                }*/
+                return busqueda;
+            }
+
+        }
+
+
+        public List<SearchCount_Result> BuscarEmail(string email)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchCount_Result> result = entity.SearchCount(email).ToList();
+
+                if (result != null && result.Count() > 0)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+
+
+        public bool InsertarCuenta(string email, string password, string nombre, string apellido, string direccion, int rol)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                int n = entity.CreateCount(email, nombre, apellido, direccion, password,false, rol);
+
+                if (n > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
+        public bool EliminarCuenta(string email)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchCount_Result> result = entity.SearchCount(email).ToList();
+
+                if (result != null && result.Count() > 0)
+                {
+                    int n = entity.DeleteCount(email);
+
+                    if (n > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+        }
+
+        public bool ModificarCuenta(string email, string password, string nombre, string apellido, string direccion, int rol)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<SearchFood_Result> result = entity.SearchFood(nombre).ToList();
+
+                if (result != null && result.Count() > 0)
+                {
+
+                    int n = entity.ModifyCount(email, nombre, apellido, direccion, password, false, rol);
+
+                    if (n > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
         }
 
     }
