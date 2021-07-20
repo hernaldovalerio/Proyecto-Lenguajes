@@ -101,7 +101,7 @@ namespace ModuloAdministracion
                        
                         strHTMLBuilder.Append("<td ><img src='");
                         strHTMLBuilder.Append((string)myRow[myColumn.ColumnName]);
-                        strHTMLBuilder.Append("'style='width: 5px, heigth: 5px'/></td>");
+                        strHTMLBuilder.Append("' style='max-height:30%; max-width:30%'/></td>");
 
                         //Imagen.ImageUrl = (string)myRow[myColumn.ColumnName];
 
@@ -206,9 +206,6 @@ namespace ModuloAdministracion
 
         protected void Ingresar_Click(object sender, EventArgs e)
         {
-            byte[] img = new byte[foto_fld.FileBytes.Length-1];
-
-            img = foto_fld.FileBytes;
 
             string s = logica.InsertarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, foto_fld.FileBytes);
 
@@ -249,10 +246,7 @@ namespace ModuloAdministracion
         protected void Modificar_Click(object sender, EventArgs e)
         {
 
-            byte[] img = new byte[100000];
-            img = foto_fld.FileBytes;
-
-            string s = logica.ModificarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, img);
+            string s = logica.ModificarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, foto_fld.FileBytes);
 
             if (s.Equals("Platillo modificado de forma Existosa!"))
             {
