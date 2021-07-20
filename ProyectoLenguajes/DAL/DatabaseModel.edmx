@@ -170,6 +170,65 @@
         <Function Name="DisableFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="FiltCase1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="FiltCase17" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="FiltCase1NUll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="FiltCase2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="FiltCase3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="FiltCase3NUll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="FiltCase4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="FiltCase4null" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="FiltCase5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FiltCase6" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
+        <Function Name="FiltCase7Null" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="FilterPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="ModifyCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
@@ -460,6 +519,65 @@
           <FunctionImport Name="DisableFood">
             <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="FiltCase1" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase1_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase17" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase17_Result)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase1NUll" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase1NUll_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase2" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase2_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase3" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase3_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase3NUll" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase3NUll_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase4" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase4_Result)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase4null" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase4null_Result)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase5" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase5_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase6" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase6_Result)">
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FiltCase7Null" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase7Null_Result)">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FilterPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.FilterPedido_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <FunctionImport Name="ModifyCount">
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -519,6 +637,189 @@
           <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="16" />
           <Property Type="Int32" Name="Estado" Nullable="false" />
           <Property Type="Int32" Name="Persona" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="FiltCase1_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase17_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase1NUll_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase2_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase3_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase3NUll_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase4_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase4null_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase5_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase6_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FiltCase7Null_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
+          <Property Type="Int32" Name="PersonaID1" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+          <Property Type="Int32" Name="RolID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FilterPedido_Result">
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SearchCount_Result">
           <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
@@ -646,6 +947,237 @@
           <FunctionImportMapping FunctionImportName="DeleteFood" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteFood" />
           <FunctionImportMapping FunctionImportName="DisableCount" FunctionName="DBA_IF4101_HHSMModel.Store.DisableCount" />
           <FunctionImportMapping FunctionImportName="DisableFood" FunctionName="DBA_IF4101_HHSMModel.Store.DisableFood" />
+          <FunctionImportMapping FunctionImportName="FiltCase1" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase1_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase17" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase17">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase17_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase1NUll" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase1NUll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase1NUll_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase2" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase2_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase3" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase3_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase3NUll" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase3NUll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase3NUll_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase4" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase4">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase4_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase4null" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase4null">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase4null_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase5" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase5">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase5_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase6" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase6">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase6_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FiltCase7Null" FunctionName="DBA_IF4101_HHSMModel.Store.FiltCase7Null">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FiltCase7Null_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+                <ScalarProperty Name="PersonaID1" ColumnName="PersonaID1" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FilterPedido" FunctionName="DBA_IF4101_HHSMModel.Store.FilterPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FilterPedido_Result">
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ModifyCount" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyCount" />
           <FunctionImportMapping FunctionImportName="ModifyFood" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyFood" />
           <FunctionImportMapping FunctionImportName="SearchCount" FunctionName="DBA_IF4101_HHSMModel.Store.SearchCount">

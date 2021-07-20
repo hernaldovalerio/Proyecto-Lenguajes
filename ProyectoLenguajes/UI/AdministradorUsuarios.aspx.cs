@@ -146,7 +146,7 @@ namespace ModuloAdministracion
                 apellido_txt.Value = cuenta[3];
                 //foto_fld.Value = plato[4];
                 direccion_txt.Value = cuenta[5];
-                rol_opt.SelectedIndex = Int32.Parse(cuenta[4]);
+                //rol_opt.SelectedIndex = Int32.Parse(cuenta[4]);
 
             }
 

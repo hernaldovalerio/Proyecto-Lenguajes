@@ -312,5 +312,56 @@ namespace CapaDatosAdministracion
             }
         }
 
+        //---------------------------------------------------------------------------------------------------
+        public List<FilterPedido_Result> Filtrar(int id, string nombre, string apellido, DateTime bef, DateTime af)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+
+                List<FilterPedido_Result> l;
+
+                if (id == 0 && bef.Year == 2000)
+                {
+                    l = entity.FilterPedido(null, nombre, apellido, null, null).ToList();
+                }
+                else if (bef.Year == 2000)
+                {
+                    l = entity.FilterPedido(id, nombre, apellido, null, null).ToList();
+                }
+                else if (id == 0)
+                {
+                    l = entity.FilterPedido(null, nombre, apellido, bef, af).ToList();
+                }
+                else
+                {
+                    l = entity.FilterPedido(id, nombre, apellido, bef, af).ToList();
+                }
+
+
+                return l;
+
+            }
+        }
+
+        public List<Pedido> ListarPedidos()
+        {
+            //logica para buscar en la base de datos
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+                List<Pedido> busqueda = entity.Pedido.ToList();
+
+                /**if (busqueda.Count() != 0)
+                {
+                    System.Diagnostics.Trace.Write("correcto");
+                }
+                else
+                {
+                    System.Diagnostics.Trace.Write("INcorrecto");
+                }*/
+                return busqueda;
+            }
+
+        }
+
     }
 }

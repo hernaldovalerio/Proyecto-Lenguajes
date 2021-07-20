@@ -13,15 +13,19 @@ namespace ModuloAdministracion
     public partial class AdministradorPedido : System.Web.UI.Page
     {
         private LogicaAdministracion logica;
+        private List<string[]> list;
+        private string htmlTable;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             logica = new LogicaAdministracion();
             Session["logica"] = logica;
+            list = logica.ListarPedidos();
+            DataGridCreation();
         }
 
 
-        public string DataGridCreation()
+        public void DataGridCreation()
         {
             StringBuilder strHTMLBuilder = new StringBuilder();
 
@@ -33,7 +37,7 @@ namespace ModuloAdministracion
             table.Columns.Add("Estado", typeof(string));
             table.Columns.Add("Modificar", typeof(string));
 
-            List<string[]> list = new List<string[]>();
+            
 
             //eliminar ya que solo es consulta de 1
             //string[] tempL = logica.BuscarPlatillo("Brownie");
@@ -66,13 +70,14 @@ namespace ModuloAdministracion
                 strHTMLBuilder.Append("<tr >");
                 foreach (DataColumn myColumn in table.Columns)
                 {
-                    if(myColumn.ColumnName.Equals("Modificar"))
+                    if (myColumn.ColumnName.Equals("Modificar"))
                     {
                         strHTMLBuilder.Append("<td >");
-                        strHTMLBuilder.Append("<button href=\"Inicio.aspx\" onclick=\"Inicio.aspx\"/>Modificar");
+                        strHTMLBuilder.Append("<button  href=\"Inicio.aspx\" onclick=\"Inicio.aspx\"/>Modificar");
                         strHTMLBuilder.Append("</td>");
                     }
-                    else { 
+                    else
+                    {
                         strHTMLBuilder.Append("<td >");
                         strHTMLBuilder.Append(myRow[myColumn.ColumnName].ToString());
                         strHTMLBuilder.Append("</td>");
@@ -85,12 +90,92 @@ namespace ModuloAdministracion
             //Close tags.  
             strHTMLBuilder.Append("</tbody>");
 
-            string Htmltext = strHTMLBuilder.ToString();
-
-            return Htmltext;
-
+            htmlTable = strHTMLBuilder.ToString();
+            /**
+            check_email.Checked = false;
+            check_fecha.Checked = false;
+            check_nombre.Checked = false;
+            */
         }
 
+        public string GetTable()
+        {
+            return htmlTable;
+        }
+
+        protected void Filtrar_Click(object sender, EventArgs e)
+        {
+
+            if (check_email.Checked == true || check_fecha.Checked == true || check_nombre.Checked == true)
+            {
+                DateTime bef = new DateTime(2000,01,01,01,01,00);
+                DateTime af = new DateTime(2000, 01, 01, 01, 01, 00);
+
+                if (check_fecha.Checked)
+                {
+                    if (logica.CheckDate(befday_opt.Value, befmonth_opt.Value, befyear_opt.Value, befhour_opt.Value, befmin_opt.Value)
+                            && logica.CheckDate(afday_opt.Value, afmonth_opt.Value, afyear_opt.Value, afhour_opt.Value, afmin_opt.Value))
+                    {
+
+                        bef = new DateTime(Int32.Parse(befyear_opt.Value), Int32.Parse(befmonth_opt.Value),
+                            Int32.Parse(befday_opt.Value), Int32.Parse(befhour_opt.Value), Int32.Parse(befmin_opt.Value), 0);
+                        af = new DateTime(Int32.Parse(afyear_opt.Value), Int32.Parse(afmonth_opt.Value),
+                            Int32.Parse(afday_opt.Value), Int32.Parse(afhour_opt.Value), Int32.Parse(afmin_opt.Value), 0);
+
+                        if (bef.CompareTo(af) >= 0) 
+                        {
+                            mensaje_lbl.Text = "Rango no permitido fechas no permitido: fecha desde es mayor que fecha hasta";
+                            mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        mensaje_lbl.Text = "Fechas no validas";
+                        mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                        return;
+                    }
+                }
+
+
+                list = logica.Filtrar(id_txt.Value, nombre_txt.Value, apellido_txt.Value, bef, af);
+
+                if (list[0][0].Equals("Datos Encontrados"))
+                {
+                    mensaje_lbl.Text = list[0][0];
+                    mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+                }
+                else
+                {
+                    mensaje_lbl.Text = list[0][0];
+                    mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                }
+
+                befday_opt.Value = "";
+                befmonth_opt.Value = "";
+                befyear_opt.Value = "";
+                befhour_opt.Value = "";
+                befmin_opt.Value = "";
+                afday_opt.Value = "";
+                afmonth_opt.Value = "";
+                afyear_opt.Value = "";
+                afhour_opt.Value = "";
+                afmin_opt.Value = "";
+                id_txt.Value = "";
+                nombre_txt.Value = "";
+                apellido_txt.Value = "";
+
+
+                DataGridCreation();
+
+            }
+            else
+            {
+                mensaje_lbl.Text = "No ha seleccionado filtros";
+                mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+            }
+        }
 
     }
 }

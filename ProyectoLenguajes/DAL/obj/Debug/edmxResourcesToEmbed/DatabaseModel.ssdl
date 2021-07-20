@@ -165,6 +165,65 @@
   <Function Name="DisableFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="FiltCase1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="FiltCase17" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FiltCase1NUll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="FiltCase2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="FiltCase3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FiltCase3NUll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FiltCase4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="FiltCase4null" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="FiltCase5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FiltCase6" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
+  <Function Name="FiltCase7Null" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="FilterPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+    <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+  </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="ModifyCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />

@@ -152,6 +152,206 @@ namespace CapaDatosAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DisableFood", nombreParameter);
         }
     
+        public virtual ObjectResult<FiltCase1_Result> FiltCase1(Nullable<int> id, string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("apellido", apellido) :
+                new ObjectParameter("apellido", typeof(string));
+    
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase1_Result>("FiltCase1", idParameter, nombreParameter, apellidoParameter, inicioParameter, finParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase17_Result> FiltCase17(string nombre, string apellido)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("apellido", apellido) :
+                new ObjectParameter("apellido", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase17_Result>("FiltCase17", nombreParameter, apellidoParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase1NUll_Result> FiltCase1NUll(Nullable<int> id, string nombre, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase1NUll_Result>("FiltCase1NUll", idParameter, nombreParameter, inicioParameter, finParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase2_Result> FiltCase2(Nullable<int> id, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase2_Result>("FiltCase2", idParameter, inicioParameter, finParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase3_Result> FiltCase3(Nullable<int> id, string nombre, string apellido)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("apellido", apellido) :
+                new ObjectParameter("apellido", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase3_Result>("FiltCase3", idParameter, nombreParameter, apellidoParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase3NUll_Result> FiltCase3NUll(Nullable<int> id, string nombre)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase3NUll_Result>("FiltCase3NUll", idParameter, nombreParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase4_Result> FiltCase4(string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("apellido", apellido) :
+                new ObjectParameter("apellido", typeof(string));
+    
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase4_Result>("FiltCase4", nombreParameter, apellidoParameter, inicioParameter, finParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase4null_Result> FiltCase4null(string nombre, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase4null_Result>("FiltCase4null", nombreParameter, inicioParameter, finParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase5_Result> FiltCase5(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase5_Result>("FiltCase5", idParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase6_Result> FiltCase6(Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase6_Result>("FiltCase6", inicioParameter, finParameter);
+        }
+    
+        public virtual ObjectResult<FiltCase7Null_Result> FiltCase7Null(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase7Null_Result>("FiltCase7Null", nombreParameter);
+        }
+    
+        public virtual ObjectResult<FilterPedido_Result> FilterPedido(Nullable<int> id, string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("apellido", apellido) :
+                new ObjectParameter("apellido", typeof(string));
+    
+            var inicioParameter = inicio.HasValue ?
+                new ObjectParameter("inicio", inicio) :
+                new ObjectParameter("inicio", typeof(System.DateTime));
+    
+            var finParameter = fin.HasValue ?
+                new ObjectParameter("fin", fin) :
+                new ObjectParameter("fin", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FilterPedido_Result>("FilterPedido", idParameter, nombreParameter, apellidoParameter, inicioParameter, finParameter);
+        }
+    
         public virtual int ModifyCount(string email, string nombre, string apellidos, string direccion, string contraseña, Nullable<bool> inhabilitado, Nullable<int> rollID)
         {
             var emailParameter = email != null ?

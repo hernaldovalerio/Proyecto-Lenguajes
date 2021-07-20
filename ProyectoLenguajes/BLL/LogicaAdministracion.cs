@@ -211,9 +211,9 @@ namespace CapaLogicaAdministracion
                 temp[1] = i.Email;
                 temp[2] = i.Nombre;
                 temp[3] = i.Apellidos;
-                temp[4] = i.Inhabilitado;
-                //temp[5] = i.Rol+"";
-                temp[6] = i.Direccion;
+                temp[6] = i.Inhabilitado;
+                temp[4] = (i.RolID == 1 ? "Administrador" : "Cocina");
+                temp[5] = i.Direccion;
                 resultado.Add(temp);
             }
 
@@ -327,6 +327,99 @@ namespace CapaLogicaAdministracion
             }
 
             return false;
+        }
+
+
+
+        //-----------------------------------------------------------------------------------------
+
+        public List<string[]> Filtrar(string id, string nombre, string apellido, DateTime bef, DateTime af)
+        {
+
+            int n = 0;
+            string nam = nombre;
+            string ap = apellido;
+
+            if (id != null || id.Length != 0)
+            {
+                n = Int32.Parse(id);
+            }
+
+            if (nam == null || nam.Length == 0)
+            {
+                nam = null;
+            }
+
+            if (ap == null || ap.Length == 0)
+            {
+                ap = null;
+            }
+
+            List<FilterPedido_Result> p = datos.Filtrar(n, nam, ap, bef, af);
+            List<string[]> s = new List<string[]>();
+            string[] temp = new string[7];
+
+            if (p.Count() != 0){
+
+                for(int i = 0; i < p.Count(); i++){
+
+                    temp = new string[7];
+                    temp[0] = "Datos Encontrados";
+                    temp[1] = p[i].PersonaID + "";
+                    temp[2] = p[i].DescPedido;
+                    temp[3] = p[i].FechaPedido+"";
+                    temp[4] = p[i].EstadoID+"";
+                    s.Add(temp);
+
+                }
+
+                return s;
+
+            }
+            else
+            {
+                temp[0] = "No se encontraron datos";
+                s.Add(temp);
+                return s;
+            }
+
+
+        }
+
+        public bool CheckDate(string day, string month, string year, string hour, string min)
+        {
+            DateTime temp;
+            string s = year + "/" + month + "/" + day + " " + hour + ":" + min;
+            if(DateTime.TryParseExact(s, "yyyy/MM/dd HH:mm", System.Globalization.CultureInfo.InvariantCulture
+                , System.Globalization.DateTimeStyles.None, out temp))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public List<string[]> ListarPedidos()
+        {
+            List<string[]> resultado = new List<string[]>();
+            string[] temp = new string[7];
+            List<Pedido> lista = datos.ListarPedidos();
+
+            foreach (Pedido i in lista)
+            {
+                temp = new string[7];
+                temp[0] = "Datos Encontrados";
+                temp[1] = i.PersonaID + "";
+                temp[2] = i.DescPedido;
+                temp[3] = i.FechaPedido + "";
+                temp[4] = i.EstadoID + "";
+                resultado.Add(temp);
+            }
+
+            return resultado;
+
         }
 
     }
