@@ -18,5 +18,6 @@ namespace CapaDatosAdministracion
         public System.DateTime FechaPedido { get; set; }
         public int EstadoID { get; set; }
         public int PedidoID { get; set; }
+        public string DescEstado { get; set; }
     }
 }

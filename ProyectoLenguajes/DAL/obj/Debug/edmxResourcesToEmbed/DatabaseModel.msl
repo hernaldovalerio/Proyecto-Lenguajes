@@ -92,6 +92,7 @@
           <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
           <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
           <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+          <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

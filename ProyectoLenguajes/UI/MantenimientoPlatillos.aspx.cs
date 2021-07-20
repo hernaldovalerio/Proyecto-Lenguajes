@@ -208,12 +208,9 @@ namespace ModuloAdministracion
         {
             byte[] img = new byte[foto_fld.FileBytes.Length-1];
 
-            System.IO.Stream fs = foto_fld.PostedFile.InputStream;
-            System.IO.BinaryReader reader = new System.IO.BinaryReader(fs);
+            img = foto_fld.FileBytes;
 
-            img = reader.ReadBytes((Int32)fs.Length);
-
-            string s = logica.InsertarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, img);
+            string s = logica.InsertarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, foto_fld.FileBytes);
 
             if (s.Equals("Introducción de nuevo Plato Existosa!"))//logica.ValidarExtension(FileUpload_fld.))
             {

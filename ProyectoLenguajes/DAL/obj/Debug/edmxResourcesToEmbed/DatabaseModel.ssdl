@@ -128,7 +128,7 @@
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="Precio" Type="money" Mode="In" />
     <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
-    <Parameter Name="Foto" Type="varbinary" Mode="In" />
+    <Parameter Name="Foto" Type="image" Mode="In" />
   </Function>
   <Function Name="DeleteCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />

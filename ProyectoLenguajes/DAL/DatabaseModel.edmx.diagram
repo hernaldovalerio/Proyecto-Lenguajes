@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ba1fd83ca8b94f779e8ae9bf07f71efd" Name="Diagram1">
+      <Diagram DiagramId="5392a8bfd70d484d87d0163d28963ca4" Name="Diagram1">
         <EntityTypeShape EntityType="DBA_IF4101_HHSMModel.Estado" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBA_IF4101_HHSMModel.LineaPedido" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DBA_IF4101_HHSMModel.Pedido" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />

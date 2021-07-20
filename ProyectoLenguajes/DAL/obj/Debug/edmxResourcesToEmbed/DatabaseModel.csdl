@@ -217,6 +217,7 @@
     <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
     <Property Type="Int32" Name="EstadoID" Nullable="false" />
     <Property Type="Int32" Name="PedidoID" Nullable="false" />
+    <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="20" />
   </ComplexType>
   <ComplexType Name="SearchCount_Result">
     <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
