@@ -333,29 +333,29 @@ namespace CapaLogicaAdministracion
 
         //-----------------------------------------------------------------------------------------
 
-        public List<string[]> Filtrar(string id, string nombre, string apellido, DateTime bef, DateTime af)
+        public List<string[]> Filtrar(bool idCheck, string id, string nombre, string apellido, DateTime bef, DateTime af, int estado)
         {
 
             int n = 0;
             string nam = nombre;
             string ap = apellido;
 
-            if (id != null || id.Length != 0)
+            if (id != null && id.Length != 0 && Int32.TryParse(id, out n))
             {
                 n = Int32.Parse(id);
             }
 
-            if (nam == null || nam.Length == 0)
+            if (nombre == null || nombre.Length == 0 || nombre.Equals(""))
             {
                 nam = null;
             }
 
-            if (ap == null || ap.Length == 0)
+            if (apellido == null || apellido.Length == 0 || apellido.Equals(""))
             {
                 ap = null;
             }
 
-            List<FilterPedido_Result> p = datos.Filtrar(n, nam, ap, bef, af);
+            List<FilterPedido_Result> p = datos.Filtrar(n, nam, ap, bef, af, estado);
             List<string[]> s = new List<string[]>();
             string[] temp = new string[7];
 

@@ -20,6 +20,5 @@ namespace CapaDatosAdministracion
         public int Cantidad { get; set; }
     
         public virtual Pedido Pedido { get; set; }
-        public virtual Platillo Platillo { get; set; }
     }
 }

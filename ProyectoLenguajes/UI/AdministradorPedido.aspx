@@ -191,7 +191,6 @@
                                     $('#id_lbl').hide();
                                     c1 = 0;
                                     $('#check_email').prop('checked', false);
-                                    $('#check_email').prop('value', "");
                                 }
                             });
 
@@ -211,52 +210,46 @@
                                     $('#nombre_lbl').hide();
                                     c2 = 0;
                                     $('#check_nombre').prop('checked', false);
-                                    $('#check_nombre').prop('value', '');
                                 }
                             });
 
                             $('#check_fecha').on('change', function () {
                                 if ($(this).is(":checked")) {
-                                    $('#befhour_opt').show();
-                                    $('#befmin_opt').show();
-                                    $('#befday_opt').show();
-                                    $('#befyear_opt').show();
-                                    $('#befmonth_opt').show();
-                                    $('#afhour_opt').show();
-                                    $('#afmin_opt').show();
-                                    $('#afyear_opt').show();
-                                    $('#afmonth_opt').show();
-                                    $('#afday_opt').show();
+                                    $('#Calendar1').removeAttr('hidden');
+                                    $('#Calendar2').removeAttr('hidden');
+                                    $('#Calendar1').show();
+                                    $('#Calendar2').show();
                                     $('#desde_lbl').show();
                                     $('#hasta_lbl').show();
                                     c3 = 1;
                                     $('#check_fecha').prop('checked', true);
                                 }
                                 else {
-                                    $('#befhour_opt').hide();
-                                    $('#befmin_opt').hide();
-                                    $('#befday_opt').hide();
-                                    $('#befyear_opt').hide();
-                                    $('#befmonth_opt').hide();
-                                    $('#afhour_opt').hide();
-                                    $('#afmin_opt').hide();
-                                    $('#afyear_opt').hide();
-                                    $('#afmonth_opt').hide();
-                                    $('#afday_opt').hide();
+                                    $('#Calendar1').hide();
+                                    $('#Calendar2').hide();
                                     $('#desde_lbl').hide();
                                     $('#hasta_lbl').hide();
                                     $('#check_fecha').prop('checked', false);
                                     c3 = 0;
-                                    $('#check_fecha').prop('value', '');
                                 }
                             });
 
+                            $('#estado_check').on('change', function () {
+                                if ($(this).is(":checked")) {
+                                    $('#estado_opt').show();
+                                    $('#estado_lbl').show();
+                                }
+                                else {
+                                    $('#estado_opt').hide();
+                                    $('#estado_lbl').hide();
+                                }
+                            });
                         }
                     </script>
 
 
 
-                    <!--
+                    
                     <asp:ScriptManager ID="ScriptManager1" runat="server" />
                     <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Always">
                         <Triggers>
@@ -265,9 +258,9 @@
                         </Triggers>
 
 
-                        <ContentTemplate>-->
-                    <!-- <asp:AsyncPostBackTrigger ControlID="mod_btn" />-->
-
+                        <ContentTemplate>
+                    <!-- <asp:AsyncPostBackTrigger ControlID="mod_btn" />
+                        -->
                     <div class="row g-3">
 
                         <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
@@ -289,7 +282,7 @@
 
                         <!-- Filtro por ID -->
                         <div class="col-12">
-                            <label for="id_txt" class="forml-label" id="id_lbl">ID Usuario</label>
+                            <label for="id_txt" class="form-label" id="id_lbl">ID Usuario</label>
                             <input type="number" runat="server" class="form-control" id="id_txt" placeholder="Introduzca ID" />
                         </div>
 
@@ -320,6 +313,29 @@
 
                         <br />
 
+                        <!-- Check Estado -->
+                        <div class="col-12">
+                            <input id="estado_check" for="estado_txt" runat="server" type="checkbox" />
+                            Filtro por Estado
+                        </div>
+
+                        <br />
+
+                        <!-- Filtro por Estado -->
+                        <div class="col-sm-6">
+                            <label for="estado_opt" class="form-label" id="estado_lbl">Estado</label>
+                            <select type="text" runat="server" class="form-control" id="estado_opt" placeholder="Introduzca Nombre" >
+                                <option>Elegir Estado</option>
+                                <option>A Tiempo</option>
+                                <option>Sobre Tiempo</option>
+                                <option>Demorado</option>
+                                <option>Anulado</option>
+                                <option>Entregado</option>
+                            </select>
+                        </div>
+
+                        <br />
+
                         <!-- Check Fecha -->
                         <div class="col-12">
                             <input id="check_fecha" for="befday_opt" runat="server" type="checkbox" />
@@ -331,85 +347,22 @@
 
 
                         <!-- Fecha Desde -->
-                        <div>
-                            <label for="befday_opt, befmonth_opt, befyear_opt" class="col-form-label" id="desde_lbl">Desde: </label>
+                        <div class="col-sm-6">
+                            <label for="Calendar1" class="col-form-label" id="desde_lbl" >Desde: </label>
+                            <asp:Calendar ID="Calendar1" runat="server" ></asp:Calendar>
                         </div>
 
-
-
-                        <div class="col-sm-2">
-                            <select class="form-control" runat="server" id="befday_opt" placeholder="dia">
-                                <option>DD</option>
-                            </select>
-                        </div>
-
-
-                        <div class="col-sm-2">
-
-                            <select class="form-control" runat="server" id="befmonth_opt" placeholder="mes">
-                                <option>MM</option>
-                            </select>
-                        </div>
-
-
-                        <div class="col-sm-2">
-                            <select class="form-control" runat="server" id="befyear_opt" placeholder="año">
-                                <option>AAAA</option>
-                            </select>
-                        </div>
-
-
-                        <div class="col-sm-1">
-                            <select class="form-control" runat="server" id="befhour_opt" placeholder="hora">
-                                <option>HH</option>
-                            </select>
-                        </div>
-
-
-                        <div class="col-sm-1">
-                            <select class="form-control" runat="server" id="befmin_opt" placeholder="hora">
-                                <option>mm</option>
-                            </select>
-                        </div>
 
                         <br />
 
                         <!-- Fecha Hasta -->
 
-                        <div>
-                            <label for="afday_opt, befmonth_opt, befyear_opt" class="col-form-label" id="hasta_lbl">Hasta: </label>
-                        </div>
-                        <div class="col-sm-2">
-
-                            <select class="form-control" runat="server" id="afday_opt" placeholder="dia">
-                                <option>DD</option>
-                            </select>
-
+                        <div class="col-sm-6">
+                            <label for="Calendar2" class="col-form-label" id="hasta_lbl" >Hasta: </label>
+                            <asp:Calendar ID="Calendar2" runat="server" ></asp:Calendar>
                         </div>
 
-                        <div class="col-sm-2">
-                            <select class="form-control" runat="server" id="afmonth_opt" placeholder="mes">
-                                <option>MM</option>
-                            </select>
-                        </div>
-
-                        <div class="col-sm-2">
-                            <select class="form-control" runat="server" id="afyear_opt" placeholder="año">
-                                <option>AAAA</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-1">
-                            <select class="form-control" runat="server" id="afhour_opt" placeholder="hora">
-                                <option>HH</option>
-                            </select>
-                        </div>
-
-                        <div class="col-sm-1">
-                            <select class="form-control" runat="server" id="afmin_opt" placeholder="hora">
-                                <option>mm</option>
-                            </select>
-                        </div>
-
+                         
                         <!-- BOTON FILTRO -->
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <asp:Button ID="filtro_btn" runat="server" type="button" class="btn btn-secondary" Text="Aplicar Filtros" OnClick="Filtrar_Click" />
@@ -434,8 +387,8 @@
 
                     </div>
 
-                        <!--</ContentTemplate>
-                    </asp:UpdatePanel>-->
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </form>
             </div>
         </div>

@@ -18,7 +18,6 @@
     <Property Name="PlatilloID" Type="Int32" Nullable="false" />
     <Property Name="Cantidad" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido" FromRole="LineaPedido" ToRole="Pedido" />
-    <NavigationProperty Name="Platillo" Relationship="Self.FK_Platillo" FromRole="LineaPedido" ToRole="Platillo" />
   </EntityType>
   <EntityType Name="Pedido">
     <Key>
@@ -54,13 +53,11 @@
       <PropertyRef Name="PlatilloID" />
     </Key>
     <Property Name="PlatilloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ID" Type="Guid" Nullable="false" />
     <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DescPlatillo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
     <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <NavigationProperty Name="LineaPedido" Relationship="Self.FK_Platillo" FromRole="Platillo" ToRole="LineaPedido" />
   </EntityType>
   <EntityType Name="Rol">
     <Key>
@@ -69,16 +66,6 @@
     <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DescRol" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Rol" FromRole="Rol" ToRole="Persona" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_Estado">
     <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
@@ -101,18 +88,6 @@
       </Principal>
       <Dependent Role="LineaPedido">
         <PropertyRef Name="PedidoID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Platillo">
-    <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
-    <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Platillo">
-        <PropertyRef Name="PlatilloID" />
-      </Principal>
-      <Dependent Role="LineaPedido">
-        <PropertyRef Name="PlatilloID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -147,17 +122,12 @@
     <EntitySet Name="Persona" EntityType="Self.Persona" />
     <EntitySet Name="Platillo" EntityType="Self.Platillo" />
     <EntitySet Name="Rol" EntityType="Self.Rol" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="FK_Estado" Association="Self.FK_Estado">
       <End Role="Estado" EntitySet="Estado" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Pedido" Association="Self.FK_Pedido">
       <End Role="Pedido" EntitySet="Pedido" />
-      <End Role="LineaPedido" EntitySet="LineaPedido" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Platillo" Association="Self.FK_Platillo">
-      <End Role="Platillo" EntitySet="Platillo" />
       <End Role="LineaPedido" EntitySet="LineaPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Persona" Association="Self.FK_Persona">
@@ -203,64 +173,13 @@
     <FunctionImport Name="DisableFood">
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="FiltCase1" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase1_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="apellido" Mode="In" Type="String" />
-      <Parameter Name="inicio" Mode="In" Type="DateTime" />
-      <Parameter Name="fin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase17" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase17_Result)">
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="apellido" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase1NUll" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase1NUll_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="inicio" Mode="In" Type="DateTime" />
-      <Parameter Name="fin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase2" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase2_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-      <Parameter Name="inicio" Mode="In" Type="DateTime" />
-      <Parameter Name="fin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase3" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase3_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="apellido" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase3NUll" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase3NUll_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-      <Parameter Name="nombre" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase4" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase4_Result)">
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="apellido" Mode="In" Type="String" />
-      <Parameter Name="inicio" Mode="In" Type="DateTime" />
-      <Parameter Name="fin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase4null" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase4null_Result)">
-      <Parameter Name="nombre" Mode="In" Type="String" />
-      <Parameter Name="inicio" Mode="In" Type="DateTime" />
-      <Parameter Name="fin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase5" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase5_Result)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase6" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase6_Result)">
-      <Parameter Name="inicio" Mode="In" Type="DateTime" />
-      <Parameter Name="fin" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="FiltCase7Null" ReturnType="Collection(DBA_IF4101_HHSMModel.FiltCase7Null_Result)">
-      <Parameter Name="nombre" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="FilterPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.FilterPedido_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="apellido" Mode="In" Type="String" />
       <Parameter Name="inicio" Mode="In" Type="DateTime" />
       <Parameter Name="fin" Mode="In" Type="DateTime" />
+      <Parameter Name="estado" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="ModifyCount">
       <Parameter Name="Email" Mode="In" Type="String" />
@@ -284,36 +203,6 @@
     <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DBA_IF4101_HHSMModel.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DBA_IF4101_HHSMModel.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <ComplexType Name="ActiveOrders_Result">
     <Property Type="Int32" Name="PedidoID" Nullable="false" />
@@ -321,182 +210,6 @@
     <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="16" />
     <Property Type="Int32" Name="Estado" Nullable="false" />
     <Property Type="Int32" Name="Persona" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="FiltCase1_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase17_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase1NUll_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase2_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase3_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase3NUll_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase4_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase4null_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase5_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase6_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="FiltCase7Null_Result">
-    <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="100" />
-    <Property Type="Int32" Name="EstadoID" Nullable="false" />
-    <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
-    <Property Type="DateTime" Name="FechaEntrega" Nullable="true" Precision="16" />
-    <Property Type="Int32" Name="PersonaID1" Nullable="false" />
-    <Property Type="String" Name="Email" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
-    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="20" />
-    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-    <Property Type="Int32" Name="RolID" Nullable="true" />
   </ComplexType>
   <ComplexType Name="FilterPedido_Result">
     <Property Type="Int32" Name="PersonaID" Nullable="false" />
@@ -516,18 +229,7 @@
     <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="20" />
     <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
     <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
-    <Property Type="Binary" Name="Foto" Nullable="true" />
+    <Property Type="Binary" Name="Foto" Nullable="true" MaxLength="Max" />
     <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -33,7 +33,6 @@ namespace CapaDatosAdministracion
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Platillo> Platillo { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual int AbleCount(string email)
         {
@@ -152,7 +151,7 @@ namespace CapaDatosAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DisableFood", nombreParameter);
         }
     
-        public virtual ObjectResult<FiltCase1_Result> FiltCase1(Nullable<int> id, string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
+        public virtual ObjectResult<FilterPedido_Result> FilterPedido(Nullable<int> id, string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin, Nullable<int> estado)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -174,182 +173,11 @@ namespace CapaDatosAdministracion
                 new ObjectParameter("fin", fin) :
                 new ObjectParameter("fin", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase1_Result>("FiltCase1", idParameter, nombreParameter, apellidoParameter, inicioParameter, finParameter);
-        }
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(int));
     
-        public virtual ObjectResult<FiltCase17_Result> FiltCase17(string nombre, string apellido)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var apellidoParameter = apellido != null ?
-                new ObjectParameter("apellido", apellido) :
-                new ObjectParameter("apellido", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase17_Result>("FiltCase17", nombreParameter, apellidoParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase1NUll_Result> FiltCase1NUll(Nullable<int> id, string nombre, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var inicioParameter = inicio.HasValue ?
-                new ObjectParameter("inicio", inicio) :
-                new ObjectParameter("inicio", typeof(System.DateTime));
-    
-            var finParameter = fin.HasValue ?
-                new ObjectParameter("fin", fin) :
-                new ObjectParameter("fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase1NUll_Result>("FiltCase1NUll", idParameter, nombreParameter, inicioParameter, finParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase2_Result> FiltCase2(Nullable<int> id, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var inicioParameter = inicio.HasValue ?
-                new ObjectParameter("inicio", inicio) :
-                new ObjectParameter("inicio", typeof(System.DateTime));
-    
-            var finParameter = fin.HasValue ?
-                new ObjectParameter("fin", fin) :
-                new ObjectParameter("fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase2_Result>("FiltCase2", idParameter, inicioParameter, finParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase3_Result> FiltCase3(Nullable<int> id, string nombre, string apellido)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var apellidoParameter = apellido != null ?
-                new ObjectParameter("apellido", apellido) :
-                new ObjectParameter("apellido", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase3_Result>("FiltCase3", idParameter, nombreParameter, apellidoParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase3NUll_Result> FiltCase3NUll(Nullable<int> id, string nombre)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase3NUll_Result>("FiltCase3NUll", idParameter, nombreParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase4_Result> FiltCase4(string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var apellidoParameter = apellido != null ?
-                new ObjectParameter("apellido", apellido) :
-                new ObjectParameter("apellido", typeof(string));
-    
-            var inicioParameter = inicio.HasValue ?
-                new ObjectParameter("inicio", inicio) :
-                new ObjectParameter("inicio", typeof(System.DateTime));
-    
-            var finParameter = fin.HasValue ?
-                new ObjectParameter("fin", fin) :
-                new ObjectParameter("fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase4_Result>("FiltCase4", nombreParameter, apellidoParameter, inicioParameter, finParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase4null_Result> FiltCase4null(string nombre, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var inicioParameter = inicio.HasValue ?
-                new ObjectParameter("inicio", inicio) :
-                new ObjectParameter("inicio", typeof(System.DateTime));
-    
-            var finParameter = fin.HasValue ?
-                new ObjectParameter("fin", fin) :
-                new ObjectParameter("fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase4null_Result>("FiltCase4null", nombreParameter, inicioParameter, finParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase5_Result> FiltCase5(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase5_Result>("FiltCase5", idParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase6_Result> FiltCase6(Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
-        {
-            var inicioParameter = inicio.HasValue ?
-                new ObjectParameter("inicio", inicio) :
-                new ObjectParameter("inicio", typeof(System.DateTime));
-    
-            var finParameter = fin.HasValue ?
-                new ObjectParameter("fin", fin) :
-                new ObjectParameter("fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase6_Result>("FiltCase6", inicioParameter, finParameter);
-        }
-    
-        public virtual ObjectResult<FiltCase7Null_Result> FiltCase7Null(string nombre)
-        {
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FiltCase7Null_Result>("FiltCase7Null", nombreParameter);
-        }
-    
-        public virtual ObjectResult<FilterPedido_Result> FilterPedido(Nullable<int> id, string nombre, string apellido, Nullable<System.DateTime> inicio, Nullable<System.DateTime> fin)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("nombre", nombre) :
-                new ObjectParameter("nombre", typeof(string));
-    
-            var apellidoParameter = apellido != null ?
-                new ObjectParameter("apellido", apellido) :
-                new ObjectParameter("apellido", typeof(string));
-    
-            var inicioParameter = inicio.HasValue ?
-                new ObjectParameter("inicio", inicio) :
-                new ObjectParameter("inicio", typeof(System.DateTime));
-    
-            var finParameter = fin.HasValue ?
-                new ObjectParameter("fin", fin) :
-                new ObjectParameter("fin", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FilterPedido_Result>("FilterPedido", idParameter, nombreParameter, apellidoParameter, inicioParameter, finParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FilterPedido_Result>("FilterPedido", idParameter, nombreParameter, apellidoParameter, inicioParameter, finParameter, estadoParameter);
         }
     
         public virtual int ModifyCount(string email, string nombre, string apellidos, string direccion, string contraseña, Nullable<bool> inhabilitado, Nullable<int> rollID)
@@ -426,109 +254,6 @@ namespace CapaDatosAdministracion
                 new ObjectParameter("Nombre", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchFood_Result>("SearchFood", nombreParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

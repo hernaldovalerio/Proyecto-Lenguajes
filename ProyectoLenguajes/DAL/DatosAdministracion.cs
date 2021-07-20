@@ -313,28 +313,44 @@ namespace CapaDatosAdministracion
         }
 
         //---------------------------------------------------------------------------------------------------
-        public List<FilterPedido_Result> Filtrar(int id, string nombre, string apellido, DateTime bef, DateTime af)
+        public List<FilterPedido_Result> Filtrar(int id, string nombre, string apellido, DateTime bef, DateTime af, int estado)
         {
             using (entity = new DBA_IF4101_HHSMEntities())
             {
 
                 List<FilterPedido_Result> l;
 
-                if (id == 0 && bef.Year == 2000)
+                if (id == 0 && bef.Year == 2000 && estado == 0)
                 {
-                    l = entity.FilterPedido(null, nombre, apellido, null, null).ToList();
+                    l = entity.FilterPedido(null, nombre, apellido, null, null, null).ToList();
+                }
+                else if (id == 0 && bef.Year == 2000)
+                {
+                    l = entity.FilterPedido(null, nombre, apellido, null, null, estado).ToList();
+                }
+                else if (bef.Year == 2000 && estado == 0)
+                {
+                    l = entity.FilterPedido(id, nombre, apellido, null, null, null).ToList();
+                }
+                else if (id == 0 && estado == 0)
+                {
+                    l = entity.FilterPedido(null, nombre, apellido, bef, af, null).ToList();
                 }
                 else if (bef.Year == 2000)
                 {
-                    l = entity.FilterPedido(id, nombre, apellido, null, null).ToList();
+                    l = entity.FilterPedido(id, nombre, apellido, null, null, estado).ToList();
                 }
                 else if (id == 0)
                 {
-                    l = entity.FilterPedido(null, nombre, apellido, bef, af).ToList();
+                    l = entity.FilterPedido(null, nombre, apellido, bef, af, estado).ToList();
+                }
+                else if (estado == 0)
+                {
+                    l = entity.FilterPedido(id, nombre, apellido, bef, af, null).ToList();
                 }
                 else
                 {
-                    l = entity.FilterPedido(id, nombre, apellido, bef, af).ToList();
+                    l = entity.FilterPedido(id, nombre, apellido, bef, af, estado).ToList();
                 }
 
 

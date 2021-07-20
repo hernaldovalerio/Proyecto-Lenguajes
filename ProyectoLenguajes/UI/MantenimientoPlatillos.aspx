@@ -36,23 +36,7 @@
             <div class="col-md-12 col-lg-12">
                 <h3 class="mb-4" style="text-align: center; color: white">Mantenimiento de Platillos</h3>
                 <form id="form1" runat="server" class="card">
-
-
-                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
-                    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="buscar_btn" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="cancelar_btn" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="ingresar_btn" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="modificar_btn" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="eliminar_btn" EventName="Click" />
-                            <asp:AsyncPostBackTrigger ControlID="deshabilitar_btn" EventName="Click" />
-                            <asp:PostBackTrigger ControlID="subir_btn" />
-                        </Triggers>
-
-
-                        <ContentTemplate>
-
+                    
                             <div class="row g-2">
 
                                 <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
@@ -96,7 +80,7 @@
                                 <div class="col-sm-7">
                                     <label for="foto_fld " class="col-form-label">Imagen</label>
                                     <asp:FileUpload type="file" runat="server" class="col-7 col-auto form-control" id="foto_fld" required="required" accept="image/*"/><br />
-                                    <asp:Button ID="subir_btn" runat="server" Text="Subir Imagen"/>
+                                    
                                 </div>
 
                                 <br />
@@ -119,7 +103,11 @@
                                 <!-- Tabla -->
                                 <div class="col-12">
                                     <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
-                                        <%= DataGridCreation()%>
+                                        
+                                            <%= DataGridCreation()%>
+                                        
+                                        
+                                        
                                     </table>
                                 </div>
 
@@ -130,8 +118,7 @@
                                 </div>
 
                             </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                        
 
                 </form>
             </div>

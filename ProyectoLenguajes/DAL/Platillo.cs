@@ -14,21 +14,11 @@ namespace CapaDatosAdministracion
     
     public partial class Platillo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Platillo()
-        {
-            this.LineaPedido = new HashSet<LineaPedido>();
-        }
-    
         public int PlatilloID { get; set; }
-        public System.Guid ID { get; set; }
         public string Nombre { get; set; }
         public string DescPlatillo { get; set; }
         public decimal Precio { get; set; }
         public bool Inhabilitado { get; set; }
         public byte[] Foto { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LineaPedido> LineaPedido { get; set; }
     }
 }

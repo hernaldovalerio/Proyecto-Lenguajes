@@ -17,6 +17,7 @@ namespace ModuloAdministracion
         public static string[] platoR = { "", "", "", "", "" };
         public FileUpload imgB;
         public int mode = 0;
+        public string tableHead = "";
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -57,10 +58,16 @@ namespace ModuloAdministracion
             {
                 if (temp[5] != null)
                 {
-
+                    var r = Convert.ToBase64String((byte[])temp[5]);
+                    string s = String.Format("data:image;base64,{0}", r);
+                    table.Rows.Add(temp[1], temp[2], temp[3], temp[4], s);
+                }
+                else
+                {
+                    table.Rows.Add(temp[1], temp[2], temp[3], temp[4], temp[5]);
                 }
 
-                table.Rows.Add(temp[1], temp[2], temp[3], temp[4], temp[5]);
+                
             }
 
             //strHTMLBuilder.Append("<table id=\"dtBasicExample\" class=\"table table - striped table - bordered\" cellspacing=\"0\" width=\"80%\">");
@@ -74,7 +81,13 @@ namespace ModuloAdministracion
 
             }
 
-            strHTMLBuilder.Append("</tr></thead><tbody>");
+            strHTMLBuilder.Append("</tr></thead>");
+
+            //tableHead = strHTMLBuilder.ToString();
+
+            //strHTMLBuilder.Clear();
+
+            strHTMLBuilder.Append("<tbody>");
 
 
             foreach (DataRow myRow in table.Rows)
@@ -83,23 +96,24 @@ namespace ModuloAdministracion
                 strHTMLBuilder.Append("<tr >");
                 foreach (DataColumn myColumn in table.Columns)
                 {
-                    /**if (myColumn.ColumnName.Equals("Imagen") && myRow[myColumn.ColumnName]!=null)
+                    if (myColumn.ColumnName.Equals("Imagen") && myRow[myColumn.ColumnName].ToString().Length > 0)
                     {
-                        ms = new System.IO.MemoryStream((byte[])myRow[myColumn.ColumnName]);
-                        img = System.Drawing.Image.FromStream(ms);
+                       
+                        strHTMLBuilder.Append("<td ><img src='");
+                        strHTMLBuilder.Append((string)myRow[myColumn.ColumnName]);
+                        strHTMLBuilder.Append("'style='width: 5px, heigth: 5px'/></td>");
 
-                        strHTMLBuilder.Append("<td ><img src=\"");
-                        strHTMLBuilder.Append(img);
-                        strHTMLBuilder.Append("\"></td>");
+                        //Imagen.ImageUrl = (string)myRow[myColumn.ColumnName];
+
                     }
                     else
-                    {*/
+                    {
                         strHTMLBuilder.Append("<td >");
                         strHTMLBuilder.Append(myRow[myColumn.ColumnName].ToString());
                         strHTMLBuilder.Append("</td>");
                     
                         
-                    //}
+                    }
 
                     
 
@@ -192,9 +206,12 @@ namespace ModuloAdministracion
 
         protected void Ingresar_Click(object sender, EventArgs e)
         {
-            byte[] img = new byte[100];
+            byte[] img = new byte[foto_fld.FileBytes.Length-1];
 
+            System.IO.Stream fs = foto_fld.PostedFile.InputStream;
+            System.IO.BinaryReader reader = new System.IO.BinaryReader(fs);
 
+            img = reader.ReadBytes((Int32)fs.Length);
 
             string s = logica.InsertarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, img);
 
@@ -234,7 +251,11 @@ namespace ModuloAdministracion
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
-            string s = logica.ModificarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, new byte[1000]);
+
+            byte[] img = new byte[100000];
+            img = foto_fld.FileBytes;
+
+            string s = logica.ModificarPlatillo(plato_txt.Value, descripcion_txt.Value, precio_txt.Value, img);
 
             if (s.Equals("Platillo modificado de forma Existosa!"))
             {
