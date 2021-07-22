@@ -22,6 +22,20 @@ namespace ModuloAdministracion
             Session["logica"] = logica;
             list = logica.ListarPedidos();
             DataGridCreation();
+
+            if (check_fecha.Checked)
+            {
+                desde_lbl.Attributes.Remove("hidden");
+                hasta_lbl.Attributes.Remove("hidden");
+                Calendar1.Attributes.Remove("hidden");
+                Calendar2.Attributes.Remove("hidden");
+            }
+
+        }
+
+        public void IrAEstado()
+        {
+            Response.Redirect("./CambioEstado.aspx");
         }
 
 
@@ -64,16 +78,30 @@ namespace ModuloAdministracion
             strHTMLBuilder.Append("</tr></thead><tbody>");
 
 
+            string s = "";
+            string e = "";
+
             foreach (DataRow myRow in table.Rows)
             {
 
                 strHTMLBuilder.Append("<tr >");
                 foreach (DataColumn myColumn in table.Columns)
                 {
+                    if (myColumn.ColumnName.Equals("PedidoID"))
+                    {
+                        s = myRow[myColumn.ColumnName].ToString();
+                    }
+
+                    if (myColumn.ColumnName.Equals("Estado"))
+                    {
+                        e = myRow[myColumn.ColumnName].ToString();
+                    }
+
+
                     if (myColumn.ColumnName.Equals("Modificar"))
                     {
                         strHTMLBuilder.Append("<td >");
-                        strHTMLBuilder.Append("<button  href=\"Inicio.aspx\" onclick=\"Inicio.aspx\"/>Modificar");
+                        strHTMLBuilder.Append("<a ID=\"mod\" type=\"button\" runat=\"server\" class=\"btn btn-secondary\" href=\"CambioEstado.aspx?Pedido=" + s + "&Estado=" + e + "\">Modificar</a>");
                         strHTMLBuilder.Append("</td>");
                     }
                     else
@@ -91,11 +119,7 @@ namespace ModuloAdministracion
             strHTMLBuilder.Append("</tbody>");
 
             htmlTable = strHTMLBuilder.ToString();
-            /**
-            check_email.Checked = false;
-            check_fecha.Checked = false;
-            check_nombre.Checked = false;
-            */
+
         }
 
         public string GetTable()
@@ -106,10 +130,25 @@ namespace ModuloAdministracion
         protected void Filtrar_Click(object sender, EventArgs e)
         {
 
-            if (check_email.Checked == true || check_fecha.Checked == true || check_nombre.Checked == true || estado_check.Checked)
+            if (/**check_email.Checked == true ||*/ check_fecha.Checked == true || check_nombre.Checked == true || estado_check.Checked)
             {
                 DateTime bef = new DateTime(2000,01,01,01,01,00);
                 DateTime af = new DateTime(2000, 02, 01, 01, 01, 00);
+
+                string nam = nombre_txt.Value;
+                string ap = apellido_txt.Value;
+                int n = estado_opt.SelectedIndex;
+
+                if (!check_nombre.Checked)
+                {
+                    nam = null;
+                    ap = null;
+                }
+
+                if (!estado_check.Checked)
+                {
+                    n = 0;
+                }
 
                 if (check_fecha.Checked)
                 {
@@ -138,12 +177,6 @@ namespace ModuloAdministracion
                             mensaje_lbl.Attributes.CssStyle.Add("color", "red");
                             return;
                     }
-                    else
-                    {
-                        mensaje_lbl.Text = "Fechas no validas";
-                        mensaje_lbl.Attributes.CssStyle.Add("color", "red");
-                        return;
-                    }
 
                     bef = Calendar1.SelectedDate;
                     af = Calendar2.SelectedDate;
@@ -153,7 +186,7 @@ namespace ModuloAdministracion
                 //}
 
 
-                list = logica.Filtrar(check_email.Checked, id_txt.Value, nombre_txt.Value, apellido_txt.Value, bef, af, estado_opt.SelectedIndex);
+                list = logica.Filtrar(/**check_email.Checked, id_txt.Value,*/ nam, ap, bef, af, n);
 
                 if (list[0][0].Equals("Datos Encontrados"))
                 {
@@ -180,8 +213,21 @@ namespace ModuloAdministracion
                 nombre_txt.Value = "";
                 apellido_txt.Value = "";
 
+                
 
                 DataGridCreation();
+
+                
+                Calendar1.Attributes.Add("hidden", "true");
+                Calendar2.Attributes.Add("hidden", "true");
+                desde_lbl.Attributes.Remove("hidden");
+                hasta_lbl.Attributes.Remove("hidden");
+
+                check_email.Attributes.Remove("checked");
+                check_nombre.Attributes.Remove("checked");
+                check_fecha.Attributes.Remove("checked");
+                estado_check.Attributes.Remove("checked");
+
 
             }
             else

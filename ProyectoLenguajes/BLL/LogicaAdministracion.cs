@@ -333,17 +333,17 @@ namespace CapaLogicaAdministracion
 
         //-----------------------------------------------------------------------------------------
 
-        public List<string[]> Filtrar(bool idCheck, string id, string nombre, string apellido, DateTime bef, DateTime af, int estado)
+        public List<string[]> Filtrar(/**bool idCheck, string id, */string nombre, string apellido, DateTime bef, DateTime af, int estado)
         {
 
             int n = 0;
             string nam = nombre;
             string ap = apellido;
 
-            if (id != null && id.Length != 0 && Int32.TryParse(id, out n))
+            /**if (id != null && id.Length != 0 && Int32.TryParse(id, out n))
             {
                 n = Int32.Parse(id);
-            }
+            }*/
 
             if (nombre == null || nombre.Length == 0 || nombre.Equals(""))
             {
@@ -355,20 +355,25 @@ namespace CapaLogicaAdministracion
                 ap = null;
             }
 
-            List<FilterPedido_Result> p = datos.Filtrar(n, nam, ap, bef, af, estado);
+            List<FilterPedido_Result> p = datos.Filtrar(/**n,*/ nam, ap, bef, af, estado);
             List<string[]> s = new List<string[]>();
             string[] temp = new string[7];
 
             if (p.Count() != 0){
 
+                int e = 0;
+
                 for(int i = 0; i < p.Count(); i++){
+
+                    e = p[i].EstadoID - 1;
 
                     temp = new string[7];
                     temp[0] = "Datos Encontrados";
                     temp[1] = p[i].PersonaID + "";
                     temp[2] = p[i].DescPedido;
                     temp[3] = p[i].FechaPedido+"";
-                    temp[4] = p[i].EstadoID+"";
+                    temp[4] = (e== 0 ? "A Tiempo" : e == 1 ? "Sobre Tiempo" : e == 2 ? "Demorado" : e == 3 ? "Anulado" : "Entregado");
+                    temp[5] = p[i].PedidoID + ""; ;
                     s.Add(temp);
 
                 }
@@ -407,19 +412,34 @@ namespace CapaLogicaAdministracion
             string[] temp = new string[7];
             List<Pedido> lista = datos.ListarPedidos();
 
+            int e = 0;
+
             foreach (Pedido i in lista)
             {
+                e = (i.EstadoID - 1);
+
                 temp = new string[7];
                 temp[0] = "Datos Encontrados";
                 temp[1] = i.PersonaID + "";
                 temp[2] = i.DescPedido;
                 temp[3] = i.FechaPedido + "";
-                temp[4] = i.EstadoID + "";
+                temp[4] = (e == 0 ? "A Tiempo" : e == 1 ? "Sobre Tiempo" : e == 2 ? "Demorado" : e == 3 ? "Anulado" : "Entregado");
+                temp[5] = i.PedidoID + "";
                 resultado.Add(temp);
             }
 
             return resultado;
 
+        }
+
+        public void ActualizarEstado(string id, int estado)
+        {
+            datos.ActualizarEstado(Int32.Parse(id), estado+1);
+        }
+
+        public int GetEstadoID(string s)
+        {
+            return (s.Equals("A Tiempo") ? 0 : s.Equals("Sobre Tiempo") ? 1 : s.Equals("Demorado") ? 2 : s.Equals("Anulado") ? 3 : 4);
         }
 
     }

@@ -203,6 +203,10 @@
     <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UpdateState">
+      <Parameter Name="PedidoID" Mode="In" Type="Int32" />
+      <Parameter Name="EstadoID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveOrders_Result">
     <Property Type="Int32" Name="PedidoID" Nullable="false" />

@@ -40,8 +40,8 @@
                     <div class="row g-2">
                         <!-- Estado -->
                         <div class="col-12">
-                            <label for="estado_txt" class="col-form-label">Estado</label>
-                            <select class="form-control" runat="server" id="estado_opt" placeholder="mes">
+                            <label runat="server" id="estado_lbl" for="estado_opt" class="col-form-label">Estado</label>
+                            <select class="form-control" runat="server" id="estado_opt">
                                 <option>A tiempo</option>
                                 <option>Sobre Tiempo</option>
                                 <option>Demorado</option>
@@ -51,11 +51,11 @@
                         </div>
 
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                                <asp:Button ID="aplicar_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Cambios" />
+                                <asp:Button ID="aplicar_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Cambios" OnClick="Actualizar_Click" />
                         </div>
 
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                                <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-secondary" Text="Volver" />
+                                <a runat="server" type="button" class="btn btn-secondary" Text="Volver" href="AdministradorPedido.aspx" >Volver</a>
                         </div>
 
                     </div>

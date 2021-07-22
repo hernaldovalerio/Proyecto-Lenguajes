@@ -239,7 +239,7 @@ namespace CapaDatosAdministracion
             using (entity = new DBA_IF4101_HHSMEntities())
             {
 
-                int n = entity.CreateCount(email, nombre, apellido, direccion, password,false, rol);
+                int n = entity.CreateCount(email, nombre, apellido, direccion, password, false, rol);
 
                 if (n > 0)
                 {
@@ -313,44 +313,44 @@ namespace CapaDatosAdministracion
         }
 
         //---------------------------------------------------------------------------------------------------
-        public List<FilterPedido_Result> Filtrar(int id, string nombre, string apellido, DateTime bef, DateTime af, int estado)
+        public List<FilterPedido_Result> Filtrar(/**int id,*/ string nombre, string apellido, DateTime bef, DateTime af, int estado)
         {
             using (entity = new DBA_IF4101_HHSMEntities())
             {
 
                 List<FilterPedido_Result> l;
 
-                if (id == 0 && bef.Year == 2000 && estado == 0)
+                /**if (id == 0 && bef.Year == 2000 && estado == 0)
                 {
                     l = entity.FilterPedido(null, nombre, apellido, null, null, null).ToList();
                 }
                 else if (id == 0 && bef.Year == 2000)
                 {
                     l = entity.FilterPedido(null, nombre, apellido, null, null, estado).ToList();
-                }
-                else if (bef.Year == 2000 && estado == 0)
+                }**/
+                /*else*/ if (bef.Year == 2000 && estado == 0)
                 {
-                    l = entity.FilterPedido(id, nombre, apellido, null, null, null).ToList();
+                    l = entity.FilterPedido(null /*id*/, nombre, apellido, null, null, null).ToList();
                 }
-                else if (id == 0 && estado == 0)
+                /*else if (id == 0 && estado == 0)
                 {
                     l = entity.FilterPedido(null, nombre, apellido, bef, af, null).ToList();
-                }
+                }*/
                 else if (bef.Year == 2000)
                 {
-                    l = entity.FilterPedido(id, nombre, apellido, null, null, estado).ToList();
+                    l = entity.FilterPedido(null/*id*/, nombre, apellido, null, null, estado).ToList();
                 }
-                else if (id == 0)
+                /*else if (id == 0)
                 {
                     l = entity.FilterPedido(null, nombre, apellido, bef, af, estado).ToList();
-                }
+                }*/
                 else if (estado == 0)
                 {
-                    l = entity.FilterPedido(id, nombre, apellido, bef, af, null).ToList();
+                    l = entity.FilterPedido(null/*id*/, nombre, apellido, bef, af, null).ToList();
                 }
                 else
                 {
-                    l = entity.FilterPedido(id, nombre, apellido, bef, af, estado).ToList();
+                    l = entity.FilterPedido(null/*id*/, nombre, apellido, bef, af, estado).ToList();
                 }
 
 
@@ -379,5 +379,12 @@ namespace CapaDatosAdministracion
 
         }
 
+        public void ActualizarEstado(int pedido, int estado)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+                entity.UpdateState(pedido, estado);
+            }
+        }
     }
 }

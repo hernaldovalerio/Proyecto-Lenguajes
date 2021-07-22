@@ -255,5 +255,18 @@ namespace CapaDatosAdministracion
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchFood_Result>("SearchFood", nombreParameter);
         }
+    
+        public virtual int UpdateState(Nullable<int> pedidoID, Nullable<int> estadoID)
+        {
+            var pedidoIDParameter = pedidoID.HasValue ?
+                new ObjectParameter("PedidoID", pedidoID) :
+                new ObjectParameter("PedidoID", typeof(int));
+    
+            var estadoIDParameter = estadoID.HasValue ?
+                new ObjectParameter("EstadoID", estadoID) :
+                new ObjectParameter("EstadoID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateState", pedidoIDParameter, estadoIDParameter);
+        }
     }
 }

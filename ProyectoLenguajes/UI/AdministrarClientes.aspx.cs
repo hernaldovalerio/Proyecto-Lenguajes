@@ -22,6 +22,7 @@ namespace ModuloAdministracion
             cancelar_btn.Visible = false;
             buscar_btn.Visible = true;
             email_txt.Disabled = false;
+            bloquear_btn.Visible = false;
         }
 
 
@@ -95,6 +96,7 @@ namespace ModuloAdministracion
             email_txt.Disabled = true;
             buscar_btn.Visible = false;
             cancelar_btn.Visible = true;
+            bloquear_btn.Visible = true;
         }
 
         protected void Unnamed2_Click(object sender, EventArgs e)
@@ -104,6 +106,7 @@ namespace ModuloAdministracion
             email_txt.Disabled = false;
             buscar_btn.Visible = true;
             cancelar_btn.Visible = false;
+            bloquear_btn.Visible = false;
         }
 
     }

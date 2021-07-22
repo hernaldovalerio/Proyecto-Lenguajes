@@ -173,24 +173,37 @@
                     </script>
 
                     <script>
+
+                        $(document).ready(function () {
+                            $('#Calendar1').hide();
+                            $('#Calendar2').hide();
+                            $('#check_email').prop('checked', false);
+                            $('#check_nombre').prop('checked', false);
+                            $('#check_fecha').prop('checked', false);
+                            $('#estado_check').prop('checked', false);
+                        });
+
+                    </script>
+
+                    <script>
                         function Checks() {
 
                             var c1 = 0;
                             var c2 = 0;
                             var c3 = 0;
 
+                            
+
                             $('#check_email').on('change', function () {
                                 if ($(this).is(":checked")) {
                                     $('#id_txt').show();
                                     $('#id_lbl').show();
                                     c1 = 1;
-                                    $('#check_email').prop('checked', true);
                                 }
                                 else {
                                     $('#id_txt').hide();
                                     $('#id_lbl').hide();
                                     c1 = 0;
-                                    $('#check_email').prop('checked', false);
                                 }
                             });
 
@@ -201,7 +214,6 @@
                                     $('#apellido_txt').show();
                                     $('#nombre_lbl').show();
                                     c2 = 1;
-                                    $('#check_nombre').prop('checked', true);
                                 }
                                 else {
                                     $('#nombre_txt').hide();
@@ -209,7 +221,6 @@
                                     $('#apellido_txt').hide();
                                     $('#nombre_lbl').hide();
                                     c2 = 0;
-                                    $('#check_nombre').prop('checked', false);
                                 }
                             });
 
@@ -222,7 +233,6 @@
                                     $('#desde_lbl').show();
                                     $('#hasta_lbl').show();
                                     c3 = 1;
-                                    $('#check_fecha').prop('checked', true);
                                 }
                                 else {
                                     $('#Calendar1').hide();
@@ -273,6 +283,7 @@
 
 
                         <!-- Check ID -->
+                        <!--
                         <div class="col-12">
                             <input id="check_email" for="email_opt" runat="server" type="checkbox" />
                             Filtro por ID
@@ -280,12 +291,13 @@
 
                         <br />
 
-                        <!-- Filtro por ID -->
+                        
+                        <!-- Filtro por ID --
                         <div class="col-12">
                             <label for="id_txt" class="form-label" id="id_lbl">ID Usuario</label>
                             <input type="number" runat="server" class="form-control" id="id_txt" placeholder="Introduzca ID" />
                         </div>
-
+                        -->
                         <br />
 
                         <!-- Check Nombre -->
@@ -348,7 +360,7 @@
 
                         <!-- Fecha Desde -->
                         <div class="col-sm-6">
-                            <label for="Calendar1" class="col-form-label" id="desde_lbl" >Desde: </label>
+                            <label for="Calendar1" class="col-form-label" id="desde_lbl" runat="server">Desde: </label>
                             <asp:Calendar ID="Calendar1" runat="server" ></asp:Calendar>
                         </div>
 
@@ -358,7 +370,7 @@
                         <!-- Fecha Hasta -->
 
                         <div class="col-sm-6">
-                            <label for="Calendar2" class="col-form-label" id="hasta_lbl" >Hasta: </label>
+                            <label for="Calendar2" class="col-form-label" id="hasta_lbl" runat="server">Hasta: </label>
                             <asp:Calendar ID="Calendar2" runat="server" ></asp:Calendar>
                         </div>
 

@@ -172,6 +172,10 @@
   <Function Name="SearchFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="UpdateState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PedidoID" Type="int" Mode="In" />
+    <Parameter Name="EstadoID" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="DBA_IF4101_HHSMModelStoreContainer">
     <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LineaPedido" EntityType="Self.LineaPedido" Schema="dbo" store:Type="Tables" />
