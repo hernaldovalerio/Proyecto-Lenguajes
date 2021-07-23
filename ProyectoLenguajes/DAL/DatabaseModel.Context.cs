@@ -268,5 +268,14 @@ namespace CapaDatosAdministracion
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateState", pedidoIDParameter, estadoIDParameter);
         }
+    
+        public virtual int BlockClient(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BlockClient", emailParameter);
+        }
     }
 }

@@ -386,5 +386,35 @@ namespace CapaDatosAdministracion
                 entity.UpdateState(pedido, estado);
             }
         }
+
+
+        public List<Persona> ListarClientes()
+        {
+            //logica para buscar en la base de datos
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+                List<Persona> busqueda = entity.Persona.Where(a => a.RolID.Value == 3).ToList();
+
+                /**if (busqueda.Count() != 0)
+                {
+                    System.Diagnostics.Trace.Write("correcto");
+                }
+                else
+                {
+                    System.Diagnostics.Trace.Write("INcorrecto");
+                }*/
+                return busqueda;
+            }
+
+        }
+
+        public void DeshabilitarCliente(string email)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+                entity.BlockClient(email);
+            }
+        }
+
     }
 }

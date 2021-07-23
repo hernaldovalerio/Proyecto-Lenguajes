@@ -119,6 +119,9 @@
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="ActiveOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="BlockClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="CreateCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
           <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
@@ -416,6 +419,9 @@
             <Parameter Name="PedidoID" Mode="In" Type="Int32" />
             <Parameter Name="EstadoID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="BlockClient">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ActiveOrders_Result">
           <Property Type="Int32" Name="PedidoID" Nullable="false" />
@@ -572,6 +578,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateState" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateState" />
+          <FunctionImportMapping FunctionImportName="BlockClient" FunctionName="DBA_IF4101_HHSMModel.Store.BlockClient" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

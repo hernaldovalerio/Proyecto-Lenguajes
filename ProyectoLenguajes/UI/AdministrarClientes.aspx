@@ -9,13 +9,15 @@
     <title></title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/CSS/Administracion2.css" rel="stylesheet" />
     <script src="Scripts/bootstrap.min.js"></script>
-    <link href="CSS/Administracion.css" rel="stylesheet" />
 </head>
 <body>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="#" style="text-align: center">Egoavil's</a>
+            <a class="navbar-brand" href="#">
+                &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,42 +32,28 @@
             </div>
         </nav>
 
+    <br />
+
     <div class="container">
         <div class="row g-4">
             <div class="col-md-12 col-lg-12">
-                <h3 class="mb-4" style="text-align: center; color: white">Mantenimiento de Clientes</h3>
+                <br />
+                <h3 class="mb-4" style="text-align: center;">Mantenimiento de Clientes</h3>
                 <form id="form1" runat="server" class="card">
                     <br />
 
+                     <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Always">
+
+
+                        <ContentTemplate>
+
                     <div class="row g-2">
 
-                        <!-- Email -->
-                        <div class="col-12">
-                            <label for="email_txt" class="col-form-label">Email</label>
-                            <input type="email" runat="server" class="form-control" id="email_txt" placeholder="Introduzca Email" required="required" />
-                            <br />
-                            <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Unnamed1_Click" />
-                            <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Unnamed2_Click" />
-                        </div>
-
-                        <br />
-
-                        <!-- Estado -->
-                        <div class="col-sm-3">
-                            <label for="estado_txt" class="col-form-label">Estado</label>
-                            <input type="text" runat="server" class="form-control" id="estado" required="required" disabled />
-                        </div>
-
-                        <br />
-
-                        <div class="d-flex h-100 align-items-center justify-content-center">
-                            <asp:Button ID="bloquear_btn" runat="server" type="button" class="btn btn-dark" Text="Bloquear" />
-                        </div>
-
-                        <br />
+                        <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
 
                         <!-- Tabla -->
-                        <div class="form-group d-flex h-100 align-items-center justify-content-center">
+                        <div class="col-sm-12">
                             <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
                                 <%= DataGridCreation()%>
                             </table>
@@ -77,7 +65,12 @@
                             <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
                         </div>
 
+
+
                     </div>
+                            </ContentTemplate>
+                            </asp:UpdatePanel>
+                            
                 </form>
             </div>
         </div>

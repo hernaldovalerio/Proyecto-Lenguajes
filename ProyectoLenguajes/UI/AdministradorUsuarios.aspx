@@ -11,13 +11,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 
-    <link href="CSS/Administracion.css" rel="stylesheet" />
+    <link href="CSS/Administracion2.css" rel="stylesheet" />
 
 </head>
 <body>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#" style="text-align: center">Egoavil's</a>
+        <a class="navbar-brand" href="#">
+                &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
+            </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,6 +37,7 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-md-12 col-lg-12">
+                <br />
                 <h3 class="mb-4" style="text-align: center; color: white">Administrador de usuarios</h3>
                 <form id="form1" runat="server" class="card">
 

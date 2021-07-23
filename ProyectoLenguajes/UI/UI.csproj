@@ -97,7 +97,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="CSS\Administracion2.css" />
     <Content Include="CSS\Estilos1.css" />
+    <Content Include="Imagenes\Fondo.jpg" />
+    <Content Include="Imagenes\Fondo2.jpg" />
+    <Content Include="Imagenes\LogoPagWeb1.png" />
+    <Content Include="Imagenes\LogoPagWeb2.png" />
+    <Content Include="Imagenes\LogoPagWeb3.png" />
     <Content Include="MantenimientoPlatillos.aspx" />
     <Content Include="PaginaPrincipal.aspx" />
     <Content Include="Platillo.aspx" />
@@ -316,7 +322,10 @@
       <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CapaDatos\" />
+    <Folder Include="CapaLogica\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

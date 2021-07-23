@@ -121,6 +121,5 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateState" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateState" />
-    <FunctionImportMapping FunctionImportName="BlockClient" FunctionName="DBA_IF4101_HHSMModel.Store.BlockClient" />
   </EntityContainerMapping>
 </Mapping>

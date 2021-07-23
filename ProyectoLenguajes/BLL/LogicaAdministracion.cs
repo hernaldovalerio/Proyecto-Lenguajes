@@ -25,7 +25,7 @@ namespace CapaLogicaAdministracion
                 temp[1] = i.Nombre;
                 temp[2] = i.DescPlatillo;
                 temp[3] = i.Precio + "";
-                temp[4] = i.Inhabilitado + "";
+                temp[4] = (i.Inhabilitado ? "Si" : "No");
                 temp[5] = i.Foto;
                 resultado.Add(temp);
             }
@@ -208,12 +208,12 @@ namespace CapaLogicaAdministracion
             {
                 temp = new Object[7];
                 temp[0] = ("Consulta de cliente exitosa");
-                temp[1] = i.Email;
-                temp[2] = i.Nombre;
-                temp[3] = i.Apellidos;
-                temp[6] = i.Inhabilitado;
+                temp[1] = i.Nombre;
+                temp[2] = i.Apellidos;
+                temp[3] = i.Email;
                 temp[4] = (i.RolID == 1 ? "Administrador" : "Cocina");
                 temp[5] = i.Direccion;
+                temp[6] = i.Inhabilitado;
                 resultado.Add(temp);
             }
 
@@ -440,6 +440,36 @@ namespace CapaLogicaAdministracion
         public int GetEstadoID(string s)
         {
             return (s.Equals("A Tiempo") ? 0 : s.Equals("Sobre Tiempo") ? 1 : s.Equals("Demorado") ? 2 : s.Equals("Anulado") ? 3 : 4);
+        }
+
+
+        public List<Object[]> ListarClientes()
+        {
+            List<Object[]> resultado = new List<Object[]>();
+            Object[] temp = new Object[7];
+            List<Persona> lista = datos.ListarClientes();
+
+            foreach (Persona i in lista)
+            {
+                temp = new Object[7];
+                temp[0] = ("Consulta de cliente exitosa");
+                temp[1] = i.Nombre;
+                temp[2] = i.Apellidos;
+                temp[3] = (i.RolID == 3 ? "Cliente" : "Error");
+                temp[4] = i.Email;
+                temp[5] = i.Direccion; 
+                temp[6] = (i.Inhabilitado ? "Si" : "No");
+
+                resultado.Add(temp);
+            }
+
+            return resultado;
+
+        }
+
+        public void DeshabilitarCliente(string email)
+        {
+            datos.DeshabilitarCliente(email);
         }
 
     }

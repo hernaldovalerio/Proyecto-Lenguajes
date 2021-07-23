@@ -1,5 +1,5 @@
 ﻿body {
-    background-image: url('https://cdn.wallpapersafari.com/12/63/Db6fnP.jpg');
+    background-image: url('/Imagenes/Fondo2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -27,4 +27,8 @@ label {
 .form-control {
     width: 100%;
     padding: 10px;
+}
+
+h3 {
+    color: white;
 }

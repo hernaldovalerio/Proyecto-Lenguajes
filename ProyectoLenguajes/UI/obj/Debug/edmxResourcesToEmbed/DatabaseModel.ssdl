@@ -114,9 +114,6 @@
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="ActiveOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="BlockClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Email" Type="nvarchar" Mode="In" />
-  </Function>
   <Function Name="CreateCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />

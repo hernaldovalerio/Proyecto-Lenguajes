@@ -207,9 +207,6 @@
       <Parameter Name="PedidoID" Mode="In" Type="Int32" />
       <Parameter Name="EstadoID" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="BlockClient">
-      <Parameter Name="Email" Mode="In" Type="String" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveOrders_Result">
     <Property Type="Int32" Name="PedidoID" Nullable="false" />

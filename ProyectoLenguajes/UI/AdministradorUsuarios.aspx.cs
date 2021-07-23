@@ -32,9 +32,9 @@ namespace ModuloAdministracion
             StringBuilder strHTMLBuilder = new StringBuilder();
 
             DataTable table = new DataTable();
-            table.Columns.Add("Email", typeof(string));
             table.Columns.Add("Nombre", typeof(string));
             table.Columns.Add("Apellido", typeof(string));
+            table.Columns.Add("Email", typeof(string));
             table.Columns.Add("Rol", typeof(string));
             table.Columns.Add("Direccion", typeof(string));
 
