@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBA_IF4101_HHSMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="EstadoID" />
+          </Key>
+          <Property Name="EstadoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescEstado" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LineaPedido">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+            <PropertyRef Name="LineaPedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="int" Nullable="false" />
+          <Property Name="LineaPedidoID" Type="int" Nullable="false" />
+          <Property Name="PlatilloID" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescPedido" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EstadoID" Type="int" Nullable="false" />
+          <Property Name="PersonaID" Type="int" Nullable="false" />
+          <Property Name="FechaPedido" Type="smalldatetime" Nullable="false" />
+          <Property Name="FechaEntrega" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Contraseña" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Inhabilitado" Type="bit" Nullable="false" />
+          <Property Name="RolID" Type="int" />
+        </EntityType>
+        <EntityType Name="Platillo">
+          <Key>
+            <PropertyRef Name="PlatilloID" />
+          </Key>
+          <Property Name="PlatilloID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescPlatillo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Precio" Type="money" Nullable="false" />
+          <Property Name="Inhabilitado" Type="bit" Nullable="false" />
+          <Property Name="Foto" Type="image" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescRol" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="EstadoID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="EstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="PedidoID" />
+            </Principal>
+            <Dependent Role="LineaPedido">
+              <PropertyRef Name="PedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="PersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AbleCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AbleFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ActiveOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="BlockClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CreateCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="RollID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CreateFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DescPlatillo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Precio" Type="money" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="Foto" Type="image" Mode="In" />
+        </Function>
+        <Function Name="DeleteCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DisableCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DisableFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="FilterPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="apellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="inicio" Type="smalldatetime" Mode="In" />
+          <Parameter Name="fin" Type="smalldatetime" Mode="In" />
+          <Parameter Name="estado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LineasPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="nvarchar" Mode="In" />
+          <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="RollID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ModifyFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DescPlatillo" Type="nvarchar" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Precio" Type="money" Mode="In" />
+          <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
+          <Parameter Name="Foto" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="SearchCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SearchFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PedidoID" Type="int" Mode="In" />
+          <Parameter Name="EstadoID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DBA_IF4101_HHSMModelStoreContainer">
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LineaPedido" EntityType="Self.LineaPedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Platillo" EntityType="Self.Platillo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Estado" Association="Self.FK_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido" Association="Self.FK_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="LineaPedido" EntitySet="LineaPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona" Association="Self.FK_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rol" Association="Self.FK_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBA_IF4101_HHSMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="EstadoID" />
+          </Key>
+          <Property Name="EstadoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescEstado" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Estado" FromRole="Estado" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="LineaPedido">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+            <PropertyRef Name="LineaPedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="Int32" Nullable="false" />
+          <Property Name="LineaPedidoID" Type="Int32" Nullable="false" />
+          <Property Name="PlatilloID" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido" FromRole="LineaPedido" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="PedidoID" />
+          </Key>
+          <Property Name="PedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescPedido" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EstadoID" Type="Int32" Nullable="false" />
+          <Property Name="PersonaID" Type="Int32" Nullable="false" />
+          <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaEntrega" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Estado" FromRole="Pedido" ToRole="Estado" />
+          <NavigationProperty Name="LineaPedido" Relationship="Self.FK_Pedido" FromRole="Pedido" ToRole="LineaPedido" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Persona" FromRole="Pedido" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="PersonaID" />
+          </Key>
+          <Property Name="PersonaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
+          <Property Name="RolID" Type="Int32" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_Persona" FromRole="Persona" ToRole="Pedido" />
+          <NavigationProperty Name="Rol" Relationship="Self.FK_Rol" FromRole="Persona" ToRole="Rol" />
+        </EntityType>
+        <EntityType Name="Platillo">
+          <Key>
+            <PropertyRef Name="PlatilloID" />
+          </Key>
+          <Property Name="PlatilloID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescPlatillo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="RolID" />
+          </Key>
+          <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescRol" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK_Rol" FromRole="Rol" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="EstadoID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="EstadoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="PedidoID" />
+            </Principal>
+            <Dependent Role="LineaPedido">
+              <PropertyRef Name="PedidoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="PersonaID" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="PersonaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="RolID" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="RolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBA_IF4101_HHSMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Estado" EntityType="Self.Estado" />
+          <EntitySet Name="LineaPedido" EntityType="Self.LineaPedido" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="Platillo" EntityType="Self.Platillo" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <AssociationSet Name="FK_Estado" Association="Self.FK_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pedido" Association="Self.FK_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="LineaPedido" EntitySet="LineaPedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona" Association="Self.FK_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rol" Association="Self.FK_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <FunctionImport Name="AbleCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AbleFood">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ActiveOrders" ReturnType="Collection(DBA_IF4101_HHSMModel.ActiveOrders_Result)" />
+          <FunctionImport Name="BlockClient">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="RollID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CreateFood">
+            <Parameter Name="DescPlatillo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="Foto" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteFood">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DisableCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DisableFood">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FilterPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.FilterPedido_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fin" Mode="In" Type="DateTime" />
+            <Parameter Name="estado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LineasPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.LineasPedido_Result)">
+            <Parameter Name="Pedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyCount">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="RollID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModifyFood">
+            <Parameter Name="DescPlatillo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
+            <Parameter Name="Foto" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SearchCount" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchCount_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateState">
+            <Parameter Name="PedidoID" Mode="In" Type="Int32" />
+            <Parameter Name="EstadoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ActiveOrders_Result">
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="16" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Persona" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="FilterPedido_Result">
+          <Property Type="Int32" Name="PersonaID" Nullable="false" />
+          <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="EstadoID" Nullable="false" />
+          <Property Type="Int32" Name="PedidoID" Nullable="false" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="LineasPedido_Result">
+          <Property Type="Int32" Name="LineaPedidoID" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SearchCount_Result">
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="Rol" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SearchFood_Result">
+          <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Binary" Name="Foto" Nullable="true" MaxLength="Max" />
+          <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBA_IF4101_HHSMModelStoreContainer" CdmEntityContainer="DBA_IF4101_HHSMEntities">
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LineaPedido">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.LineaPedido">
+              <MappingFragment StoreEntitySet="LineaPedido">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="LineaPedidoID" ColumnName="LineaPedidoID" />
+                <ScalarProperty Name="PlatilloID" ColumnName="PlatilloID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="FechaEntrega" ColumnName="FechaEntrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Platillo">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Platillo">
+              <MappingFragment StoreEntitySet="Platillo">
+                <ScalarProperty Name="PlatilloID" ColumnName="PlatilloID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="DescPlatillo" ColumnName="DescPlatillo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="RolID" ColumnName="RolID" />
+                <ScalarProperty Name="DescRol" ColumnName="DescRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AbleCount" FunctionName="DBA_IF4101_HHSMModel.Store.AbleCount" />
+          <FunctionImportMapping FunctionImportName="AbleFood" FunctionName="DBA_IF4101_HHSMModel.Store.AbleFood" />
+          <FunctionImportMapping FunctionImportName="ActiveOrders" FunctionName="DBA_IF4101_HHSMModel.Store.ActiveOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.ActiveOrders_Result">
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Persona" ColumnName="Persona" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BlockClient" FunctionName="DBA_IF4101_HHSMModel.Store.BlockClient" />
+          <FunctionImportMapping FunctionImportName="CreateCount" FunctionName="DBA_IF4101_HHSMModel.Store.CreateCount" />
+          <FunctionImportMapping FunctionImportName="CreateFood" FunctionName="DBA_IF4101_HHSMModel.Store.CreateFood" />
+          <FunctionImportMapping FunctionImportName="DeleteCount" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteCount" />
+          <FunctionImportMapping FunctionImportName="DeleteFood" FunctionName="DBA_IF4101_HHSMModel.Store.DeleteFood" />
+          <FunctionImportMapping FunctionImportName="DisableCount" FunctionName="DBA_IF4101_HHSMModel.Store.DisableCount" />
+          <FunctionImportMapping FunctionImportName="DisableFood" FunctionName="DBA_IF4101_HHSMModel.Store.DisableFood" />
+          <FunctionImportMapping FunctionImportName="FilterPedido" FunctionName="DBA_IF4101_HHSMModel.Store.FilterPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.FilterPedido_Result">
+                <ScalarProperty Name="PersonaID" ColumnName="PersonaID" />
+                <ScalarProperty Name="DescPedido" ColumnName="DescPedido" />
+                <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+                <ScalarProperty Name="EstadoID" ColumnName="EstadoID" />
+                <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LineasPedido" FunctionName="DBA_IF4101_HHSMModel.Store.LineasPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.LineasPedido_Result">
+                <ScalarProperty Name="LineaPedidoID" ColumnName="LineaPedidoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModifyCount" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyCount" />
+          <FunctionImportMapping FunctionImportName="ModifyFood" FunctionName="DBA_IF4101_HHSMModel.Store.ModifyFood" />
+          <FunctionImportMapping FunctionImportName="SearchCount" FunctionName="DBA_IF4101_HHSMModel.Store.SearchCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.SearchCount_Result">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchFood" FunctionName="DBA_IF4101_HHSMModel.Store.SearchFood">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBA_IF4101_HHSMModel.SearchFood_Result">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Inhabilitado" ColumnName="Inhabilitado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateState" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateState" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

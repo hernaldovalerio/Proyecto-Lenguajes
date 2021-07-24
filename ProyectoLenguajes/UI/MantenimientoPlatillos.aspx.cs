@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaLogicaAdministracion;
+using ModuloAdministracion.CapaLogica;
 
 namespace ModuloAdministracion
 {
