@@ -12,14 +12,12 @@ namespace ModuloAdministracion
     using System;
     using System.Collections.Generic;
     
-    public partial class LineaPedido
+    public partial class sysdiagrams
     {
-        public int PedidoID { get; set; }
-        public int LineaPedidoID { get; set; }
-        public int PlatilloID { get; set; }
-        public int Cantidad { get; set; }
-    
-        public virtual Pedido Pedido { get; set; }
-        public virtual Platillo Platillo { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

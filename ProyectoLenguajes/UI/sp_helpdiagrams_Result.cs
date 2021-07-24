@@ -10,16 +10,13 @@
 namespace ModuloAdministracion
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class LineaPedido
+    public partial class sp_helpdiagrams_Result
     {
-        public int PedidoID { get; set; }
-        public int LineaPedidoID { get; set; }
-        public int PlatilloID { get; set; }
-        public int Cantidad { get; set; }
-    
-        public virtual Pedido Pedido { get; set; }
-        public virtual Platillo Platillo { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

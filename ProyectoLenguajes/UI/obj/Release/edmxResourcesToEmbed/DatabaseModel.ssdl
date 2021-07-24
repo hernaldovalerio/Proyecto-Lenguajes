@@ -40,6 +40,7 @@
     <Property Name="Contraseña" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Inhabilitado" Type="bit" Nullable="false" />
     <Property Name="RolID" Type="int" />
+    <Property Name="Borrado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Platillo">
     <Key>
@@ -51,6 +52,7 @@
     <Property Name="Precio" Type="money" Nullable="false" />
     <Property Name="Inhabilitado" Type="bit" Nullable="false" />
     <Property Name="Foto" Type="image" />
+    <Property Name="Borrado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Rol">
     <Key>
@@ -58,6 +60,16 @@
     </Key>
     <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DescRol" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Tiempo">
     <Key>
@@ -76,6 +88,18 @@
       </Principal>
       <Dependent Role="Pedido">
         <PropertyRef Name="EstadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LineaPedido_Platillo">
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+    <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platillo">
+        <PropertyRef Name="PlatilloID" />
+      </Principal>
+      <Dependent Role="LineaPedido">
+        <PropertyRef Name="PlatilloID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -147,6 +171,9 @@
   <Function Name="DeleteFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="DeliverOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderToDeliver" Type="int" Mode="In" />
+  </Function>
   <Function Name="DisableCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
   </Function>
@@ -161,6 +188,7 @@
     <Parameter Name="fin" Type="smalldatetime" Mode="In" />
     <Parameter Name="estado" Type="int" Mode="In" />
   </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="LineasPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pedido" Type="int" Mode="In" />
   </Function>
@@ -186,6 +214,39 @@
   <Function Name="SearchFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UndoDeliver" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OrderToUndo" Type="int" Mode="In" />
+  </Function>
   <Function Name="UpdateState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="PedidoID" Type="int" Mode="In" />
     <Parameter Name="EstadoID" Type="int" Mode="In" />
@@ -201,10 +262,15 @@
     <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Platillo" EntityType="Self.Platillo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tiempo" EntityType="Self.Tiempo" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Estado" Association="Self.FK_Estado">
       <End Role="Estado" EntitySet="Estado" />
       <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LineaPedido_Platillo" Association="Self.FK_LineaPedido_Platillo">
+      <End Role="Platillo" EntitySet="Platillo" />
+      <End Role="LineaPedido" EntitySet="LineaPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Pedido" Association="Self.FK_Pedido">
       <End Role="Pedido" EntitySet="Pedido" />

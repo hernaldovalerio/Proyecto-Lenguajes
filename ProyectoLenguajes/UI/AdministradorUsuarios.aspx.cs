@@ -103,6 +103,7 @@ namespace ModuloAdministracion
             nombre_txt.Value = "";
             apellido_txt.Value = "";
             direccion_txt.Value = "";
+            rol_opt.SelectedIndex = 0;
         }
 
         public void ModeInsert()
@@ -120,6 +121,7 @@ namespace ModuloAdministracion
             nombre_txt.Value = "";
             apellido_txt.Value = "";
             direccion_txt.Value = "";
+            rol_opt.SelectedIndex = 0;
         }
 
         protected void Buscar_Click(object sender, EventArgs e)
@@ -146,7 +148,7 @@ namespace ModuloAdministracion
                 apellido_txt.Value = cuenta[3];
                 //foto_fld.Value = plato[4];
                 direccion_txt.Value = cuenta[5];
-                //rol_opt.SelectedIndex = Int32.Parse(cuenta[4]);
+                rol_opt.SelectedIndex = Int32.Parse(cuenta[4])-1;
 
             }
 
@@ -168,7 +170,7 @@ namespace ModuloAdministracion
             {
                 string s = logica.InsertarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, (rol_opt.SelectedIndex + 1));
 
-                if (s.Equals("Introducción de nuevo Plato Existosa!"))//logica.ValidarExtension(FileUpload_fld.))
+                if (s.Equals("Introducción de nuevo Usuario Existoso!"))//logica.ValidarExtension(FileUpload_fld.))
                 {
                     email_txt.Value = "";
                     password_txt.Value = "";
@@ -197,7 +199,7 @@ namespace ModuloAdministracion
         {
             string s = logica.EliminarCuenta(email_txt.Value);
 
-            if (s.Equals("Platillo borrado de forma Existosa!"))
+            if (s.Equals("Usuario borrado de forma Existosa!"))
             {
                 ModeInsert();
                 mensaje_lbl.Text = s;
@@ -216,7 +218,7 @@ namespace ModuloAdministracion
             {
                 string s = logica.ModificarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, rol_opt.SelectedIndex + 1);
 
-                if (s.Equals("Platillo modificado de forma Existosa!"))
+                if (s.Equals("Usuario modificado de forma Existosa!"))
                 {
                     ModeInsert();
                     mensaje_lbl.Text = s;

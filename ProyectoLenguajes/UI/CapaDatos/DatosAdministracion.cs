@@ -51,7 +51,7 @@ namespace ModuloAdministracion.CapaDatos
             //logica para buscar en la base de datos
             using (entity = new DBA_IF4101_HHSMEntities())
             {
-                List<Platillo> busqueda = entity.Platillo.ToList();
+                List<Platillo> busqueda = entity.Platillo.Where(a => a.Borrado == false).ToList();
 
                 /**if (busqueda.Count() != 0)
                 {
@@ -198,7 +198,7 @@ namespace ModuloAdministracion.CapaDatos
             //logica para buscar en la base de datos
             using (entity = new DBA_IF4101_HHSMEntities())
             {
-                List<Persona> busqueda = entity.Persona.ToList();
+                List<Persona> busqueda = entity.Persona.Where(a => a.Borrado == false).ToList();
 
                 /**if (busqueda.Count() != 0)
                 {
@@ -393,7 +393,7 @@ namespace ModuloAdministracion.CapaDatos
             //logica para buscar en la base de datos
             using (entity = new DBA_IF4101_HHSMEntities())
             {
-                List<Persona> busqueda = entity.Persona.Where(a => a.RolID.Value == 3).ToList();
+                List<Persona> busqueda = entity.Persona.Where(a => a.RolID.Value == 3 && a.Borrado == false).ToList();
 
                 /**if (busqueda.Count() != 0)
                 {

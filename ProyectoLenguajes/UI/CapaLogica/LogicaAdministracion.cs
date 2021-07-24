@@ -211,7 +211,7 @@ namespace ModuloAdministracion.CapaLogica
                 temp[1] = i.Nombre;
                 temp[2] = i.Apellidos;
                 temp[3] = i.Email;
-                temp[4] = (i.RolID == 1 ? "Administrador" : "Cocina");
+                temp[4] = (i.RolID == 1 ? "Administrador" : i.RolID == 2 ? "Cocina" : "Cliente");
                 temp[5] = i.Direccion;
                 temp[6] = i.Inhabilitado;
                 resultado.Add(temp);
@@ -256,20 +256,27 @@ namespace ModuloAdministracion.CapaLogica
 
         public string InsertarCuenta(string email, string password, string nombre, string apellido, string direccion, int rol)
         {
-            if (!BuscarC(email))//VerificarPlatillo(precio, img))
+            if (rol < 3)
             {
-
-                if (datos.InsertarCuenta(email, password, nombre, apellido, direccion, rol))
+                if (!BuscarC(email))//VerificarPlatillo(precio, img))
                 {
-                    return "Introducción de nuevo Plato Existosa!";
+
+                    if (datos.InsertarCuenta(email, password, nombre, apellido, direccion, rol))
+                    {
+                        return "Introducción de nuevo Usuario Existoso!";
+                    }
+
+                    return "Fallo al insertar, por favor verificar datos introducidos";
+
                 }
-
-                return "Fallo al insertar, por favor verificar datos introducidos";
-
+                else
+                {
+                    return "Ya se encuentra un Usuario con ese email, por favor especifique otro";
+                }
             }
             else
             {
-                return "Ya se encuentra un Usuario con ese nombre, por favor especifique otro";
+                return "Solo se aceptan crear nuevos Administradores y Usuarios de Cocina, no Clientes";
             }
 
         }
@@ -283,7 +290,7 @@ namespace ModuloAdministracion.CapaLogica
                 {
 
 
-                    return "Platillo borrado de forma Existosa!";
+                    return "Usuario borrado de forma Existosa!";
                 }
 
                 return "Ha ocrurrido un error en la capa de datos al borrar el archivo";
@@ -305,7 +312,7 @@ namespace ModuloAdministracion.CapaLogica
                 if (datos.ModificarCuenta(email, password, nombre, apellido, direccion, rol))
                 {
 
-                    return "Platillo modificado de forma Existosa!";
+                    return "Usuario modificado de forma Existosa!";
 
                 }
 

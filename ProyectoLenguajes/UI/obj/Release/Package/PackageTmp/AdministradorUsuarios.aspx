@@ -123,6 +123,7 @@
                                     <select class="form-control" runat="server" id="rol_opt">
                                         <option>Administrador</option>
                                         <option>Cocina</option>
+                                        <option>Cliente</option>
                                     </select>
                                 </div>
 

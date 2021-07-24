@@ -30,7 +30,6 @@ namespace ModuloAdministracion
             
         }
 
-
         protected void Actualizar_Click(object sender, EventArgs e)
         {
             if (estado_opt.SelectedIndex == est)
