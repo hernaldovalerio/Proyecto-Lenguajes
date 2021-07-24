@@ -16,8 +16,8 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">        
+        <a class="navbar-brand" href="/IndexAdmin.aspx">
                 &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
             </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,10 +77,10 @@
                                 <!-- Email -->
                                 <div class="col-sm-6">
                                     <label for="email_txt" class="form-label">Email</label>
-                                    <input type="email" runat="server" class="form-control" id="email_txt" placeholder="Introduzca Email" required="required" />
+                                    <input type="email" runat="server" class="form-control" id="email_txt" placeholder="Introduzca Email" required="required"/>
                                     <br />
-                                    <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Buscar_Click" />
-                                    <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Cancelar_Click" />
+                                    <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Buscar_Click" formnovalidate/>
+                                    <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Cancelar_Click" formnovalidate/>
                                 </div>
 
                                 <br />
@@ -112,7 +112,7 @@
                                 <!-- Apellido -->
                                 <div class="col-sm-6">
                                     <label for="apellido_txt" class="form-label">Apellido</label>
-                                    <input id="apellido_txt" type="text" runat="server" class="form-control" placeholder="Introduzca Nombre" required="required" />
+                                    <input id="apellido_txt" type="text" runat="server" class="form-control" placeholder="Introduzca Nombre" required="required"/>
                                 </div>
 
                                 <br />
@@ -143,7 +143,7 @@
                                     &nbsp;
                                 <asp:Button ID="modificar_btn" runat="server" type="button" class="btn btn-warning" Text="Modificar" OnClick="Modificar_Click" />
                                     &nbsp;
-                                <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" OnClick="Eliminar_Click" />
+                                <asp:Button ID="eliminar_btn" runat="server" type="button" class="btn btn-danger" Text="Eliminar" OnClick="Eliminar_Click" formnovalidate/>
                                     <br />
                                     <br />
                                     &nbsp;
@@ -152,7 +152,7 @@
                                 <br />
 
                                 <!-- Tabla -->
-                                <div class="col-sm-12">
+                                <div class="col-sm-12" style="overflow-x:auto">
                                     <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
                                         <%= DataGridCreation()%>
                                     </table>
@@ -161,7 +161,7 @@
                                 <br />
 
                                 <div class="d-flex h-100 align-items-center justify-content-center">
-                                    <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
+                                    <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
                                 </div>
 
                             </div>

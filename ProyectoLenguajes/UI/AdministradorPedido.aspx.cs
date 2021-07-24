@@ -21,12 +21,13 @@ namespace ModuloAdministracion
             logica = new LogicaAdministracion();
             Session["logica"] = logica;
             list = logica.ListarPedidos();
+
             DataGridCreation();
 
             if (check_fecha.Checked)
             {
-                desde_lbl.Attributes.Remove("hidden");
-                hasta_lbl.Attributes.Remove("hidden");
+                desde_lbl.Visible = true;
+                hasta_lbl.Visible = true;
                 Calendar1.Attributes.Remove("hidden");
                 Calendar2.Attributes.Remove("hidden");
             }
@@ -98,7 +99,7 @@ namespace ModuloAdministracion
                     }
 
 
-                    if (myColumn.ColumnName.Equals("Modificar"))
+                    if (myColumn.ColumnName.Equals("Modificar") && list[0][1] != null && !list[0][1].Equals(""))
                     {
                         strHTMLBuilder.Append("<td >");
                         strHTMLBuilder.Append("<a ID=\"mod\" type=\"button\" runat=\"server\" class=\"btn btn-secondary\" href=\"CambioEstado.aspx?Pedido=" + s + "&Estado=" + e + "\">Modificar</a>");

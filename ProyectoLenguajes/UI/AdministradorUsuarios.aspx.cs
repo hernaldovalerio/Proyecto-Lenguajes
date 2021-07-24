@@ -164,22 +164,30 @@ namespace ModuloAdministracion
         protected void Ingresar_Click(object sender, EventArgs e)
         {
 
-            string s = logica.InsertarCuenta(email_txt.Value,password_txt.Value,nombre_txt.Value,apellido_txt.Value,direccion_txt.Value, (rol_opt.SelectedIndex+1));
-
-            if (s.Equals("Introducción de nuevo Plato Existosa!"))//logica.ValidarExtension(FileUpload_fld.))
+            if (logica.SoloLetras(nombre_txt.Value) && logica.SoloLetras(apellido_txt.Value))
             {
-                email_txt.Value = "";
-                password_txt.Value = "";
-                nombre_txt.Value = "";
-                apellido_txt.Value = "";
-                direccion_txt.Value = "";
+                string s = logica.InsertarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, (rol_opt.SelectedIndex + 1));
 
-                mensaje_lbl.Text = s;
-                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+                if (s.Equals("Introducción de nuevo Plato Existosa!"))//logica.ValidarExtension(FileUpload_fld.))
+                {
+                    email_txt.Value = "";
+                    password_txt.Value = "";
+                    nombre_txt.Value = "";
+                    apellido_txt.Value = "";
+                    direccion_txt.Value = "";
+
+                    mensaje_lbl.Text = s;
+                    mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+                }
+                else
+                {
+                    mensaje_lbl.Text = s;
+                    mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                }
             }
             else
             {
-                mensaje_lbl.Text = s;
+                mensaje_lbl.Text = "No se admiten numero ni simbolos en el/los nombre/s y apellido/s";
                 mensaje_lbl.Attributes.CssStyle.Add("color", "red");
             }
 
@@ -204,17 +212,25 @@ namespace ModuloAdministracion
 
         protected void Modificar_Click(object sender, EventArgs e)
         {
-            string s = logica.ModificarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, rol_opt.SelectedIndex+1);
-
-            if (s.Equals("Platillo modificado de forma Existosa!"))
+            if (logica.SoloLetras(nombre_txt.Value) && logica.SoloLetras(apellido_txt.Value))
             {
-                ModeInsert();
-                mensaje_lbl.Text = s;
-                mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+                string s = logica.ModificarCuenta(email_txt.Value, password_txt.Value, nombre_txt.Value, apellido_txt.Value, direccion_txt.Value, rol_opt.SelectedIndex + 1);
+
+                if (s.Equals("Platillo modificado de forma Existosa!"))
+                {
+                    ModeInsert();
+                    mensaje_lbl.Text = s;
+                    mensaje_lbl.Attributes.CssStyle.Add("color", "green");
+                }
+                else
+                {
+                    mensaje_lbl.Text = s;
+                    mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                }
             }
             else
             {
-                mensaje_lbl.Text = s;
+                mensaje_lbl.Text = "No se admiten numero ni simbolos en el/los nombre/s y apellido/s";
                 mensaje_lbl.Attributes.CssStyle.Add("color", "red");
             }
         }

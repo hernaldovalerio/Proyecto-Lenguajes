@@ -15,8 +15,8 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">        
+        <a class="navbar-brand" href="/IndexAdmin.aspx">
                 &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,8 @@
                 <form id="form1" runat="server" class="card">
                     <div class="row g-2">
 
+                        <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
+
                         <!-- Sobre Tiempo -->
                         <div class="col-sm-6">
                             <label for="time_txt" class="forml-label" id="time_lbl">Sobre Tiempo</label>
@@ -56,11 +58,11 @@
                         <br />
 
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                                <asp:Button ID="aplicar_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Cambios" />
+                                <asp:Button ID="aplicar_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Cambios" OnClick="Actualizar_Click" />
                         </div>
 
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                                <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-secondary" Text="Volver" />
+                                <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
                         </div>
 
                     </div>

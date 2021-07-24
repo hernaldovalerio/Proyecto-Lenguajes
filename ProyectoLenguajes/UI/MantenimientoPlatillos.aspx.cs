@@ -41,7 +41,7 @@ namespace ModuloAdministracion
             table.Columns.Add("Nombre", typeof(string));
             table.Columns.Add("Descripcion", typeof(string));
             table.Columns.Add("Precio", typeof(decimal));
-            table.Columns.Add("Inhabilitado", typeof(bool));
+            table.Columns.Add("Inhabilitado", typeof(string));
             table.Columns.Add("Imagen", typeof(Object));
 
             List<Object[]> list = logica.ListarPlatillo();
@@ -60,7 +60,7 @@ namespace ModuloAdministracion
                 {
                     var r = Convert.ToBase64String((byte[])temp[5]);
                     string s = String.Format("data:image;base64,{0}", r);
-                    table.Rows.Add(temp[1], temp[2], temp[3], temp[4], s);
+                    table.Rows.Add(temp[1], temp[2],((decimal) temp[3]).ToString("#.##"), temp[4], s);
                 }
                 else
                 {

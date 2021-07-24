@@ -33,6 +33,7 @@ namespace ModuloAdministracion
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Platillo> Platillo { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Tiempo> Tiempo { get; set; }
     
         public virtual int AbleCount(string email)
         {
@@ -285,6 +286,19 @@ namespace ModuloAdministracion
                 new ObjectParameter("EstadoID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateState", pedidoIDParameter, estadoIDParameter);
+        }
+    
+        public virtual int UpdateTimes(Nullable<int> s, Nullable<int> d)
+        {
+            var sParameter = s.HasValue ?
+                new ObjectParameter("S", s) :
+                new ObjectParameter("S", typeof(int));
+    
+            var dParameter = d.HasValue ?
+                new ObjectParameter("D", d) :
+                new ObjectParameter("D", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTimes", sParameter, dParameter);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace ModuloAdministracion.CapaLogica
                 temp[0] = ("Consulta de cliente exitosa");
                 temp[1] = i.Nombre;
                 temp[2] = i.DescPlatillo;
-                temp[3] = i.Precio + "";
+                temp[3] = i.Precio;
                 temp[4] = (i.Inhabilitado ? "Si" : "No");
                 temp[5] = i.Foto;
                 resultado.Add(temp);
@@ -269,7 +269,7 @@ namespace ModuloAdministracion.CapaLogica
             }
             else
             {
-                return "Ya se encuentra un Plato con ese nombre, por favor especifique otro";
+                return "Ya se encuentra un Usuario con ese nombre, por favor especifique otro";
             }
 
         }
@@ -470,6 +470,59 @@ namespace ModuloAdministracion.CapaLogica
         public void DeshabilitarCliente(string email)
         {
             datos.DeshabilitarCliente(email);
+        }
+
+        public string Tiempos(string t, string d)
+        {
+            if (CheckNumber(t) && CheckNumber(d))
+            {
+                datos.Tiempos(Int32.Parse(t), Int32.Parse(d));
+                return "Tiempos de Estados Actualizados";
+            }
+            else
+            {
+                return "Digite solo numeros enteros";
+            }
+        }
+
+        public bool CheckNumber(string n)
+        {
+            foreach(char c in n)
+            {
+                if(!Char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool CheckDecimal(string n)
+        {
+            foreach (char c in n)
+            {
+                if (!Char.IsDigit(c) || !c.Equals('.'))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool SoloLetras(String s)
+        {
+            if (s != null && !s.Equals("")) {
+                foreach (char c in s)
+                {
+                    if (!Char.IsLetter(c) && !c.Equals(' '))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
     }

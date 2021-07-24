@@ -416,5 +416,13 @@ namespace ModuloAdministracion.CapaDatos
             }
         }
 
+        public void Tiempos(int t, int d)
+        {
+            using (entity = new DBA_IF4101_HHSMEntities())
+            {
+                entity.UpdateTimes(t,d);
+            }
+        }
+
     }
 }

@@ -213,6 +213,11 @@
       <Parameter Name="PedidoID" Mode="In" Type="Int32" />
       <Parameter Name="EstadoID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Tiempo" EntityType="DBA_IF4101_HHSMModel.Tiempo" />
+    <FunctionImport Name="UpdateTimes">
+      <Parameter Name="S" Mode="In" Type="Int32" />
+      <Parameter Name="D" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveOrders_Result">
     <Property Type="Int32" Name="PedidoID" Nullable="false" />
@@ -248,4 +253,12 @@
     <Property Type="Binary" Name="Foto" Nullable="true" MaxLength="Max" />
     <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Tiempo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SobreTiempo" Type="Int32" />
+    <Property Name="Demorado" Type="Int32" />
+  </EntityType>
 </Schema>

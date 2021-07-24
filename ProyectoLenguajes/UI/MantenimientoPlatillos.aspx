@@ -16,7 +16,7 @@
 <body>
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/IndexAdmin.aspx">
                 &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
             </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,8 +52,8 @@
                                     <label for="plato_txt" class="col-form-label">Plato</label>
                                     <input type="text" runat="server" class="form-control" id="plato_txt" placeholder="Introduzca Nombre Plato" required="required" />
                                     <br />
-                                    <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Buscar_Click" />
-                                    <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Cancelar_Click" />
+                                    <asp:Button ID="buscar_btn" type="button" runat="server" class="btn btn-info" Text="Buscar" OnClick="Buscar_Click" formnovalidate/>
+                                    <asp:Button ID="cancelar_btn" type="button" runat="server" class="btn btn-secondary" Text="Cancelar" OnClick="Cancelar_Click" formnovalidate/>
 
                                 </div>
 
@@ -76,7 +76,7 @@
                                 <!-- Precio-->
                                 <div class="col-sm-5">
                                     <label for="precio_txt" class="col-form-label">Precio</label>
-                                    <input type="number" runat="server" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" />
+                                    <input type="number" runat="server" class="col-10 form-control" id="precio_txt" placeholder="Introduzca Precio" step=".01"/>
                                 </div>
 
                                 <br />
@@ -106,12 +106,10 @@
                                 <br />
 
                                 <!-- Tabla -->
-                                <div class="col-12">
+                                <div class="col-12" style="overflow-x:auto">
                                     <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
                                         
                                             <%= DataGridCreation()%>
-                                        
-                                        
                                         
                                     </table>
                                 </div>
@@ -119,7 +117,7 @@
                                 <br />
 
                                 <div class="d-flex h-100 align-items-center justify-content-center">
-                                    <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
+                                    <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
                                 </div>
 
                             </div>

@@ -15,6 +15,7 @@
         <AssociationConnector Association="DBA_IF4101_HHSMModel.FK_Pedido" ManuallyRouted="false" />
         <AssociationConnector Association="DBA_IF4101_HHSMModel.FK_Persona" ManuallyRouted="false" />
         <AssociationConnector Association="DBA_IF4101_HHSMModel.FK_Rol" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBA_IF4101_HHSMModel.Tiempo" Width="1.5" PointX="5.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

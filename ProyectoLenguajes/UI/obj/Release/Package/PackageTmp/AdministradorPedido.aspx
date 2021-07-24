@@ -12,7 +12,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <style>
         body {
-            background-image: url('/Imagenes/Fondo2.jpg');
+            background-image: url('/Imagenes/Fondo3.jpg');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -47,8 +47,8 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">    
+        <a class="navbar-brand" href="/IndexAdmin.aspx">
                 &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
         <div class="row g-4">
             <div class="col-md-12 col-lg-12">
                 <br />
-                <h3 class="mb-3" style="text-align: center; color: white">Filtros</h3>
+                <h3 class="mb-3" style="text-align: center; color: white">Buscador de Pedidos</h3>
                 <form id="form1" runat="server" class="card">
 
 
@@ -195,7 +195,46 @@
                             var c2 = 0;
                             var c3 = 0;
 
+                            if ($('#check_email').is(":checked")) {
+                                $('#id_txt').show();
+                                $('#id_lbl').show();
+                            } else {
+                                $('#id_txt').hide();
+                                $('#id_lbl').hide();
+                            };
                             
+                            if ($('#check_nombre').is(":checked")) {
+                                $('#nombre_txt').show();
+                                $('#apellido_lbl').show();
+                                $('#apellido_txt').show();
+                                $('#nombre_lbl').show();
+                            } else {
+                                $('#nombre_txt').hide();
+                                $('#apellido_lbl').hide();
+                                $('#apellido_txt').hide();
+                                $('#nombre_lbl').hide();
+                            };
+
+                            if ($('#check_fecha').is(":checked")) {
+                                $('#Calendar1').show();
+                                $('#Calendar2').show();
+                                $('#desde_lbl').show();
+                                $('#hasta_lbl').show();
+                            } else {
+                                $('#Calendar1').hide();
+                                $('#Calendar2').hide();
+                                $('#desde_lbl').hide();
+                                $('#hasta_lbl').hide();
+                            };
+
+                            if ($('#estado_check').is(":checked")) {
+                                $('#estado_opt').show();
+                                $('#estado_lbl').show();
+                            }
+                            else {
+                                $('#estado_opt').hide();
+                                $('#estado_lbl').hide();
+                            };
 
                             $('#check_email').on('change', function () {
                                 if ($(this).is(":checked")) {
@@ -264,7 +303,7 @@
 
                     
                     <asp:ScriptManager ID="ScriptManager1" runat="server" />
-                    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Always">
+                    <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="filtro_btn" />
                             
@@ -386,7 +425,7 @@
 
 
                         <!-- Tabla -->
-                                <div class="col-sm-12">
+                                <div class="col-sm-12" style="overflow-x:auto">
                                     <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
                                         <%= GetTable()%>
                                     </table>
@@ -396,7 +435,7 @@
 
                         <!-- BOTON Volver -->
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                            <asp:Button ID="volver_btn" runat="server" type="button" class="btn btn-primary" Text="Volver" />
+                                <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
                         </div>
 
 

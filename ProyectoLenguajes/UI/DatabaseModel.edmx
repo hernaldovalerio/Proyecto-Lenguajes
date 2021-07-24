@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBA_IF4101_HHSMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBA_IF4101_HHSMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="EstadoID" />
@@ -63,6 +63,14 @@
           </Key>
           <Property Name="RolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DescRol" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tiempo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SobreTiempo" Type="int" />
+          <Property Name="Demorado" Type="int" />
         </EntityType>
         <Association Name="FK_Estado">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
@@ -187,6 +195,10 @@
           <Parameter Name="PedidoID" Type="int" Mode="In" />
           <Parameter Name="EstadoID" Type="int" Mode="In" />
         </Function>
+        <Function Name="UpdateTimes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="S" Type="int" Mode="In" />
+          <Parameter Name="D" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DBA_IF4101_HHSMModelStoreContainer">
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LineaPedido" EntityType="Self.LineaPedido" Schema="dbo" store:Type="Tables" />
@@ -194,6 +206,7 @@
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Platillo" EntityType="Self.Platillo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tiempo" EntityType="Self.Tiempo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Estado" Association="Self.FK_Estado">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Pedido" EntitySet="Pedido" />
@@ -211,8 +224,7 @@
             <End Role="Persona" EntitySet="Persona" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBA_IF4101_HHSMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -355,14 +367,14 @@
             <End Role="Persona" EntitySet="Persona" />
           </AssociationSet>
           <FunctionImport Name="AbleCount">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AbleFood">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
+          <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ActiveOrders" ReturnType="Collection(DBA_IF4101_HHSMModel.ActiveOrders_Result)" />
           <FunctionImport Name="BlockClient">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CreateCount">
             <Parameter Name="Email" Mode="In" Type="String" />
@@ -381,16 +393,16 @@
             <Parameter Name="Foto" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="DeleteCount">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteFood">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
+          <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DisableCount">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DisableFood">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
+          <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="FilterPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.FilterPedido_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -401,7 +413,7 @@
             <Parameter Name="estado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="LineasPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.LineasPedido_Result)">
-            <Parameter Name="Pedido" Mode="In" Type="Int32" />
+          <Parameter Name="Pedido" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ModifyCount">
             <Parameter Name="Email" Mode="In" Type="String" />
@@ -420,14 +432,19 @@
             <Parameter Name="Foto" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="SearchCount" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchCount_Result)">
-            <Parameter Name="Email" Mode="In" Type="String" />
+          <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
+          <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="UpdateState">
             <Parameter Name="PedidoID" Mode="In" Type="Int32" />
             <Parameter Name="EstadoID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Tiempo" EntityType="DBA_IF4101_HHSMModel.Tiempo" />
+          <FunctionImport Name="UpdateTimes">
+            <Parameter Name="S" Mode="In" Type="Int32" />
+            <Parameter Name="D" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ActiveOrders_Result">
@@ -464,6 +481,14 @@
           <Property Type="Binary" Name="Foto" Nullable="true" MaxLength="Max" />
           <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Tiempo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SobreTiempo" Type="Int32" />
+          <Property Name="Demorado" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -600,6 +625,16 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateState" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateState" />
+          <EntitySetMapping Name="Tiempo">
+            <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Tiempo">
+              <MappingFragment StoreEntitySet="Tiempo">
+                <ScalarProperty Name="Demorado" ColumnName="Demorado" />
+                <ScalarProperty Name="SobreTiempo" ColumnName="SobreTiempo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateTimes" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateTimes" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

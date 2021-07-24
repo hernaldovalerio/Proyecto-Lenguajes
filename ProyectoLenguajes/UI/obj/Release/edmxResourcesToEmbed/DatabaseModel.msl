@@ -131,5 +131,15 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="UpdateState" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateState" />
+    <EntitySetMapping Name="Tiempo">
+      <EntityTypeMapping TypeName="DBA_IF4101_HHSMModel.Tiempo">
+        <MappingFragment StoreEntitySet="Tiempo">
+          <ScalarProperty Name="Demorado" ColumnName="Demorado" />
+          <ScalarProperty Name="SobreTiempo" ColumnName="SobreTiempo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UpdateTimes" FunctionName="DBA_IF4101_HHSMModel.Store.UpdateTimes" />
   </EntityContainerMapping>
 </Mapping>
