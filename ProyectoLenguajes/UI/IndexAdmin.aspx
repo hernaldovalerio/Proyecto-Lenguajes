@@ -28,6 +28,12 @@
                 <a class="nav-item nav-link" href="AdministradorEstados.aspx">Estados</a>
                 <a class="nav-item nav-link" href="MantenimientoPlatillos.aspx">Platos</a>
             </div>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="InicioSesion.aspx" class="btn btn-dark navbar-btn">
+                        <img src="/Imagenes/Logoff.png" width="20" height="18" alt="" />&nbsp;&nbsp;&nbsp;Cerrar sesion</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="container">
@@ -40,7 +46,7 @@
                 <br />
                 <form id="form1" runat="server" class="card">
                     <div class="row g-2">
-                        
+
                         <br />
                         <h4 class="mb-3" style="text-align: center; color: black">Aqui podras realizar diferentes gestiones relacionadas a los usuarios, pedidos y platos, etc.</h4>
                         <h4 class="mb-3" style="text-align: center; color: black">¡Todo lo relacionado al restaurante Egoavil's!</h4>

@@ -17,19 +17,20 @@
     <Property Name="LineaPedidoID" Type="Int32" Nullable="false" />
     <Property Name="PlatilloID" Type="Int32" Nullable="false" />
     <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Platillo" Relationship="Self.FK_LineaPedido_Platillo" FromRole="LineaPedido" ToRole="Platillo" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido" FromRole="LineaPedido" ToRole="Pedido" />
-    <NavigationProperty Name="Platillo" Relationship="DBA_IF4101_HHSMModel.FK_LineaPedido_Platillo" FromRole="LineaPedido" ToRole="Platillo" />
   </EntityType>
   <EntityType Name="Pedido">
     <Key>
       <PropertyRef Name="PedidoID" />
     </Key>
     <Property Name="PedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DescPedido" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DescPedido" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="EstadoID" Type="Int32" Nullable="false" />
     <Property Name="PersonaID" Type="Int32" Nullable="false" />
     <Property Name="FechaPedido" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="FechaEntrega" Type="DateTime" Precision="0" />
+    <Property Name="FechaControl" Type="DateTime" Precision="0" />
+    <Property Name="EstadoAntesDeEntrega" Type="Int32" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_Estado" FromRole="Pedido" ToRole="Estado" />
     <NavigationProperty Name="LineaPedido" Relationship="Self.FK_Pedido" FromRole="Pedido" ToRole="LineaPedido" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Persona" FromRole="Pedido" ToRole="Persona" />
@@ -46,9 +47,9 @@
     <Property Name="Contraseña" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
     <Property Name="RolID" Type="Int32" />
+    <Property Name="Borrado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Persona" FromRole="Persona" ToRole="Pedido" />
     <NavigationProperty Name="Rol" Relationship="Self.FK_Rol" FromRole="Persona" ToRole="Rol" />
-    <Property Name="Borrado" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="Platillo">
     <Key>
@@ -61,7 +62,7 @@
     <Property Name="Inhabilitado" Type="Boolean" Nullable="false" />
     <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Borrado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="LineaPedido" Relationship="DBA_IF4101_HHSMModel.FK_LineaPedido_Platillo" FromRole="Platillo" ToRole="LineaPedido" />
+    <NavigationProperty Name="LineaPedido" Relationship="Self.FK_LineaPedido_Platillo" FromRole="Platillo" ToRole="LineaPedido" />
   </EntityType>
   <EntityType Name="Rol">
     <Key>
@@ -70,6 +71,24 @@
     <Property Name="RolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DescRol" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Persona" Relationship="Self.FK_Rol" FromRole="Rol" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tiempo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SobreTiempo" Type="Int32" />
+    <Property Name="Demorado" Type="Int32" />
   </EntityType>
   <Association Name="FK_Estado">
     <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
@@ -80,6 +99,18 @@
       </Principal>
       <Dependent Role="Pedido">
         <PropertyRef Name="EstadoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LineaPedido_Platillo">
+    <End Role="Platillo" Type="Self.Platillo" Multiplicity="1" />
+    <End Role="LineaPedido" Type="Self.LineaPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platillo">
+        <PropertyRef Name="PlatilloID" />
+      </Principal>
+      <Dependent Role="LineaPedido">
+        <PropertyRef Name="PlatilloID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -126,9 +157,15 @@
     <EntitySet Name="Persona" EntityType="Self.Persona" />
     <EntitySet Name="Platillo" EntityType="Self.Platillo" />
     <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tiempo" EntityType="Self.Tiempo" />
     <AssociationSet Name="FK_Estado" Association="Self.FK_Estado">
       <End Role="Estado" EntitySet="Estado" />
       <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LineaPedido_Platillo" Association="Self.FK_LineaPedido_Platillo">
+      <End Role="Platillo" EntitySet="Platillo" />
+      <End Role="LineaPedido" EntitySet="LineaPedido" />
     </AssociationSet>
     <AssociationSet Name="FK_Pedido" Association="Self.FK_Pedido">
       <End Role="Pedido" EntitySet="Pedido" />
@@ -149,8 +186,27 @@
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ActiveOrders" ReturnType="Collection(DBA_IF4101_HHSMModel.ActiveOrders_Result)" />
+    <FunctionImport Name="ActualizarCliente">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AgregarLineaPedido">
+      <Parameter Name="LineaPedidoID" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre_platillo" Mode="In" Type="String" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AgregarPedido">
+      <Parameter Name="Correo_electronico" Mode="In" Type="String" />
+      <Parameter Name="Descripcion_pedido" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="BlockClient">
       <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="BuscarCliente" ReturnType="Collection(DBA_IF4101_HHSMModel.BuscarCliente_Result)">
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="CreateCount">
       <Parameter Name="Email" Mode="In" Type="String" />
@@ -174,6 +230,9 @@
     <FunctionImport Name="DeleteFood">
       <Parameter Name="Nombre" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="DeliverOrder">
+      <Parameter Name="OrderToDeliver" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="DisableCount">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
@@ -188,8 +247,21 @@
       <Parameter Name="fin" Mode="In" Type="DateTime" />
       <Parameter Name="estado" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="IniciarSesion" ReturnType="Collection(DBA_IF4101_HHSMModel.IniciarSesion_Result)">
+      <Parameter Name="CorreoElectronico" Mode="In" Type="String" />
+      <Parameter Name="Contrasenna" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="LineasPedido" ReturnType="Collection(DBA_IF4101_HHSMModel.LineasPedido_Result)">
       <Parameter Name="Pedido" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ListaPlatillos" ReturnType="Collection(DBA_IF4101_HHSMModel.ListaPlatillos_Result)" />
+    <FunctionImport Name="ListarPedidos" ReturnType="Collection(DBA_IF4101_HHSMModel.ListarPedidos_Result)" />
+    <FunctionImport Name="ModificarCliente">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ModifyCount">
       <Parameter Name="Email" Mode="In" Type="String" />
@@ -207,28 +279,22 @@
       <Parameter Name="Inhabilitado" Mode="In" Type="Boolean" />
       <Parameter Name="Foto" Mode="In" Type="Binary" />
     </FunctionImport>
+    <FunctionImport Name="PedidosCliente" ReturnType="Collection(DBA_IF4101_HHSMModel.PedidosCliente_Result)">
+      <Parameter Name="Corrreo_electronico" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RefreshOrders" />
+    <FunctionImport Name="RegistrarCliente">
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Direccion" Mode="In" Type="String" />
+      <Parameter Name="Contraseña" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="SearchCount" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchCount_Result)">
       <Parameter Name="Email" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="SearchFood" ReturnType="Collection(DBA_IF4101_HHSMModel.SearchFood_Result)">
       <Parameter Name="Nombre" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="UpdateState">
-      <Parameter Name="PedidoID" Mode="In" Type="Int32" />
-      <Parameter Name="EstadoID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <EntitySet Name="Tiempo" EntityType="DBA_IF4101_HHSMModel.Tiempo" />
-    <FunctionImport Name="UpdateTimes">
-      <Parameter Name="S" Mode="In" Type="Int32" />
-      <Parameter Name="D" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <EntitySet Name="sysdiagrams" EntityType="DBA_IF4101_HHSMModel.sysdiagrams" />
-    <AssociationSet Name="FK_LineaPedido_Platillo" Association="DBA_IF4101_HHSMModel.FK_LineaPedido_Platillo">
-      <End Role="Platillo" EntitySet="Platillo" />
-      <End Role="LineaPedido" EntitySet="LineaPedido" />
-    </AssociationSet>
-    <FunctionImport Name="DeliverOrder">
-      <Parameter Name="OrderToDeliver" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -263,26 +329,70 @@
     <FunctionImport Name="UndoDeliver">
       <Parameter Name="OrderToUndo" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="UpdateState">
+      <Parameter Name="PedidoID" Mode="In" Type="Int32" />
+      <Parameter Name="EstadoID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="UpdateTimes">
+      <Parameter Name="S" Mode="In" Type="Int32" />
+      <Parameter Name="D" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="ActiveOrders_Result">
     <Property Type="Int32" Name="PedidoID" Nullable="false" />
-    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="500" />
     <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="16" />
     <Property Type="String" Name="Estado" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="Persona" Nullable="false" MaxLength="50" />
   </ComplexType>
+  <ComplexType Name="BuscarCliente_Result">
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Direccion" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Contraseña" Nullable="false" MaxLength="30" />
+  </ComplexType>
   <ComplexType Name="FilterPedido_Result">
     <Property Type="Int32" Name="PersonaID" Nullable="false" />
-    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="500" />
     <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
     <Property Type="Int32" Name="EstadoID" Nullable="false" />
     <Property Type="Int32" Name="PedidoID" Nullable="false" />
     <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="IniciarSesion_Result">
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="RolID" Nullable="true" />
+    <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="LineasPedido_Result">
     <Property Type="Int32" Name="LineaPedidoID" Nullable="false" />
     <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="Cantidad" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ListaPlatillos_Result">
+    <Property Type="Int32" Name="Platillo" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+    <Property Type="Binary" Name="Foto" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="ListarPedidos_Result">
+    <Property Type="Int32" Name="PersonaID" Nullable="false" />
+    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="500" />
+    <Property Type="Int32" Name="EstadoID" Nullable="false" />
+    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+    <Property Type="Int32" Name="PedidoID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Apellidos" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="PedidosCliente_Result">
+    <Property Type="DateTime" Name="FechaPedido" Nullable="false" Precision="16" />
+    <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="DescPedido" Nullable="false" MaxLength="500" />
   </ComplexType>
   <ComplexType Name="SearchCount_Result">
     <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
@@ -292,42 +402,13 @@
     <Property Type="Int32" Name="Rol" Nullable="true" />
   </ComplexType>
   <ComplexType Name="SearchFood_Result">
+    <Property Type="Int32" Name="Platillo" Nullable="false" />
     <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="50" />
     <Property Type="Decimal" Name="Precio" Nullable="false" Precision="19" />
     <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
     <Property Type="Binary" Name="Foto" Nullable="true" MaxLength="Max" />
     <Property Type="Boolean" Name="Inhabilitado" Nullable="false" />
   </ComplexType>
-  <EntityType Name="Tiempo">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SobreTiempo" Type="Int32" />
-    <Property Name="Demorado" Type="Int32" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_LineaPedido_Platillo">
-    <End Type="DBA_IF4101_HHSMModel.Platillo" Role="Platillo" Multiplicity="1" />
-    <End Type="DBA_IF4101_HHSMModel.LineaPedido" Role="LineaPedido" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Platillo">
-        <PropertyRef Name="PlatilloID" />
-      </Principal>
-      <Dependent Role="LineaPedido">
-        <PropertyRef Name="PlatilloID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
     <Property Type="Binary" Name="definition" Nullable="true" />

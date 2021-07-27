@@ -359,12 +359,12 @@ namespace ModuloAdministracion.CapaDatos
             }
         }
 
-        public List<Pedido> ListarPedidos()
+        public List<ListarPedidos_Result> ListarPedidos()
         {
             //logica para buscar en la base de datos
             using (entity = new DBA_IF4101_HHSMEntities())
             {
-                List<Pedido> busqueda = entity.Pedido.ToList();
+                List<ListarPedidos_Result> busqueda = entity.ListarPedidos().ToList();
 
                 /**if (busqueda.Count() != 0)
                 {

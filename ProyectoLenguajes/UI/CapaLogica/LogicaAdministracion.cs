@@ -99,6 +99,11 @@ namespace ModuloAdministracion.CapaLogica
             {
                 decimal n = ConvertirADecimal(precio);
 
+                if (n <= ConvertirADecimal("100") || n >= ConvertirADecimal("50000"))
+                {
+                    return "Precio debe ser mayor a 100 colones y menor que 50.000 colones";
+                }
+
                 if (datos.InsertarPlatillo(nombre, descripcion, n, img))
                 {
                     return "Introducción de nuevo Plato Existosa!";
@@ -142,6 +147,11 @@ namespace ModuloAdministracion.CapaLogica
             if (BuscarP(nombre))//VerificarPlatillo(precio, img))
             {
                 decimal n = ConvertirADecimal(precio);
+
+                if (n <= ConvertirADecimal("100") || n >= ConvertirADecimal("50000"))
+                {
+                    return "Precio debe ser mayor a 100 colones y menor que 50.000 colones";
+                }
 
                 if (datos.ModificarPlatillo(nombre, descripcion, n, img))
                 {
@@ -340,7 +350,7 @@ namespace ModuloAdministracion.CapaLogica
 
         //-----------------------------------------------------------------------------------------
 
-        public List<string[]> Filtrar(/**bool idCheck, string id, */string nombre, string apellido, DateTime bef, DateTime af, int estado)
+        public List<string[]> Filtrar(string nombre, string apellido, DateTime bef, DateTime af, int estado)
         {
 
             int n = 0;
@@ -364,7 +374,7 @@ namespace ModuloAdministracion.CapaLogica
 
             List<FilterPedido_Result> p = datos.Filtrar(/**n,*/ nam, ap, bef, af, estado);
             List<string[]> s = new List<string[]>();
-            string[] temp = new string[7];
+            string[] temp = new string[9];
 
             if (p.Count() != 0){
 
@@ -374,13 +384,15 @@ namespace ModuloAdministracion.CapaLogica
 
                     e = p[i].EstadoID - 1;
 
-                    temp = new string[7];
+                    temp = new string[9];
                     temp[0] = "Datos Encontrados";
                     temp[1] = p[i].PersonaID + "";
-                    temp[2] = p[i].DescPedido;
-                    temp[3] = p[i].FechaPedido+"";
-                    temp[4] = (e== 0 ? "A Tiempo" : e == 1 ? "Sobre Tiempo" : e == 2 ? "Demorado" : e == 3 ? "Anulado" : "Entregado");
-                    temp[5] = p[i].PedidoID + ""; ;
+                    temp[2] = p[i].Nombre;
+                    temp[3] = p[i].Apellidos;
+                    temp[4] = p[i].DescPedido;
+                    temp[5] = p[i].FechaPedido + "";
+                    temp[7] = (e == 0 ? "A Tiempo" : e == 1 ? "Sobre Tiempo" : e == 2 ? "Demorado" : e == 3 ? "Anulado" : "Entregado");
+                    temp[6] = p[i].PedidoID + "";
                     s.Add(temp);
 
                 }
@@ -416,22 +428,24 @@ namespace ModuloAdministracion.CapaLogica
         public List<string[]> ListarPedidos()
         {
             List<string[]> resultado = new List<string[]>();
-            string[] temp = new string[7];
-            List<Pedido> lista = datos.ListarPedidos();
+            string[] temp = new string[9];
+            List<ListarPedidos_Result> lista = datos.ListarPedidos();
 
             int e = 0;
 
-            foreach (Pedido i in lista)
+            foreach (ListarPedidos_Result i in lista)
             {
                 e = (i.EstadoID - 1);
 
-                temp = new string[7];
+                temp = new string[9];
                 temp[0] = "Datos Encontrados";
                 temp[1] = i.PersonaID + "";
-                temp[2] = i.DescPedido;
-                temp[3] = i.FechaPedido + "";
-                temp[4] = (e == 0 ? "A Tiempo" : e == 1 ? "Sobre Tiempo" : e == 2 ? "Demorado" : e == 3 ? "Anulado" : "Entregado");
-                temp[5] = i.PedidoID + "";
+                temp[2] = i.Nombre;
+                temp[3] = i.Apellidos;
+                temp[4] = i.DescPedido;
+                temp[5] = i.FechaPedido + "";
+                temp[7] = (e == 0 ? "A Tiempo" : e == 1 ? "Sobre Tiempo" : e == 2 ? "Demorado" : e == 3 ? "Anulado" : "Entregado");
+                temp[6] = i.PedidoID + "";
                 resultado.Add(temp);
             }
 
@@ -483,6 +497,10 @@ namespace ModuloAdministracion.CapaLogica
         {
             if (CheckNumber(t) && CheckNumber(d))
             {
+                if(Int32.Parse(t) <= 0 || Int32.Parse(d) <= 0)
+                {
+                    return "Tiempo debe ser mayor a 0";
+                }
                 datos.Tiempos(Int32.Parse(t), Int32.Parse(d));
                 return "Tiempos de Estados Actualizados";
             }

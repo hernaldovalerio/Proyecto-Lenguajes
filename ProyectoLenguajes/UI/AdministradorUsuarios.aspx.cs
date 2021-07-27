@@ -191,6 +191,7 @@ namespace ModuloAdministracion
             {
                 mensaje_lbl.Text = "No se admiten numero ni simbolos en el/los nombre/s y apellido/s";
                 mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                ModeInsert();
             }
 
         }
@@ -234,6 +235,7 @@ namespace ModuloAdministracion
             {
                 mensaje_lbl.Text = "No se admiten numero ni simbolos en el/los nombre/s y apellido/s";
                 mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                ModeSearch();
             }
         }
 

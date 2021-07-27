@@ -14,6 +14,8 @@ namespace ModuloAdministracion
     public partial class FilterPedido_Result
     {
         public int PersonaID { get; set; }
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
         public string DescPedido { get; set; }
         public System.DateTime FechaPedido { get; set; }
         public int EstadoID { get; set; }

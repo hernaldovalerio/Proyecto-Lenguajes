@@ -10,6 +10,7 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <style>
         body {
             background-image: url('/Imagenes/Fondo3.jpg');
@@ -47,29 +48,34 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">    
-        <a class="navbar-brand" href="/IndexAdmin.aspx">
-                &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Usuarios</a>
-                    <a class="nav-item nav-link" href="AdministrarClientes.aspx">Clientes</a>
-                    <a class="nav-item nav-link active" href="AdministradorPedido.aspx">Pedidos</a>
-                    <a class="nav-item nav-link" href="AdministradorEstados.aspx">Estados</a>
-                    <a class="nav-item nav-link" href="MantenimientoPlatillos.aspx">Platos</a>
-                </div>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="/IndexAdmin.aspx">&nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Usuarios</a>
+                <a class="nav-item nav-link" href="AdministrarClientes.aspx">Clientes</a>
+                <a class="nav-item nav-link active" href="AdministradorPedido.aspx">Pedidos</a>
+                <a class="nav-item nav-link" href="AdministradorEstados.aspx">Estados</a>
+                <a class="nav-item nav-link" href="MantenimientoPlatillos.aspx">Platos</a>
             </div>
-        </nav>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="InicioSesion.aspx" class="btn btn-dark navbar-btn">
+                        <img src="/Imagenes/Logoff.png" width="20" height="18" alt="" />&nbsp;&nbsp;&nbsp;Cerrar sesion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="row g-4">
             <div class="col-md-12 col-lg-12">
                 <br />
-                <h3 class="mb-3" style="text-align: center; color: white">Buscador de Pedidos</h3>
+                <h2 class="mb-3" style="text-align: center; color: white; font-family: 'Kaushan Script', cursive;">Buscador de Pedidos</h2>
                 <form id="form1" runat="server" class="card">
 
 
@@ -202,7 +208,7 @@
                                 $('#id_txt').hide();
                                 $('#id_lbl').hide();
                             };
-                            
+
                             if ($('#check_nombre').is(":checked")) {
                                 $('#nombre_txt').show();
                                 $('#apellido_lbl').show();
@@ -301,145 +307,132 @@
 
 
 
-                    
+
                     <asp:ScriptManager ID="ScriptManager1" runat="server" />
                     <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Conditional">
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="filtro_btn" />
-                            
+                            <asp:AsyncPostBackTrigger ControlID="filtro1_btn" />
                         </Triggers>
 
 
                         <ContentTemplate>
-                    <!-- <asp:AsyncPostBackTrigger ControlID="mod_btn" />
-                        -->
-                    <div class="row g-3">
+                            <div class="row g-3">
 
-                        <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
+                                <asp:Label ID="mensaje_lbl" class="form-text col-12" runat="server"></asp:Label>
 
-                        <script type="text/javascript">
-                            Sys.Application.add_load(Fechas);
-                            Sys.Application.add_load(Checks);
-                        </script>
+                                <script type="text/javascript">
+                                    Sys.Application.add_load(Fechas);
+                                    Sys.Application.add_load(Checks);
+                                </script>
 
 
 
-                        <!-- Check ID -->
-                        <!--
-                        <div class="col-12">
-                            <input id="check_email" for="email_opt" runat="server" type="checkbox" />
-                            Filtro por ID
-                        </div>
+                                <br />
 
-                        <br />
+                                <!-- Check Nombre -->
+                                <div class="col-12">
+                                    <input id="check_nombre" for="nombre_txt" runat="server" type="checkbox" />
+                                    Filtro por Nombre
+                                </div>
 
-                        
-                        <!-- Filtro por ID --
-                        <div class="col-12">
-                            <label for="id_txt" class="form-label" id="id_lbl">ID Usuario</label>
-                            <input type="number" runat="server" class="form-control" id="id_txt" placeholder="Introduzca ID" />
-                        </div>
-                        -->
-                        <br />
+                                <br />
 
-                        <!-- Check Nombre -->
-                        <div class="col-12">
-                            <input id="check_nombre" for="nombre_txt" runat="server" type="checkbox" />
-                            Filtro por Nombre
-                        </div>
+                                <!-- Filtro por Nombre -->
+                                <div class="col-sm-6">
+                                    <label for="nombre_txt" class="form-label" id="nombre_lbl">Nombre</label>
+                                    <input type="text" runat="server" class="form-control" id="nombre_txt" placeholder="Introduzca Nombre" maxlength="50" />
+                                </div>
 
-                        <br />
+                                <br />
 
-                        <!-- Filtro por Nombre -->
-                        <div class="col-sm-6">
-                            <label for="nombre_txt" class="form-label" id="nombre_lbl">Nombre</label>
-                            <input type="text" runat="server" class="form-control" id="nombre_txt" placeholder="Introduzca Nombre" />
-                        </div>
+                                <!-- Filtro por Apellido -->
+                                <div class="col-sm-6">
+                                    <label for="apellido_txt" class="form-label" id="apellido_lbl">Apellido</label>
+                                    <input id="apellido_txt" type="text" runat="server" class="form-control" placeholder="Introduzca Nombre" maxlength="50" />
 
-                        <br />
+                                </div>
 
-                        <!-- Filtro por Apellido -->
-                        <div class="col-sm-6">
-                            <label for="apellido_txt" class="form-label" id="apellido_lbl">Apellido</label>
-                            <input id="apellido_txt" type="text" runat="server" class="form-control" placeholder="Introduzca Nombre" />
+                                <br />
 
-                        </div>
+                                <!-- Check Estado -->
+                                <div class="col-12">
+                                    <input id="estado_check" for="estado_txt" runat="server" type="checkbox" />
+                                    Filtro por Estado
+                                </div>
 
-                        <br />
+                                <br />
 
-                        <!-- Check Estado -->
-                        <div class="col-12">
-                            <input id="estado_check" for="estado_txt" runat="server" type="checkbox" />
-                            Filtro por Estado
-                        </div>
+                                <!-- Filtro por Estado -->
+                                <div class="col-sm-6">
+                                    <label for="estado_opt" class="form-label" id="estado_lbl">Estado</label>
+                                    <select type="text" runat="server" class="form-control" id="estado_opt">
+                                        <option>Elegir Estado</option>
+                                        <option>A Tiempo</option>
+                                        <option>Sobre Tiempo</option>
+                                        <option>Demorado</option>
+                                        <option>Anulado</option>
+                                        <option>Entregado</option>
+                                    </select>
+                                </div>
 
-                        <br />
+                                <br />
 
-                        <!-- Filtro por Estado -->
-                        <div class="col-sm-6">
-                            <label for="estado_opt" class="form-label" id="estado_lbl">Estado</label>
-                            <select type="text" runat="server" class="form-control" id="estado_opt" placeholder="Introduzca Nombre" >
-                                <option>Elegir Estado</option>
-                                <option>A Tiempo</option>
-                                <option>Sobre Tiempo</option>
-                                <option>Demorado</option>
-                                <option>Anulado</option>
-                                <option>Entregado</option>
-                            </select>
-                        </div>
+                                <!-- Check Fecha -->
+                                <div class="col-12">
+                                    <input id="check_fecha" for="befday_opt" runat="server" type="checkbox" />
+                                    Filtro por Fecha
+                                </div>
 
-                        <br />
-
-                        <!-- Check Fecha -->
-                        <div class="col-12">
-                            <input id="check_fecha" for="befday_opt" runat="server" type="checkbox" />
-                            Filtro por Fecha
-                        </div>
-
-                        <br />
+                                <br />
 
 
 
-                        <!-- Fecha Desde -->
-                        <div class="col-sm-6">
-                            <label for="Calendar1" class="col-form-label" id="desde_lbl" runat="server">Desde: </label>
-                            <asp:Calendar ID="Calendar1" runat="server" ></asp:Calendar>
-                        </div>
+                                <!-- Fecha Desde -->
+                                <div class="col-sm-6">
+                                    <label for="Calendar1" class="col-form-label" id="desde_lbl" runat="server">Desde: </label>
+                                    <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+                                </div>
 
 
-                        <br />
+                                <br />
 
-                        <!-- Fecha Hasta -->
+                                <!-- Fecha Hasta -->
 
-                        <div class="col-sm-6">
-                            <label for="Calendar2" class="col-form-label" id="hasta_lbl" runat="server">Hasta: </label>
-                            <asp:Calendar ID="Calendar2" runat="server" ></asp:Calendar>
-                        </div>
-
-                         
-                        <!-- BOTON FILTRO -->
-                        <div class="d-flex h-100 align-items-center justify-content-center">
-                            <asp:Button ID="filtro_btn" runat="server" type="button" class="btn btn-secondary" Text="Aplicar Filtros" OnClick="Filtrar_Click" />
-                            <!--<asp:Button ID="filtro1_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Filtros" OnClick="Filtrar_Click"/>-->
-                        </div>
+                                <div class="col-sm-6">
+                                    <label for="Calendar2" class="col-form-label" id="hasta_lbl" runat="server">Hasta: </label>
+                                    <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+                                </div>
 
 
-                        <!-- Tabla -->
-                                <div class="col-sm-12" style="overflow-x:auto">
+                                <br />
+
+                                <!-- BOTON FILTRO -->
+                                <div class="d-flex h-100 align-items-center justify-content-center">
+                                    <asp:Button ID="filtro1_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Filtros" OnClick="Filtrar_Click" />
+
+                                </div>
+                                <div class="d-flex h-100 align-items-center justify-content-center">
+                                    <asp:Button ID="filtro_btn" runat="server" type="button" class="btn btn-secondary" Text="Quitar Filtros" OnClick="Cancelar_Click" />
+                                </div>
+
+                                <!-- Tabla -->
+                                <div class="col-sm-12" style="overflow-x: auto">
+                                    <small id="Help" class="form-text text-muted">Si estas en movil, deslize para mostrar mas contenido</small>
                                     <table id="dtBasicExample" class="table table-striped table-bordered" style="background-color: white">
                                         <%= GetTable()%>
                                     </table>
                                 </div>
 
-                        <br />
+                                <br />
 
-                        <!-- BOTON Volver -->
-                        <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
-                        </div>
+                                <!-- BOTON Volver -->
+                                <div class="d-flex h-100 align-items-center justify-content-center">
+                                    <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
+                                </div>
 
 
-                    </div>
+                            </div>
 
                         </ContentTemplate>
                     </asp:UpdatePanel>

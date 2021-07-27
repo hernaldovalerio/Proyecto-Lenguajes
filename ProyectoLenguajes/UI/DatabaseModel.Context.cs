@@ -33,8 +33,8 @@ namespace ModuloAdministracion
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Platillo> Platillo { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
-        public virtual DbSet<Tiempo> Tiempo { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tiempo> Tiempo { get; set; }
     
         public virtual int AbleCount(string email)
         {
@@ -59,6 +59,61 @@ namespace ModuloAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ActiveOrders_Result>("ActiveOrders");
         }
     
+        public virtual int ActualizarCliente(string email, string nombre, string apellido, string direccion, string contraseña)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("Apellido", apellido) :
+                new ObjectParameter("Apellido", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCliente", emailParameter, nombreParameter, apellidoParameter, direccionParameter, contraseñaParameter);
+        }
+    
+        public virtual int AgregarLineaPedido(Nullable<int> lineaPedidoID, string nombre_platillo, Nullable<int> cantidad)
+        {
+            var lineaPedidoIDParameter = lineaPedidoID.HasValue ?
+                new ObjectParameter("LineaPedidoID", lineaPedidoID) :
+                new ObjectParameter("LineaPedidoID", typeof(int));
+    
+            var nombre_platilloParameter = nombre_platillo != null ?
+                new ObjectParameter("Nombre_platillo", nombre_platillo) :
+                new ObjectParameter("Nombre_platillo", typeof(string));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarLineaPedido", lineaPedidoIDParameter, nombre_platilloParameter, cantidadParameter);
+        }
+    
+        public virtual int AgregarPedido(string correo_electronico, string descripcion_pedido)
+        {
+            var correo_electronicoParameter = correo_electronico != null ?
+                new ObjectParameter("Correo_electronico", correo_electronico) :
+                new ObjectParameter("Correo_electronico", typeof(string));
+    
+            var descripcion_pedidoParameter = descripcion_pedido != null ?
+                new ObjectParameter("Descripcion_pedido", descripcion_pedido) :
+                new ObjectParameter("Descripcion_pedido", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarPedido", correo_electronicoParameter, descripcion_pedidoParameter);
+        }
+    
         public virtual int BlockClient(string email)
         {
             var emailParameter = email != null ?
@@ -66,6 +121,15 @@ namespace ModuloAdministracion
                 new ObjectParameter("Email", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BlockClient", emailParameter);
+        }
+    
+        public virtual ObjectResult<BuscarCliente_Result> BuscarCliente(string correoElectronico)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BuscarCliente_Result>("BuscarCliente", correoElectronicoParameter);
         }
     
         public virtual int CreateCount(string email, string nombre, string apellidos, string direccion, string contraseña, Nullable<bool> inhabilitado, Nullable<int> rollID)
@@ -144,6 +208,15 @@ namespace ModuloAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteFood", nombreParameter);
         }
     
+        public virtual int DeliverOrder(Nullable<int> orderToDeliver)
+        {
+            var orderToDeliverParameter = orderToDeliver.HasValue ?
+                new ObjectParameter("OrderToDeliver", orderToDeliver) :
+                new ObjectParameter("OrderToDeliver", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeliverOrder", orderToDeliverParameter);
+        }
+    
         public virtual int DisableCount(string email)
         {
             var emailParameter = email != null ?
@@ -191,6 +264,19 @@ namespace ModuloAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FilterPedido_Result>("FilterPedido", idParameter, nombreParameter, apellidoParameter, inicioParameter, finParameter, estadoParameter);
         }
     
+        public virtual ObjectResult<IniciarSesion_Result> IniciarSesion(string correoElectronico, string contrasenna)
+        {
+            var correoElectronicoParameter = correoElectronico != null ?
+                new ObjectParameter("CorreoElectronico", correoElectronico) :
+                new ObjectParameter("CorreoElectronico", typeof(string));
+    
+            var contrasennaParameter = contrasenna != null ?
+                new ObjectParameter("Contrasenna", contrasenna) :
+                new ObjectParameter("Contrasenna", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesion_Result>("IniciarSesion", correoElectronicoParameter, contrasennaParameter);
+        }
+    
         public virtual ObjectResult<LineasPedido_Result> LineasPedido(Nullable<int> pedido)
         {
             var pedidoParameter = pedido.HasValue ?
@@ -198,6 +284,41 @@ namespace ModuloAdministracion
                 new ObjectParameter("Pedido", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LineasPedido_Result>("LineasPedido", pedidoParameter);
+        }
+    
+        public virtual ObjectResult<ListaPlatillos_Result> ListaPlatillos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListaPlatillos_Result>("ListaPlatillos");
+        }
+    
+        public virtual ObjectResult<ListarPedidos_Result> ListarPedidos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ListarPedidos_Result>("ListarPedidos");
+        }
+    
+        public virtual int ModificarCliente(string email, string nombre, string apellido, string direccion, string contraseña)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("Apellido", apellido) :
+                new ObjectParameter("Apellido", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarCliente", emailParameter, nombreParameter, apellidoParameter, direccionParameter, contraseñaParameter);
         }
     
         public virtual int ModifyCount(string email, string nombre, string apellidos, string direccion, string contraseña, Nullable<bool> inhabilitado, Nullable<int> rollID)
@@ -258,6 +379,45 @@ namespace ModuloAdministracion
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyFood", descPlatilloParameter, nombreParameter, precioParameter, inhabilitadoParameter, fotoParameter);
         }
     
+        public virtual ObjectResult<PedidosCliente_Result> PedidosCliente(string corrreo_electronico)
+        {
+            var corrreo_electronicoParameter = corrreo_electronico != null ?
+                new ObjectParameter("Corrreo_electronico", corrreo_electronico) :
+                new ObjectParameter("Corrreo_electronico", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PedidosCliente_Result>("PedidosCliente", corrreo_electronicoParameter);
+        }
+    
+        public virtual int RefreshOrders()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RefreshOrders");
+        }
+    
+        public virtual int RegistrarCliente(string email, string nombre, string apellido, string direccion, string contraseña)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var apellidoParameter = apellido != null ?
+                new ObjectParameter("Apellido", apellido) :
+                new ObjectParameter("Apellido", typeof(string));
+    
+            var direccionParameter = direccion != null ?
+                new ObjectParameter("Direccion", direccion) :
+                new ObjectParameter("Direccion", typeof(string));
+    
+            var contraseñaParameter = contraseña != null ?
+                new ObjectParameter("Contraseña", contraseña) :
+                new ObjectParameter("Contraseña", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarCliente", emailParameter, nombreParameter, apellidoParameter, direccionParameter, contraseñaParameter);
+        }
+    
         public virtual ObjectResult<SearchCount_Result> SearchCount(string email)
         {
             var emailParameter = email != null ?
@@ -274,41 +434,6 @@ namespace ModuloAdministracion
                 new ObjectParameter("Nombre", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SearchFood_Result>("SearchFood", nombreParameter);
-        }
-    
-        public virtual int UpdateState(Nullable<int> pedidoID, Nullable<int> estadoID)
-        {
-            var pedidoIDParameter = pedidoID.HasValue ?
-                new ObjectParameter("PedidoID", pedidoID) :
-                new ObjectParameter("PedidoID", typeof(int));
-    
-            var estadoIDParameter = estadoID.HasValue ?
-                new ObjectParameter("EstadoID", estadoID) :
-                new ObjectParameter("EstadoID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateState", pedidoIDParameter, estadoIDParameter);
-        }
-    
-        public virtual int UpdateTimes(Nullable<int> s, Nullable<int> d)
-        {
-            var sParameter = s.HasValue ?
-                new ObjectParameter("S", s) :
-                new ObjectParameter("S", typeof(int));
-    
-            var dParameter = d.HasValue ?
-                new ObjectParameter("D", d) :
-                new ObjectParameter("D", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTimes", sParameter, dParameter);
-        }
-    
-        public virtual int DeliverOrder(Nullable<int> orderToDeliver)
-        {
-            var orderToDeliverParameter = orderToDeliver.HasValue ?
-                new ObjectParameter("OrderToDeliver", orderToDeliver) :
-                new ObjectParameter("OrderToDeliver", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeliverOrder", orderToDeliverParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -421,6 +546,32 @@ namespace ModuloAdministracion
                 new ObjectParameter("OrderToUndo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UndoDeliver", orderToUndoParameter);
+        }
+    
+        public virtual int UpdateState(Nullable<int> pedidoID, Nullable<int> estadoID)
+        {
+            var pedidoIDParameter = pedidoID.HasValue ?
+                new ObjectParameter("PedidoID", pedidoID) :
+                new ObjectParameter("PedidoID", typeof(int));
+    
+            var estadoIDParameter = estadoID.HasValue ?
+                new ObjectParameter("EstadoID", estadoID) :
+                new ObjectParameter("EstadoID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateState", pedidoIDParameter, estadoIDParameter);
+        }
+    
+        public virtual int UpdateTimes(Nullable<int> s, Nullable<int> d)
+        {
+            var sParameter = s.HasValue ?
+                new ObjectParameter("S", s) :
+                new ObjectParameter("S", typeof(int));
+    
+            var dParameter = d.HasValue ?
+                new ObjectParameter("D", d) :
+                new ObjectParameter("D", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateTimes", sParameter, dParameter);
         }
     }
 }

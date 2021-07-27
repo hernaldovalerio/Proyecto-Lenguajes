@@ -51,24 +51,6 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.WebControls.Label mensaje_lbl;
 
         /// <summary>
-        /// Control check_email.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox check_email;
-
-        /// <summary>
-        /// Control id_txt.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl id_txt;
-
-        /// <summary>
         /// Control check_nombre.
         /// </summary>
         /// <remarks>
@@ -159,15 +141,6 @@ namespace ModuloAdministracion
         protected global::System.Web.UI.WebControls.Calendar Calendar2;
 
         /// <summary>
-        /// Control filtro_btn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button filtro_btn;
-
-        /// <summary>
         /// Control filtro1_btn.
         /// </summary>
         /// <remarks>
@@ -175,5 +148,14 @@ namespace ModuloAdministracion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button filtro1_btn;
+
+        /// <summary>
+        /// Control filtro_btn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button filtro_btn;
     }
 }

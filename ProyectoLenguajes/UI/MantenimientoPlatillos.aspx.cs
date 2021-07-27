@@ -99,7 +99,7 @@ namespace ModuloAdministracion
                     if (myColumn.ColumnName.Equals("Imagen") && myRow[myColumn.ColumnName].ToString().Length > 0)
                     {
                        
-                        strHTMLBuilder.Append("<td ><img src='");
+                        strHTMLBuilder.Append("<td><img src='");
                         strHTMLBuilder.Append((string)myRow[myColumn.ColumnName]);
                         strHTMLBuilder.Append("' style='max-height:30%; max-width:30%'/></td>");
 
@@ -258,6 +258,7 @@ namespace ModuloAdministracion
             {
                 mensaje_lbl.Text = s;
                 mensaje_lbl.Attributes.CssStyle.Add("color", "red");
+                ModeSearch();
             }
         }
 

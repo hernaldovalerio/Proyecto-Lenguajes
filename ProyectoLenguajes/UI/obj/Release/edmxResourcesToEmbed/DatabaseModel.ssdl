@@ -22,11 +22,12 @@
       <PropertyRef Name="PedidoID" />
     </Key>
     <Property Name="PedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DescPedido" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="DescPedido" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="EstadoID" Type="int" Nullable="false" />
     <Property Name="PersonaID" Type="int" Nullable="false" />
     <Property Name="FechaPedido" Type="smalldatetime" Nullable="false" />
-    <Property Name="FechaEntrega" Type="smalldatetime" />
+    <Property Name="FechaControl" Type="smalldatetime" />
+    <Property Name="EstadoAntesDeEntrega" Type="int" />
   </EntityType>
   <EntityType Name="Persona">
     <Key>
@@ -146,8 +147,27 @@
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="ActiveOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Apellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="AgregarLineaPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LineaPedidoID" Type="int" Mode="In" />
+    <Parameter Name="Nombre_platillo" Type="nvarchar" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AgregarPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Correo_electronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="Descripcion_pedido" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="BlockClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="BuscarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="CreateCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
@@ -189,8 +209,21 @@
     <Parameter Name="estado" Type="int" Mode="In" />
   </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="IniciarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CorreoElectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contrasenna" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="LineasPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Pedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ListaPlatillos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ListarPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ModificarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Apellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="ModifyCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
@@ -206,7 +239,18 @@
     <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
     <Parameter Name="Precio" Type="money" Mode="In" />
     <Parameter Name="Inhabilitado" Type="bit" Mode="In" />
-    <Parameter Name="Foto" Type="varbinary" Mode="In" />
+    <Parameter Name="Foto" Type="image" Mode="In" />
+  </Function>
+  <Function Name="PedidosCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Corrreo_electronico" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="RefreshOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RegistrarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="Apellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="Direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="Contraseña" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="SearchCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />

@@ -13,6 +13,7 @@ namespace ModuloAdministracion
     
     public partial class SearchFood_Result
     {
+        public int Platillo { get; set; }
         public string NOMBRE { get; set; }
         public decimal Precio { get; set; }
         public string Descripcion { get; set; }

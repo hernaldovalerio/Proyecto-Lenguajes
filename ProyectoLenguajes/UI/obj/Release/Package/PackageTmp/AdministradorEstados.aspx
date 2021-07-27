@@ -10,34 +10,40 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 
     <link href="CSS/Administracion2.css" rel="stylesheet" />
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">        
-        <a class="navbar-brand" href="/IndexAdmin.aspx">
-                &nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt=""/>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Usuarios</a>
-                    <a class="nav-item nav-link" href="AdministrarClientes.aspx">Clientes</a>
-                    <a class="nav-item nav-link" href="AdministradorPedido.aspx">Pedidos</a>
-                    <a class="nav-item nav-link active" href="AdministradorEstados.aspx">Estados</a>
-                    <a class="nav-item nav-link" href="MantenimientoPlatillos.aspx">Platos</a>
-                </div>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="/IndexAdmin.aspx">&nbsp;&nbsp;<img src="/Imagenes/LogoPagWeb2.png" width="150" height="50" alt="" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="AdministradorUsuarios.aspx">Usuarios</a>
+                <a class="nav-item nav-link" href="AdministrarClientes.aspx">Clientes</a>
+                <a class="nav-item nav-link" href="AdministradorPedido.aspx">Pedidos</a>
+                <a class="nav-item nav-link active" href="AdministradorEstados.aspx">Estados</a>
+                <a class="nav-item nav-link" href="MantenimientoPlatillos.aspx">Platos</a>
             </div>
-        </nav>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="InicioSesion.aspx" class="btn btn-dark navbar-btn">
+                        <img src="/Imagenes/Logoff.png" width="20" height="18" alt="" />&nbsp;&nbsp;&nbsp;Cerrar sesion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="row g-4">
             <div class="col-md-12 col-lg-12">
                 <br />
-                <h3 class="mb-4" style="text-align: center; color: white">Administrador de Tiempo de Estados</h3>
+                <h2 class="mb-4" style="text-align: center; color: white; font-family: 'Kaushan Script', cursive;">Administrador de Tiempo de Estados</h2>
                 <form id="form1" runat="server" class="card">
                     <div class="row g-2">
 
@@ -46,23 +52,23 @@
                         <!-- Sobre Tiempo -->
                         <div class="col-sm-6">
                             <label for="time_txt" class="forml-label" id="time_lbl">Sobre Tiempo</label>
-                            <input type="number" runat="server" class="form-control" id="time_txt" placeholder="Introduzca Tiempo" required="required" />
+                            <input type="number" runat="server" class="form-control" id="time_txt" placeholder="Introduzca Tiempo" required="required" pattern=".{1,3}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" />
                         </div>
 
                         <!-- Demorado -->
                         <div class="col-sm-6">
                             <label for="delay_txt" class="forml-label" id="delay_lbl">Demorado</label>
-                            <input type="number" runat="server" class="form-control" id="delay_txt" placeholder="Introduzca Tiempo" required="required" />
+                            <input type="number" runat="server" class="form-control" id="delay_txt" placeholder="Introduzca Tiempo" required="required" pattern=".{1,3}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="3" />
                         </div>
 
                         <br />
 
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                                <asp:Button ID="aplicar_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Cambios" OnClick="Actualizar_Click" />
+                            <asp:Button ID="aplicar_btn" runat="server" type="button" class="btn btn-primary" Text="Aplicar Cambios" OnClick="Actualizar_Click" />
                         </div>
 
                         <div class="d-flex h-100 align-items-center justify-content-center">
-                                <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
+                            <a runat="server" type="button" class="btn btn-secondary" href="/IndexAdmin.aspx" formnovalidate>Volver</a>
                         </div>
 
                     </div>
